@@ -1,10 +1,15 @@
 package com.jumore.b2b.daren.admin.controller;
 
+import java.io.File;
+import java.io.IOException;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.jumore.b2b.activity.comm.Pages;
 import com.jumore.b2b.activity.service.business.io.request.AppraiseReq;
@@ -87,12 +92,13 @@ public class AppraiseCtl {
 		return "/appraise/main";
 	};
 	@RequestMapping(value = "/doAppend")
-	public String doAppend(Model model,AppraiseReq req) {
+	public String doAppend(Model model,AppraiseReq req,@RequestParam("file") CommonsMultipartFile file) throws IllegalStateException, IOException {
 			// 会话已存在,就不用登录了
 		/*if (request.getSession().getAttribute("userSession") == null) {
 			return "redirect:/login";
 		}*/
-		appraiseBiz.doAppend(req);
+        
+		appraiseBiz.doAppend(req,file);
 		return "/appraise/main";
 	};
 	

@@ -23,9 +23,9 @@
 				<br>
 				<form class="form-search" action="/appraise/browser">
 					<div class="input-append">
-						<button type="submit"  class="btn blue btn-subscribe"><span>进入系统</span> <i class="m-icon-swapright m-icon-white"></i></button>
+						<button type="submit"  class="btn blue btn-subscribe"><span>进入系统</span> <i class="m-icon-swapright m-icon-white"></i></button>
 					</div>
-				</form>			</div>
+				</form>								<form class="form-search" action="/appraise/main">					<div class="input-append">						<button type="submit"  class="btn blue btn-subscribe"><span>进入后台</span> <i class="m-icon-swapright m-icon-white"></i></button>					</div>				</form>			</div>
 		</div>
 		<!--/end row-fluid-->
 		<div class="row-fluid">

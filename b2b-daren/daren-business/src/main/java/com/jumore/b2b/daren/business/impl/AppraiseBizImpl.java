@@ -1,5 +1,7 @@
 package com.jumore.b2b.daren.business.impl;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,6 +12,10 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.jumore.b2b.activity.comm.Pages;
 import com.jumore.b2b.activity.core.util.SpringBeanUtils;
@@ -151,6 +157,39 @@ public class AppraiseBizImpl implements IAppraiseBiz {
 		}
 
 		return rows;
+	}
+
+	@Override
+	public long doAppend(AppraiseReq req, CommonsMultipartFile file) throws IllegalStateException, IOException {
+		
+		
+		RequestAttributes ra = RequestContextHolder.getRequestAttributes();
+		ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) ra;
+		
+		String root=servletRequestAttributes.getRequest().getSession().getServletContext().getRealPath("/resources");
+		String path="/head/"+file.getOriginalFilename();
+		File newFile=new File(root+path);
+
+	     //如果用的是Tomcat服务器，则文件会上传到\\%TOMCAT_HOME%\\webapps\\YourWebProject\\WEB-INF\\upload\\文件夹中  
+		 //String realPath = request.getSession().getServletContext().getRealPath("/WEB-INF/upload");  
+		 //这里不必处理IO流关闭的问题，因为FileUtils.copyInputStreamToFile()方法内部会自动把用到的IO流关掉，我是看它的源码才知道的
+		
+        //通过CommonsMultipartFile的方法直接写文件（注意这个时候）
+        file.transferTo(newFile);
+		
+        Appraise e = new Appraise();
+		// 转换规则。demo认为没有规则。直接转
+        req.setCreateTime(new Date());
+        req.setBest(0);
+        req.setBetter(0);
+        req.setGood(0);
+        req.setHead(path);
+		if (req.getCode()==null){
+			req.setCode("S"+RandomStringUtils.randomNumeric(3));
+		}
+		SpringBeanUtils.copyProperties(req, e);
+		return appraiseService.insertSelective(e);
+		
 	}
 
 }
