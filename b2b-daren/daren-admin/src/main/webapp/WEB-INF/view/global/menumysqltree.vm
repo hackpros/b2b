@@ -1,0 +1,10 @@
+		
+#foreach( $menu in $sysMenus)
+    <div title="${menu.text}">
+    #foreach( $child in $!menu.children)	
+    	#set($authorityId=$child.authorityId)
+    	<a href="javascript:void(0);" id="$!{child.text} " src='$request.contextPath/${saf.getAuthUrl($authorityId)}' class="cs-navi-tab">${child.text}</a></p>
+    #end
+    </div>
+#end 				
+				

@@ -1,0 +1,18 @@
+#if($sysMenus.size()>0)
+			#set($parentId=$sysMenus[0].parentId)
+			#set($secnndLevvlMenu=0)
+			#foreach( $menu in $sysMenus)
+				#if($!{menu.authorityId})
+					#set($secnndLevvlMenu=$secnndLevvlMenu+1)
+					#set($authorityId=$menu.authorityId)
+					 <a href="javascript:void(0);" id="$!{menu.nameEn}" src='$request.contextPath/${saf.getAuthUrl($authorityId)}' class="cs-navi-tab">${menu.name}</a></p>
+				#else
+					#if($secnndLevvlMenu>0)
+						</div>
+					#end
+					<div title="${menu.name}">
+				#end
+    				#set($parentId=$menus.parentId)
+				
+			#end
+			#end 

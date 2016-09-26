@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jumore.b2b.daren.mapper.OrderGainsMapper" >
+  <resultMap id="BaseResultMap" type="com.jumore.b2b.daren.model.OrderGains" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="ORDER_NO" property="orderNo" jdbcType="BIGINT" />
+    <result column="GOODS_NAME" property="goodsName" jdbcType="BIGINT" />
+    <result column="REFERRAL_CODE" property="referralCode" jdbcType="VARCHAR" />
+    <result column="TALENT_USER_ID" property="talentUserId" jdbcType="BIGINT" />
+    <result column="INDUSTRY_ID" property="industryId" jdbcType="BIGINT" />
+    <result column="CATE_ID" property="cateId" jdbcType="INTEGER" />
+    <result column="BUYER_NAME" property="buyerName" jdbcType="VARCHAR" />
+    <result column="SELLER_NAME" property="sellerName" jdbcType="VARCHAR" />
+    <result column="ORDER_AMOUNT" property="orderAmount" jdbcType="INTEGER" />
+    <result column="PRICE" property="price" jdbcType="INTEGER" />
+    <result column="UNIT_ID" property="unitId" jdbcType="INTEGER" />
+    <result column="ORDER_TOTAL_" property="orderTotal" jdbcType="BIGINT" />
+    <result column="ORDER_TIME" property="orderTime" jdbcType="TIMESTAMP" />
+    <result column="GAINS_BALANCE" property="gainsBalance" jdbcType="BIGINT" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="DELETE_FLAG" property="deleteFlag" jdbcType="INTEGER" />
+    <result column="SCALE" property="scale" jdbcType="INTEGER" />
+    <result column="SOURCE_TYPE" property="sourceType" jdbcType="INTEGER" />
+    <result column="SCALE_TYPE" property="scaleType" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ORDER_NO, GOODS_NAME, REFERRAL_CODE, TALENT_USER_ID, INDUSTRY_ID, CATE_ID, BUYER_NAME, 
+    SELLER_NAME, ORDER_AMOUNT, PRICE, UNIT_ID, ORDER_TOTAL_, ORDER_TIME, GAINS_BALANCE, 
+    CREATE_TIME, UPDATE_TIME, DELETE_FLAG, SCALE, SOURCE_TYPE, SCALE_TYPE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jumore.b2b.daren.model.OrderGainsQueryHelper" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sp_talent_order_gains
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sp_talent_order_gains
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sp_talent_order_gains
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jumore.b2b.daren.model.OrderGainsQueryHelper" >
+    delete from sp_talent_order_gains
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jumore.b2b.daren.model.OrderGains" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sp_talent_order_gains (ID, ORDER_NO, GOODS_NAME, 
+      REFERRAL_CODE, TALENT_USER_ID, INDUSTRY_ID, 
+      CATE_ID, BUYER_NAME, SELLER_NAME, 
+      ORDER_AMOUNT, PRICE, UNIT_ID, 
+      ORDER_TOTAL_, ORDER_TIME, GAINS_BALANCE, 
+      CREATE_TIME, UPDATE_TIME, DELETE_FLAG, 
+      SCALE, SOURCE_TYPE, SCALE_TYPE
+      )
+    values (#{id,jdbcType=BIGINT}, #{orderNo,jdbcType=BIGINT}, #{goodsName,jdbcType=BIGINT}, 
+      #{referralCode,jdbcType=VARCHAR}, #{talentUserId,jdbcType=BIGINT}, #{industryId,jdbcType=BIGINT}, 
+      #{cateId,jdbcType=INTEGER}, #{buyerName,jdbcType=VARCHAR}, #{sellerName,jdbcType=VARCHAR}, 
+      #{orderAmount,jdbcType=INTEGER}, #{price,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER}, 
+      #{orderTotal,jdbcType=BIGINT}, #{orderTime,jdbcType=TIMESTAMP}, #{gainsBalance,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=INTEGER}, 
+      #{scale,jdbcType=INTEGER}, #{sourceType,jdbcType=INTEGER}, #{scaleType,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jumore.b2b.daren.model.OrderGains" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sp_talent_order_gains
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      ID,
+      <if test="orderNo != null" >
+        ORDER_NO,
+      </if>
+      <if test="goodsName != null" >
+        GOODS_NAME,
+      </if>
+      <if test="referralCode != null" >
+        REFERRAL_CODE,
+      </if>
+      <if test="talentUserId != null" >
+        TALENT_USER_ID,
+      </if>
+      <if test="industryId != null" >
+        INDUSTRY_ID,
+      </if>
+      <if test="cateId != null" >
+        CATE_ID,
+      </if>
+      <if test="buyerName != null" >
+        BUYER_NAME,
+      </if>
+      <if test="sellerName != null" >
+        SELLER_NAME,
+      </if>
+      <if test="orderAmount != null" >
+        ORDER_AMOUNT,
+      </if>
+      <if test="price != null" >
+        PRICE,
+      </if>
+      <if test="unitId != null" >
+        UNIT_ID,
+      </if>
+      <if test="orderTotal != null" >
+        ORDER_TOTAL_,
+      </if>
+      <if test="orderTime != null" >
+        ORDER_TIME,
+      </if>
+      <if test="gainsBalance != null" >
+        GAINS_BALANCE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="deleteFlag != null" >
+        DELETE_FLAG,
+      </if>
+      <if test="scale != null" >
+        SCALE,
+      </if>
+      <if test="sourceType != null" >
+        SOURCE_TYPE,
+      </if>
+      <if test="scaleType != null" >
+        SCALE_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=BIGINT},
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=BIGINT},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=BIGINT},
+      </if>
+      <if test="referralCode != null" >
+        #{referralCode,jdbcType=VARCHAR},
+      </if>
+      <if test="talentUserId != null" >
+        #{talentUserId,jdbcType=BIGINT},
+      </if>
+      <if test="industryId != null" >
+        #{industryId,jdbcType=BIGINT},
+      </if>
+      <if test="cateId != null" >
+        #{cateId,jdbcType=INTEGER},
+      </if>
+      <if test="buyerName != null" >
+        #{buyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerName != null" >
+        #{sellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAmount != null" >
+        #{orderAmount,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="unitId != null" >
+        #{unitId,jdbcType=INTEGER},
+      </if>
+      <if test="orderTotal != null" >
+        #{orderTotal,jdbcType=BIGINT},
+      </if>
+      <if test="orderTime != null" >
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gainsBalance != null" >
+        #{gainsBalance,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null" >
+        #{deleteFlag,jdbcType=INTEGER},
+      </if>
+      <if test="scale != null" >
+        #{scale,jdbcType=INTEGER},
+      </if>
+      <if test="sourceType != null" >
+        #{sourceType,jdbcType=INTEGER},
+      </if>
+      <if test="scaleType != null" >
+        #{scaleType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jumore.b2b.daren.model.OrderGainsQueryHelper" resultType="java.lang.Integer" >
+    select count(*) from sp_talent_order_gains
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sp_talent_order_gains
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderNo != null" >
+        ORDER_NO = #{record.orderNo,jdbcType=BIGINT},
+      </if>
+      <if test="record.goodsName != null" >
+        GOODS_NAME = #{record.goodsName,jdbcType=BIGINT},
+      </if>
+      <if test="record.referralCode != null" >
+        REFERRAL_CODE = #{record.referralCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.talentUserId != null" >
+        TALENT_USER_ID = #{record.talentUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.industryId != null" >
+        INDUSTRY_ID = #{record.industryId,jdbcType=BIGINT},
+      </if>
+      <if test="record.cateId != null" >
+        CATE_ID = #{record.cateId,jdbcType=INTEGER},
+      </if>
+      <if test="record.buyerName != null" >
+        BUYER_NAME = #{record.buyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerName != null" >
+        SELLER_NAME = #{record.sellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderAmount != null" >
+        ORDER_AMOUNT = #{record.orderAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.price != null" >
+        PRICE = #{record.price,jdbcType=INTEGER},
+      </if>
+      <if test="record.unitId != null" >
+        UNIT_ID = #{record.unitId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderTotal != null" >
+        ORDER_TOTAL_ = #{record.orderTotal,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderTime != null" >
+        ORDER_TIME = #{record.orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gainsBalance != null" >
+        GAINS_BALANCE = #{record.gainsBalance,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deleteFlag != null" >
+        DELETE_FLAG = #{record.deleteFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.scale != null" >
+        SCALE = #{record.scale,jdbcType=INTEGER},
+      </if>
+      <if test="record.sourceType != null" >
+        SOURCE_TYPE = #{record.sourceType,jdbcType=INTEGER},
+      </if>
+      <if test="record.scaleType != null" >
+        SCALE_TYPE = #{record.scaleType,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sp_talent_order_gains
+    set ID = #{record.id,jdbcType=BIGINT},
+      ORDER_NO = #{record.orderNo,jdbcType=BIGINT},
+      GOODS_NAME = #{record.goodsName,jdbcType=BIGINT},
+      REFERRAL_CODE = #{record.referralCode,jdbcType=VARCHAR},
+      TALENT_USER_ID = #{record.talentUserId,jdbcType=BIGINT},
+      INDUSTRY_ID = #{record.industryId,jdbcType=BIGINT},
+      CATE_ID = #{record.cateId,jdbcType=INTEGER},
+      BUYER_NAME = #{record.buyerName,jdbcType=VARCHAR},
+      SELLER_NAME = #{record.sellerName,jdbcType=VARCHAR},
+      ORDER_AMOUNT = #{record.orderAmount,jdbcType=INTEGER},
+      PRICE = #{record.price,jdbcType=INTEGER},
+      UNIT_ID = #{record.unitId,jdbcType=INTEGER},
+      ORDER_TOTAL_ = #{record.orderTotal,jdbcType=BIGINT},
+      ORDER_TIME = #{record.orderTime,jdbcType=TIMESTAMP},
+      GAINS_BALANCE = #{record.gainsBalance,jdbcType=BIGINT},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      DELETE_FLAG = #{record.deleteFlag,jdbcType=INTEGER},
+      SCALE = #{record.scale,jdbcType=INTEGER},
+      SOURCE_TYPE = #{record.sourceType,jdbcType=INTEGER},
+      SCALE_TYPE = #{record.scaleType,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jumore.b2b.daren.model.OrderGains" >
+    update sp_talent_order_gains
+    <set >
+      <if test="orderNo != null" >
+        ORDER_NO = #{orderNo,jdbcType=BIGINT},
+      </if>
+      <if test="goodsName != null" >
+        GOODS_NAME = #{goodsName,jdbcType=BIGINT},
+      </if>
+      <if test="referralCode != null" >
+        REFERRAL_CODE = #{referralCode,jdbcType=VARCHAR},
+      </if>
+      <if test="talentUserId != null" >
+        TALENT_USER_ID = #{talentUserId,jdbcType=BIGINT},
+      </if>
+      <if test="industryId != null" >
+        INDUSTRY_ID = #{industryId,jdbcType=BIGINT},
+      </if>
+      <if test="cateId != null" >
+        CATE_ID = #{cateId,jdbcType=INTEGER},
+      </if>
+      <if test="buyerName != null" >
+        BUYER_NAME = #{buyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerName != null" >
+        SELLER_NAME = #{sellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAmount != null" >
+        ORDER_AMOUNT = #{orderAmount,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        PRICE = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="unitId != null" >
+        UNIT_ID = #{unitId,jdbcType=INTEGER},
+      </if>
+      <if test="orderTotal != null" >
+        ORDER_TOTAL_ = #{orderTotal,jdbcType=BIGINT},
+      </if>
+      <if test="orderTime != null" >
+        ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gainsBalance != null" >
+        GAINS_BALANCE = #{gainsBalance,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null" >
+        DELETE_FLAG = #{deleteFlag,jdbcType=INTEGER},
+      </if>
+      <if test="scale != null" >
+        SCALE = #{scale,jdbcType=INTEGER},
+      </if>
+      <if test="sourceType != null" >
+        SOURCE_TYPE = #{sourceType,jdbcType=INTEGER},
+      </if>
+      <if test="scaleType != null" >
+        SCALE_TYPE = #{scaleType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jumore.b2b.daren.model.OrderGains" >
+    update sp_talent_order_gains
+    set ORDER_NO = #{orderNo,jdbcType=BIGINT},
+      GOODS_NAME = #{goodsName,jdbcType=BIGINT},
+      REFERRAL_CODE = #{referralCode,jdbcType=VARCHAR},
+      TALENT_USER_ID = #{talentUserId,jdbcType=BIGINT},
+      INDUSTRY_ID = #{industryId,jdbcType=BIGINT},
+      CATE_ID = #{cateId,jdbcType=INTEGER},
+      BUYER_NAME = #{buyerName,jdbcType=VARCHAR},
+      SELLER_NAME = #{sellerName,jdbcType=VARCHAR},
+      ORDER_AMOUNT = #{orderAmount,jdbcType=INTEGER},
+      PRICE = #{price,jdbcType=INTEGER},
+      UNIT_ID = #{unitId,jdbcType=INTEGER},
+      ORDER_TOTAL_ = #{orderTotal,jdbcType=BIGINT},
+      ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      GAINS_BALANCE = #{gainsBalance,jdbcType=BIGINT},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      DELETE_FLAG = #{deleteFlag,jdbcType=INTEGER},
+      SCALE = #{scale,jdbcType=INTEGER},
+      SOURCE_TYPE = #{sourceType,jdbcType=INTEGER},
+      SCALE_TYPE = #{scaleType,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,103 @@
+#macro(displayHeadImg $app1 $app2 $app3 $app4)
+	<div class="row-fluid">
+		
+		<div class="span2">
+			<div class="item">
+				<a class="fancybox-button" data-rel="fancybox-button" title="$app1.name" href="modify?id=$!app1.id&code=$!app1.code">
+					<div class="zoom">
+						<img src="$static_resource/$app1.head" alt="$app1.name<"/>                    
+						<div class="zoom-icon"></div>
+					</div>
+				</a>
+			</div>
+			<div class="details">
+				<a href="#" class="btn black">$app1.name</a>
+				<a href="#" class="btn black">$app1.code</a>
+			</div>
+		</div>
+		
+		#if($!app2.name)
+		<div class="span2">
+			<div class="item">
+				<a class="fancybox-button" data-rel="fancybox-button" title="$app2.name" href="modify?id=$!app2.id&code=$!app2.code">
+					<div class="zoom">
+						<img src="$static_resource/$app2.head" alt="$app2.name" />                    
+						<div class="zoom-icon"></div>
+					</div>
+				</a>
+			</div>
+			<div class="details">
+				<a href="#" class="btn black">$app2.name</a>
+				<a class="btn black" href="#">$app2.code</a>
+			</div>
+		</div>
+		#end
+		
+		#if($!app3.name)
+		<div class="span2">
+			<div class="item">
+				<a class="fancybox-button" data-rel="fancybox-button" title="$app3.name" href="modify?id=$!app3.id&code=$!app3.code">
+					<div class="zoom">
+						<img src="$static_resource/$app3.head" alt="$app3.name" />                    
+						<div class="zoom-icon"></div>
+					</div>
+				</a>
+			</div>
+			<div class="details">
+				<a class="btn black" href="#">$app3.name</a> 
+                <a class="btn black" href="#">$app3.code</a>
+			    			
+			</div>
+		</div>
+		#end
+		
+		#if($!app4.name)
+		<div class="span2">
+			<div class="item">
+				<a class="fancybox-button" data-rel="fancybox-button" title="$app4.name" href="modify?id=$!app4.id&code=$!app4.code">
+					<div class="zoom">
+						<img src="$static_resource/$app4.head" alt="$app4.name" />                    
+						<div class="zoom-icon"></div>
+					</div>
+				</a>
+			</div>
+			<div class="details">
+					<a href="#" class="btn black">$app4.name</a>
+					<a href="#" class="btn black">$app4.code</a>
+			</div>
+		</div>
+		#end
+		#if($!app4.name)
+		<div class="span2">
+			<div class="item">
+				<a class="fancybox-button" data-rel="fancybox-button" title="$app4.name" href="$static_resource/$app4.head">
+					<div class="zoom">
+						<img src="$static_resource/$app4.head" alt="$app4.name" />                    
+						<div class="zoom-icon"></div>
+					</div>
+				</a>
+			</div>
+			<div class="details">
+					<a href="#" class="btn black">$app4.name</a>
+					<a href="#" class="btn black">$app4.code</a>
+			</div>
+		</div>
+		#end
+		#if($!app4.name)
+		<div class="span2">
+			<div class="item">
+				<a class="fancybox-button" data-rel="fancybox-button" title="$app4.name" href="$static_resource/$app4.head">
+					<div class="zoom">
+						<img src="$static_resource/$app4.head" alt="$app4.name" />                    
+						<div class="zoom-icon"></div>
+					</div>
+				</a>
+			</div>
+			<div class="details">
+					<a href="#" class="btn black">$app4.name</a>
+					<a href="#" class="btn black">$app4.code</a>
+			</div>
+		</div>
+		#end
+	</div>
+#end

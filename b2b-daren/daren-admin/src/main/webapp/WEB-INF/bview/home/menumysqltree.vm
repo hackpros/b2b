@@ -1,0 +1,62 @@
+
+##系统菜单
+##二级
+
+<li class="">
+	<a href="javascript:;">
+		<i class="icon-map-marker"></i>
+		<span class="title">以下是自定义菜单</span>
+		<span class="arrow "></span>
+	</a>
+</li>
+<li class="">
+	<a href="javascript:;">
+		<i class="icon-map-marker"></i>
+		<span class="title">Maps</span>
+		<span class="arrow "></span>
+	</a>
+	<ul class="sub-menu">
+		<li >
+			<a href="maps_google.html">
+				Google Maps</a>
+		</li>
+		<li >
+			<a href="/system/sysAdmin/browser">
+				test</a>
+				
+		</li>
+	</ul>
+</li>
+				
+##通过userID取出用户菜单
+#foreach( $menu in ${menuTools.loadMenus()})
+	<li class="">
+    	<a href="javascript:;">
+    		<i class="icon-map-marker"></i>
+    		<span class="title">${menu.text}</span>
+    		<span class="arrow open"></span>
+			<span class="selected"></span>
+    	</a>
+    	<ul class="sub-menu">
+    	#foreach( $child in $!menu.children)	
+    		<li >
+    			#set($authorityId=$child.authorityId)
+    			<a href='$request.contextPath/${saf.getAuthUrl($authorityId)}'>${child.text}</a>
+    		</li>
+    	#end
+    	</ul> 	
+	</li>
+#end 		
+
+				
+				
+
+## #foreach( $menu in ${menuTools.loadMenus()})
+##    <div title="${menu.text}">
+##    #foreach( $child in $!menu.children)	
+##    	#set($authorityId=$child.authorityId)
+##   	<a href="javascript:void(0);" id="$!{child.text} " src='$request.contextPath/${saf.getAuthUrl($authorityId)}' class="cs-navi-tab">${child.text}</a></p>
+##    #end
+##    </div>
+## #end 				
+				

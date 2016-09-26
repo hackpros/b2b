@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rabbit.dao.SysItemMapper" >
+  <resultMap id="BaseResultMap" type="com.rabbit.model.SysItem" >
+    <id column="ID_" property="id" jdbcType="DECIMAL" />
+    <result column="PARENT_ID" property="parentId" jdbcType="DECIMAL" />
+    <result column="LADDER_" property="ladder" jdbcType="CHAR" />
+    <result column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <result column="ITEM_COMMENTS" property="itemComments" jdbcType="VARCHAR" />
+    <result column="STATUS_" property="status" jdbcType="DECIMAL" />
+    <result column="KEY_CODE" property="keyCode" jdbcType="VARCHAR" />
+    <result column="KEY_VALUE" property="keyValue" jdbcType="VARCHAR" />
+    <result column="SORT_" property="sort" jdbcType="DECIMAL" />
+    <result column="APPEND_BY_" property="appendBy" jdbcType="DECIMAL" />
+    <result column="APPEND_TIME" property="appendTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_BY_" property="modifyBy" jdbcType="DECIMAL" />
+    <result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="REMARK_" property="remark" jdbcType="VARCHAR" />
+    <result column="EXCERPT_ITEM_CODE" property="excerptItemCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID_, PARENT_ID, LADDER_, ITEM_CODE, ITEM_COMMENTS, STATUS_, KEY_CODE, KEY_VALUE, 
+    SORT_, APPEND_BY_, APPEND_TIME, MODIFY_BY_, MODIFY_TIME, REMARK_, EXCERPT_ITEM_CODE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.rabbit.model.SysItemExample" >
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from BASE.SYS_ITEM
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from BASE.SYS_ITEM
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from BASE.SYS_ITEM
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.rabbit.model.SysItemExample">
+    delete from BASE.SYS_ITEM
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.rabbit.model.SysItem" >
+    insert into BASE.SYS_ITEM (ID_, PARENT_ID, LADDER_, 
+      ITEM_CODE, ITEM_COMMENTS, STATUS_, 
+      KEY_CODE, KEY_VALUE, SORT_, 
+      APPEND_BY_, APPEND_TIME, MODIFY_BY_, 
+      MODIFY_TIME, REMARK_, EXCERPT_ITEM_CODE
+      )
+    values (#{id,jdbcType=DECIMAL}, #{parentId,jdbcType=DECIMAL}, #{ladder,jdbcType=CHAR}, 
+      #{itemCode,jdbcType=VARCHAR}, #{itemComments,jdbcType=VARCHAR}, #{status,jdbcType=DECIMAL}, 
+      #{keyCode,jdbcType=VARCHAR}, #{keyValue,jdbcType=VARCHAR}, #{sort,jdbcType=DECIMAL}, 
+      #{appendBy,jdbcType=DECIMAL}, #{appendTime,jdbcType=TIMESTAMP}, #{modifyBy,jdbcType=DECIMAL}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{excerptItemCode,jdbcType=VARCHAR}
+      )
+    <selectKey keyProperty="id" order="BEFORE" resultType="long" >
+      SELECT BASE.SYS_ITEM_SEQ.NEXTVAL FROM DUAL
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.rabbit.model.SysItem">
+    insert into BASE.SYS_ITEM
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID_,
+      </if>
+      <if test="parentId != null">
+        PARENT_ID,
+      </if>
+      <if test="ladder != null">
+        LADDER_,
+      </if>
+      <if test="itemCode != null">
+        ITEM_CODE,
+      </if>
+      <if test="itemComments != null">
+        ITEM_COMMENTS,
+      </if>
+      <if test="status != null">
+        STATUS_,
+      </if>
+      <if test="keyCode != null">
+        KEY_CODE,
+      </if>
+      <if test="keyValue != null">
+        KEY_VALUE,
+      </if>
+      <if test="sort != null">
+        SORT_,
+      </if>
+      <if test="appendBy != null">
+        APPEND_BY_,
+      </if>
+      <if test="appendTime != null">
+        APPEND_TIME,
+      </if>
+      <if test="modifyBy != null">
+        MODIFY_BY_,
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME,
+      </if>
+      <if test="remark != null">
+        REMARK_,
+      </if>
+      <if test="excerptItemCode != null">
+        EXCERPT_ITEM_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=DECIMAL},
+      </if>
+      <if test="ladder != null">
+        #{ladder,jdbcType=CHAR},
+      </if>
+      <if test="itemCode != null">
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemComments != null">
+        #{itemComments,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="keyCode != null">
+        #{keyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="keyValue != null">
+        #{keyValue,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=DECIMAL},
+      </if>
+      <if test="appendBy != null">
+        #{appendBy,jdbcType=DECIMAL},
+      </if>
+      <if test="appendTime != null">
+        #{appendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyBy != null">
+        #{modifyBy,jdbcType=DECIMAL},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="excerptItemCode != null">
+        #{excerptItemCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.rabbit.model.SysItemExample" resultType="java.lang.Long">
+    select count(*) from BASE.SYS_ITEM
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update BASE.SYS_ITEM
+    <set>
+      <if test="record.id != null">
+        ID_ = #{record.id,jdbcType=DECIMAL},
+      </if>
+      <if test="record.parentId != null">
+        PARENT_ID = #{record.parentId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ladder != null">
+        LADDER_ = #{record.ladder,jdbcType=CHAR},
+      </if>
+      <if test="record.itemCode != null">
+        ITEM_CODE = #{record.itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemComments != null">
+        ITEM_COMMENTS = #{record.itemComments,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        STATUS_ = #{record.status,jdbcType=DECIMAL},
+      </if>
+      <if test="record.keyCode != null">
+        KEY_CODE = #{record.keyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.keyValue != null">
+        KEY_VALUE = #{record.keyValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sort != null">
+        SORT_ = #{record.sort,jdbcType=DECIMAL},
+      </if>
+      <if test="record.appendBy != null">
+        APPEND_BY_ = #{record.appendBy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.appendTime != null">
+        APPEND_TIME = #{record.appendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyBy != null">
+        MODIFY_BY_ = #{record.modifyBy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.modifyTime != null">
+        MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null">
+        REMARK_ = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.excerptItemCode != null">
+        EXCERPT_ITEM_CODE = #{record.excerptItemCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update BASE.SYS_ITEM
+    set ID_ = #{record.id,jdbcType=DECIMAL},
+      PARENT_ID = #{record.parentId,jdbcType=DECIMAL},
+      LADDER_ = #{record.ladder,jdbcType=CHAR},
+      ITEM_CODE = #{record.itemCode,jdbcType=VARCHAR},
+      ITEM_COMMENTS = #{record.itemComments,jdbcType=VARCHAR},
+      STATUS_ = #{record.status,jdbcType=DECIMAL},
+      KEY_CODE = #{record.keyCode,jdbcType=VARCHAR},
+      KEY_VALUE = #{record.keyValue,jdbcType=VARCHAR},
+      SORT_ = #{record.sort,jdbcType=DECIMAL},
+      APPEND_BY_ = #{record.appendBy,jdbcType=DECIMAL},
+      APPEND_TIME = #{record.appendTime,jdbcType=TIMESTAMP},
+      MODIFY_BY_ = #{record.modifyBy,jdbcType=DECIMAL},
+      MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+      REMARK_ = #{record.remark,jdbcType=VARCHAR},
+      EXCERPT_ITEM_CODE = #{record.excerptItemCode,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rabbit.model.SysItem">
+    update BASE.SYS_ITEM
+    <set>
+      <if test="parentId != null">
+        PARENT_ID = #{parentId,jdbcType=DECIMAL},
+      </if>
+      <if test="ladder != null">
+        LADDER_ = #{ladder,jdbcType=CHAR},
+      </if>
+      <if test="itemCode != null">
+        ITEM_CODE = #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemComments != null">
+        ITEM_COMMENTS = #{itemComments,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS_ = #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="keyCode != null">
+        KEY_CODE = #{keyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="keyValue != null">
+        KEY_VALUE = #{keyValue,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        SORT_ = #{sort,jdbcType=DECIMAL},
+      </if>
+      <if test="appendBy != null">
+        APPEND_BY_ = #{appendBy,jdbcType=DECIMAL},
+      </if>
+      <if test="appendTime != null">
+        APPEND_TIME = #{appendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyBy != null">
+        MODIFY_BY_ = #{modifyBy,jdbcType=DECIMAL},
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        REMARK_ = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="excerptItemCode != null">
+        EXCERPT_ITEM_CODE = #{excerptItemCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rabbit.model.SysItem">
+    update BASE.SYS_ITEM
+    set PARENT_ID = #{parentId,jdbcType=DECIMAL},
+      LADDER_ = #{ladder,jdbcType=CHAR},
+      ITEM_CODE = #{itemCode,jdbcType=VARCHAR},
+      ITEM_COMMENTS = #{itemComments,jdbcType=VARCHAR},
+      STATUS_ = #{status,jdbcType=DECIMAL},
+      KEY_CODE = #{keyCode,jdbcType=VARCHAR},
+      KEY_VALUE = #{keyValue,jdbcType=VARCHAR},
+      SORT_ = #{sort,jdbcType=DECIMAL},
+      APPEND_BY_ = #{appendBy,jdbcType=DECIMAL},
+      APPEND_TIME = #{appendTime,jdbcType=TIMESTAMP},
+      MODIFY_BY_ = #{modifyBy,jdbcType=DECIMAL},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      REMARK_ = #{remark,jdbcType=VARCHAR},
+      EXCERPT_ITEM_CODE = #{excerptItemCode,jdbcType=VARCHAR}
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </update>
+   <select id="selectOnPage" resultMap="BaseResultMap" parameterType="com.rabbit.model.SysItemExample" >
+    <!-- page --> 
+
+   SELECT * FROM (
+
+   SELECT PAGE.*, ROWNUM AS RN FROM (
+    select
+    <if test="example.distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from BASE.SYS_ITEM
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+    <if test="example.orderByClause != null">
+		ORDER BY ${example.orderByClause}
+	</if>
+     )  PAGE WHERE ROWNUM &lt;=  #{maxResults}  
+ )   WHERE RN &gt;#{skipResults}
+  </select>
+
+  <!-- 递归查询 树结构管理-->
+  <select id="selectOnTree" resultMap="BaseResultMap">
+		SELECT 
+		 <include refid="Base_Column_List" />
+		  FROM BASE.SYS_ITEM 
+		 START WITH ID_ IN (SELECT ID_ FROM BASE.SYS_ITEM WHERE PARENT_ID = #{parentId})
+	　   CONNECT BY PRIOR ID_ = PARENT_ID
+　　</select>
+
+	<!--级连树 
+	<resultMap id="SysOptionResultMap" type="com.autofan.auto.model.SysOption" >
+	    <id column="PID" property="pid" jdbcType="DECIMAL" />
+	    <result column="PARENT_ID" property="parentId" jdbcType="DECIMAL" />
+	    <result column="LADDER" property="ladder" jdbcType="CHAR" />
+	    <result column="OPTION_CODE" property="opionCode" jdbcType="VARCHAR" />
+	    <result column="OPTION_COMMENTS" property="opionComments" jdbcType="VARCHAR" />
+	    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+	    <result column="KEY_CODE" property="keyCode" jdbcType="VARCHAR" />
+	    <result column="KEY_VALUE" property="keyValue" jdbcType="VARCHAR" />
+	    <result column="SORT" property="sort" jdbcType="DECIMAL" />
+	    <result column="CREATE_BY" property="createBy" jdbcType="DECIMAL" />
+	    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+	    <result column="REBARK" property="rebark" jdbcType="VARCHAR" />
+	    <association property="children"  column="pid" select="selectByParentId"/>
+    </resultMap>
+	  <select id="selectByParentId" parameterType="java.lang.Long"   resultMap="BaseResultMap">            
+	   	SELECT * FROM  BASE.SYS_ITEM  WHERE parent_id=#{pid}
+	  </select>
+	  -->
+	  
+	<resultMap id="SysItemResultMap" type="com.bean.GlobalTree" >
+	    <id column="ID_" property="id" jdbcType="DECIMAL" />
+	    <result column="LADDER_" property="level" jdbcType="DECIMAL" />
+	    <result column="ITEM_CODE" property="code" jdbcType="VARCHAR" />
+	    <result column="ITEM_COMMENTS" property="name" jdbcType="VARCHAR" />
+	    <result column="PARENT_ID" property="parentId" jdbcType="DECIMAL" />
+	    <association property="children" column="parentId=ID_,parentLadder=LADDER_" select="selectByParentId"/>
+    </resultMap>
+    
+    <resultMap id="levle2ResultMap" type="com.bean.GlobalTree" >
+	    <id column="ID_" property="id" jdbcType="DECIMAL" />
+	    <result column="LADDER_" property="level" jdbcType="DECIMAL" />
+	    <result column="ITEM_CODE" property="code" jdbcType="VARCHAR" />
+	    <result column="ITEM_COMMENTS" property="name" jdbcType="VARCHAR" />
+	    <result column="PARENT_ID" property="parentId" jdbcType="DECIMAL" />
+    </resultMap>
+    
+	  <select id="selectByParentId" resultMap="levle2ResultMap">            
+	   	SELECT * FROM  BASE.SYS_ITEM  WHERE parent_id=#{parentId,jdbcType=DECIMAL} and ladder_=#{parentLadder,jdbcType=DECIMAL}+1 order by sort_
+	  </select>
+	  <!--分页查询-->
+
+ 
+ <resultMap id="BaseSimpleResultMap" type="com.bean.GlobalSelect">
+    <id column="KEY_CODE" jdbcType="VARCHAR" property="id" />
+    <id column="KEY_VALUE" jdbcType="VARCHAR" property="text" />
+    <id column="ITEM_CODE" jdbcType="VARCHAR" property="pcode" />
+  </resultMap>
+  
+
+</mapper>

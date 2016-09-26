@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rabbit.dao.UsrRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.rabbit.model.UsrRole" >
+    <id column="ID_" property="id" jdbcType="DECIMAL" />
+    <result column="NAME_" property="name" jdbcType="VARCHAR" />
+    <result column="DESC_" property="desc" jdbcType="VARCHAR" />
+    <result column="TYPE_" property="type" jdbcType="DECIMAL" />
+    <result column="STATUS_" property="status" jdbcType="DECIMAL" />
+    <result column="CREATE_BY" property="createBy" jdbcType="DECIMAL" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_BY" property="modifyBy" jdbcType="DECIMAL" />
+    <result column="MODIFIED_TIME" property="modifiedTime" jdbcType="TIMESTAMP" />
+    <result column="REMARK_" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID_, NAME_, DESC_, TYPE_, STATUS_, CREATE_BY, CREATE_TIME, MODIFY_BY, MODIFIED_TIME, 
+    REMARK_
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.rabbit.model.UsrRoleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from BASE.USR_ROLE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from BASE.USR_ROLE
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from BASE.USR_ROLE
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.rabbit.model.UsrRoleExample" >
+    delete from BASE.USR_ROLE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.rabbit.model.UsrRole" >
+    insert into BASE.USR_ROLE (ID_, NAME_, DESC_, 
+      TYPE_, STATUS_, CREATE_BY, 
+      CREATE_TIME, MODIFY_BY, MODIFIED_TIME, 
+      REMARK_)
+    values (#{id,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}, 
+      #{type,jdbcType=DECIMAL}, #{status,jdbcType=DECIMAL}, #{createBy,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyBy,jdbcType=DECIMAL}, #{modifiedTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
+    <selectKey keyProperty="id" order="BEFORE" resultType="long" >
+      SELECT BASE.USR_ROLE_SEQ.NEXTVAL FROM DUAL
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.rabbit.model.UsrRole" >
+    insert into BASE.USR_ROLE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID_,
+      </if>
+      <if test="name != null" >
+        NAME_,
+      </if>
+      <if test="desc != null" >
+        DESC_,
+      </if>
+      <if test="type != null" >
+        TYPE_,
+      </if>
+      <if test="status != null" >
+        STATUS_,
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="modifyBy != null" >
+        MODIFY_BY,
+      </if>
+      <if test="modifiedTime != null" >
+        MODIFIED_TIME,
+      </if>
+      <if test="remark != null" >
+        REMARK_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null" >
+        #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyBy != null" >
+        #{modifyBy,jdbcType=DECIMAL},
+      </if>
+      <if test="modifiedTime != null" >
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.rabbit.model.UsrRoleExample" resultType="java.lang.Long" >
+    select count(*) from BASE.USR_ROLE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update BASE.USR_ROLE
+    <set >
+      <if test="record.id != null" >
+        ID_ = #{record.id,jdbcType=DECIMAL},
+      </if>
+      <if test="record.name != null" >
+        NAME_ = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.desc != null" >
+        DESC_ = #{record.desc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        TYPE_ = #{record.type,jdbcType=DECIMAL},
+      </if>
+      <if test="record.status != null" >
+        STATUS_ = #{record.status,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createBy != null" >
+        CREATE_BY = #{record.createBy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyBy != null" >
+        MODIFY_BY = #{record.modifyBy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.modifiedTime != null" >
+        MODIFIED_TIME = #{record.modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null" >
+        REMARK_ = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update BASE.USR_ROLE
+    set ID_ = #{record.id,jdbcType=DECIMAL},
+      NAME_ = #{record.name,jdbcType=VARCHAR},
+      DESC_ = #{record.desc,jdbcType=VARCHAR},
+      TYPE_ = #{record.type,jdbcType=DECIMAL},
+      STATUS_ = #{record.status,jdbcType=DECIMAL},
+      CREATE_BY = #{record.createBy,jdbcType=DECIMAL},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      MODIFY_BY = #{record.modifyBy,jdbcType=DECIMAL},
+      MODIFIED_TIME = #{record.modifiedTime,jdbcType=TIMESTAMP},
+      REMARK_ = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rabbit.model.UsrRole" >
+    update BASE.USR_ROLE
+    <set >
+      <if test="name != null" >
+        NAME_ = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null" >
+        DESC_ = #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE_ = #{type,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        STATUS_ = #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY = #{createBy,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyBy != null" >
+        MODIFY_BY = #{modifyBy,jdbcType=DECIMAL},
+      </if>
+      <if test="modifiedTime != null" >
+        MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        REMARK_ = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rabbit.model.UsrRole" >
+    update BASE.USR_ROLE
+    set NAME_ = #{name,jdbcType=VARCHAR},
+      DESC_ = #{desc,jdbcType=VARCHAR},
+      TYPE_ = #{type,jdbcType=DECIMAL},
+      STATUS_ = #{status,jdbcType=DECIMAL},
+      CREATE_BY = #{createBy,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_BY = #{modifyBy,jdbcType=DECIMAL},
+      MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+      REMARK_ = #{remark,jdbcType=VARCHAR}
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </update>
+  <select id="selectOnPage" resultMap="BaseResultMap" >
+    <!-- page --> 
+   SELECT * FROM (
+   SELECT PAGE.*, ROWNUM AS RN FROM (
+    select
+    <if test="example.distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from BASE.USR_ROLE
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+    <if test="example.orderByClause != null" >
+      ORDER BY ${example.orderByClause}
+    </if>
+     )  PAGE WHERE ROWNUM &lt;=  #{maxResults}  
+ )   WHERE RN &gt;#{skipResults}
+  </select>
+</mapper>

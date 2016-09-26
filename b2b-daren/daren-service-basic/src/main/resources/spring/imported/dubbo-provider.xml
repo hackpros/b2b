@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context    
+      http://www.springframework.org/schema/context/spring-context.xsd    
+      http://www.springframework.org/schema/mvc    
+      http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	http://code.alibabatech.com/schema/dubbo 
+	http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<dubbo:application name="daren-api-provider" logger="slf4j" />
+
+	<!-- <dubbo:registry address="zookeeper://192.168.0.60:2181" /> --> 
+	<dubbo:registry protocol="zookeeper" address="zookeeper://192.168.1.34:2181?backup=192.168.1.87:2181,192.168.1.89:2181"/> 
+	
+	<!-- <dubbo:provider actives="50" timeout="100000" loadbalance="random" retries="0" accepts="500"/> -->
+	<dubbo:provider timeout="100000" retries="0"/>
+
+	<!--uncomment this if you want to test dubbo's monitor -->
+	<!-- <dubbo:monitor protocol="registry"/> -->
+	<!-- <dubbo:monitor address="http://localhost:9080" /> -->
+
+	<!-- here we demonstrate both annotation-based and xml-based configs -->
+	<!-- <dubbo:annotation package="com.rongdu.p2p" /> -->
+
+	<!-- use tomcat server -->
+	<dubbo:protocol name="dubbo" serialization="kryo" port="-1"
+		optimizer="com.jumore.b2b.activity.core.util.SerializationOptimizerImpl"/>
+	<!-- <dubbo:protocol name="http" port="8831" />
+	<dubbo:protocol name="hessian" port="8832" />
+	<dubbo:protocol name="webservice" port="8833" /> -->
+	
+    <dubbo:annotation package="com.jumore.b2b.daren" />
+    
+    <!-- 定义全局的配置，测试中@Reference的check=false不起作用，在这里配置 -->
+	<dubbo:consumer check="false"/>
+	
+</beans>

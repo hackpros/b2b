@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rabbit.dao.AuthFunMapper" >
+  <resultMap id="BaseResultMap" type="com.rabbit.model.AuthFun" >
+    <id column="ID_" property="id" jdbcType="DECIMAL" />
+    <result column="CODE_" property="code" jdbcType="VARCHAR" />
+    <result column="NAME_" property="name" jdbcType="VARCHAR" />
+    <result column="DESC_" property="desc" jdbcType="VARCHAR" />
+    <result column="MODEL_CODE" property="modelCode" jdbcType="VARCHAR" />
+    <result column="SELF_CODE" property="selfCode" jdbcType="VARCHAR" />
+    <result column="REQUEST_URL" property="requestUrl" jdbcType="VARCHAR" />
+    <result column="SORT_" property="sort" jdbcType="DECIMAL" />
+    <result column="STATUS_" property="status" jdbcType="DECIMAL" />
+    <result column="APPEND_BY" property="appendBy" jdbcType="DECIMAL" />
+    <result column="APPEND_TIME" property="appendTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_BY" property="modifyBy" jdbcType="DECIMAL" />
+    <result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="REMARK_" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID_, CODE_, NAME_, DESC_, MODEL_CODE, SELF_CODE, REQUEST_URL, SORT_, STATUS_, APPEND_BY, 
+    APPEND_TIME, MODIFY_BY, MODIFY_TIME, REMARK_
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.rabbit.model.AuthFunExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from BASE.AUTH_FUN
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from BASE.AUTH_FUN
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from BASE.AUTH_FUN
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.rabbit.model.AuthFunExample" >
+    delete from BASE.AUTH_FUN
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.rabbit.model.AuthFun" >
+    insert into BASE.AUTH_FUN (ID_, CODE_, NAME_, 
+      DESC_, MODEL_CODE, SELF_CODE, 
+      REQUEST_URL, SORT_, STATUS_, 
+      APPEND_BY, APPEND_TIME, MODIFY_BY, 
+      MODIFY_TIME, REMARK_)
+    values (#{id,jdbcType=DECIMAL}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{desc,jdbcType=VARCHAR}, #{modelCode,jdbcType=VARCHAR}, #{selfCode,jdbcType=VARCHAR}, 
+      #{requestUrl,jdbcType=VARCHAR}, #{sort,jdbcType=DECIMAL}, #{status,jdbcType=DECIMAL}, 
+      #{appendBy,jdbcType=DECIMAL}, #{appendTime,jdbcType=TIMESTAMP}, #{modifyBy,jdbcType=DECIMAL}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+    <selectKey keyProperty="id" order="BEFORE" resultType="long" >
+      SELECT BASE.AUTH_FUN_SEQ.NEXTVAL FROM DUAL
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.rabbit.model.AuthFun" >
+    insert into BASE.AUTH_FUN
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID_,
+      </if>
+      <if test="code != null" >
+        CODE_,
+      </if>
+      <if test="name != null" >
+        NAME_,
+      </if>
+      <if test="desc != null" >
+        DESC_,
+      </if>
+      <if test="modelCode != null" >
+        MODEL_CODE,
+      </if>
+      <if test="selfCode != null" >
+        SELF_CODE,
+      </if>
+      <if test="requestUrl != null" >
+        REQUEST_URL,
+      </if>
+      <if test="sort != null" >
+        SORT_,
+      </if>
+      <if test="status != null" >
+        STATUS_,
+      </if>
+      <if test="appendBy != null" >
+        APPEND_BY,
+      </if>
+      <if test="appendTime != null" >
+        APPEND_TIME,
+      </if>
+      <if test="modifyBy != null" >
+        MODIFY_BY,
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME,
+      </if>
+      <if test="remark != null" >
+        REMARK_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null" >
+        #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="modelCode != null" >
+        #{modelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="selfCode != null" >
+        #{selfCode,jdbcType=VARCHAR},
+      </if>
+      <if test="requestUrl != null" >
+        #{requestUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="appendBy != null" >
+        #{appendBy,jdbcType=DECIMAL},
+      </if>
+      <if test="appendTime != null" >
+        #{appendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyBy != null" >
+        #{modifyBy,jdbcType=DECIMAL},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.rabbit.model.AuthFunExample" resultType="java.lang.Long" >
+    select count(*) from BASE.AUTH_FUN
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update BASE.AUTH_FUN
+    <set >
+      <if test="record.id != null" >
+        ID_ = #{record.id,jdbcType=DECIMAL},
+      </if>
+      <if test="record.code != null" >
+        CODE_ = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        NAME_ = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.desc != null" >
+        DESC_ = #{record.desc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modelCode != null" >
+        MODEL_CODE = #{record.modelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.selfCode != null" >
+        SELF_CODE = #{record.selfCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.requestUrl != null" >
+        REQUEST_URL = #{record.requestUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sort != null" >
+        SORT_ = #{record.sort,jdbcType=DECIMAL},
+      </if>
+      <if test="record.status != null" >
+        STATUS_ = #{record.status,jdbcType=DECIMAL},
+      </if>
+      <if test="record.appendBy != null" >
+        APPEND_BY = #{record.appendBy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.appendTime != null" >
+        APPEND_TIME = #{record.appendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyBy != null" >
+        MODIFY_BY = #{record.modifyBy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.modifyTime != null" >
+        MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null" >
+        REMARK_ = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update BASE.AUTH_FUN
+    set ID_ = #{record.id,jdbcType=DECIMAL},
+      CODE_ = #{record.code,jdbcType=VARCHAR},
+      NAME_ = #{record.name,jdbcType=VARCHAR},
+      DESC_ = #{record.desc,jdbcType=VARCHAR},
+      MODEL_CODE = #{record.modelCode,jdbcType=VARCHAR},
+      SELF_CODE = #{record.selfCode,jdbcType=VARCHAR},
+      REQUEST_URL = #{record.requestUrl,jdbcType=VARCHAR},
+      SORT_ = #{record.sort,jdbcType=DECIMAL},
+      STATUS_ = #{record.status,jdbcType=DECIMAL},
+      APPEND_BY = #{record.appendBy,jdbcType=DECIMAL},
+      APPEND_TIME = #{record.appendTime,jdbcType=TIMESTAMP},
+      MODIFY_BY = #{record.modifyBy,jdbcType=DECIMAL},
+      MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+      REMARK_ = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rabbit.model.AuthFun" >
+    update BASE.AUTH_FUN
+    <set >
+      <if test="code != null" >
+        CODE_ = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME_ = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null" >
+        DESC_ = #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="modelCode != null" >
+        MODEL_CODE = #{modelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="selfCode != null" >
+        SELF_CODE = #{selfCode,jdbcType=VARCHAR},
+      </if>
+      <if test="requestUrl != null" >
+        REQUEST_URL = #{requestUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        SORT_ = #{sort,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        STATUS_ = #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="appendBy != null" >
+        APPEND_BY = #{appendBy,jdbcType=DECIMAL},
+      </if>
+      <if test="appendTime != null" >
+        APPEND_TIME = #{appendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyBy != null" >
+        MODIFY_BY = #{modifyBy,jdbcType=DECIMAL},
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        REMARK_ = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rabbit.model.AuthFun" >
+    update BASE.AUTH_FUN
+    set CODE_ = #{code,jdbcType=VARCHAR},
+      NAME_ = #{name,jdbcType=VARCHAR},
+      DESC_ = #{desc,jdbcType=VARCHAR},
+      MODEL_CODE = #{modelCode,jdbcType=VARCHAR},
+      SELF_CODE = #{selfCode,jdbcType=VARCHAR},
+      REQUEST_URL = #{requestUrl,jdbcType=VARCHAR},
+      SORT_ = #{sort,jdbcType=DECIMAL},
+      STATUS_ = #{status,jdbcType=DECIMAL},
+      APPEND_BY = #{appendBy,jdbcType=DECIMAL},
+      APPEND_TIME = #{appendTime,jdbcType=TIMESTAMP},
+      MODIFY_BY = #{modifyBy,jdbcType=DECIMAL},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      REMARK_ = #{remark,jdbcType=VARCHAR}
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </update>
+  <select id="selectOnPage" resultMap="BaseResultMap" >
+    <!-- page --> 
+   SELECT * FROM (
+   SELECT PAGE.*, ROWNUM AS RN FROM (
+    select
+    <if test="example.distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from BASE.AUTH_FUN
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+    <if test="example.orderByClause != null" >
+      ORDER BY ${example.orderByClause}
+    </if>
+     )  PAGE WHERE ROWNUM &lt;=  #{maxResults}  
+ )   WHERE RN &gt;#{skipResults}
+  </select>
+</mapper>

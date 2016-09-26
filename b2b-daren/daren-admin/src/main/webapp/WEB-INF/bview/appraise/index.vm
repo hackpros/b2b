@@ -1,0 +1,70 @@
+	#parse("global/header.vm")
+	<!-- END GLOBAL MANDATORY STYLES -->
+	<!-- BEGIN PAGE LEVEL STYLES -->
+	<link href="$static_resource/media/css/coming-soon.css" rel="stylesheet" type="text/css"/>
+	<!-- END PAGE LEVEL STYLES -->
+	<link rel="shortcut icon" href="$static_resource/media/image/favicon.ico" />
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body>
+	<div class="container">
+		<div class="row-fluid">
+			<div class="span12 coming-soon-header">
+				<a class="brand" href="index.html">
+				<img src="$static_resource/media/image/logo-big.png" alt="logo" />
+				</a>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span6 coming-soon-content">
+				<h1>XXX公司评价系统</h1>
+				<p>这里用一句话描述下</p>
+				<br>
+				<form class="form-search" action="/appraise/browser">
+					<div class="input-append">
+						<button type="submit"  class="btn blue btn-subscribe"><span>进入系统</span> <i class="m-icon-swapright m-icon-white"></i></button>
+					</div>
+				</form>			</div>
+		</div>
+		<!--/end row-fluid-->
+		<div class="row-fluid">
+			<div class="span12 coming-soon-footer">
+				2013 &copy; Metronic. Admin Dashboard Template.
+			</div>
+		</div>
+	</div>
+	<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+	<!-- BEGIN CORE PLUGINS -->
+	<script src="$static_resource/media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+	<script src="$static_resource/media/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+	<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+	<script src="$static_resource/media/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>      
+	<script src="$static_resource/media/js/bootstrap.min.js" type="text/javascript"></script>
+	<!--[if lt IE 9]>
+	<script src="media/js/excanvas.min.js"></script>
+	<script src="media/js/respond.min.js"></script>  
+	<![endif]-->   
+	<script src="$static_resource/media/js/jquery.slimscroll.min.js" type="text/javascript"></script>
+	<script src="$static_resource/media/js/jquery.blockui.min.js" type="text/javascript"></script>  
+	<script src="$static_resource/media/js/jquery.cookie.min.js" type="text/javascript"></script>
+	<script src="$static_resource/media/js/jquery.uniform.min.js" type="text/javascript" ></script>
+	<!-- END CORE PLUGINS -->
+	<!-- BEGIN PAGE LEVEL PLUGINS -->
+	<script src="$static_resource/media/js/jquery.countdown.js" type="text/javascript"></script>
+	<script src="$static_resource/media/js/jquery.backstretch.min.js" type="text/javascript"></script>
+	<!-- END PAGE LEVEL PLUGINS -->
+	<!-- BEGIN PAGE LEVEL SCRIPTS -->
+	<script src="$static_resource/media/js/app.js" type="text/javascript"></script>
+	<script src="$static_resource/media/js/coming-soon.js" type="text/javascript"></script>      
+	<!-- END PAGE LEVEL SCRIPTS --> 
+	<script>
+		jQuery(document).ready(function() {     
+		  App.init();
+		  CoomingSoon.init();
+		});
+		 
+	</script>
+	<!-- END JAVASCRIPTS -->
+<script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-37564768-1']);  _gaq.push(['_setDomainName', 'keenthemes.com']);  _gaq.push(['_setAllowLinker', true]);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script></body><!-- END BODY -->
+</html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+
+	<properties resource="jdbc.properties"></properties>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driver}" />
+				<property name="url" value="${jdbc.core0.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="root" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<mappers>
+		<mapper resource="com/rongdu/p2p/user/shardmapping/generated/CertificationImageMapper.xml" />
+		<mapper resource="com/rongdu/p2p/user/shardmapping/generated/CertificationMapper.xml" />
+		<mapper class="com.rongdu.p2p.borrow.sharddao.BorrowMapper" />
+	    <mapper class="com.rongdu.p2p.account.sharddao.RechargeMapper" />
+	     <mapper class="com.rongdu.p2p.account.sharddao.CashMapper" />
+	        <mapper class="com.rongdu.p2p.user.sharddao.UserMapper" />
+	     	     <mapper class="com.rongdu.p2p.account.sharddao.AccountBankMapper" />
+	      <mapper resource="com/rongdu/p2p/user/shardmapping/manual/UserMapper.xml" />
+	     <mapper resource="com/rongdu/p2p/account/shardmapping/generated/AccountBankMapper.xml" />
+	     <mapper resource="com/rongdu/p2p/account/shardmapping/generated/RechargeMapper.xml" />
+		<mapper resource="com/rongdu/p2p/borrow/shardmapping/generated/BorrowMapper.xml" />
+		
+		<package name="com.rongdu.p2p.*.*dao.*" />
+	</mappers>
+</configuration>
+
+  

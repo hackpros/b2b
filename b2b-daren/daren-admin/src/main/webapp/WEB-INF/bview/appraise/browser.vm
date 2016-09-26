@@ -1,0 +1,107 @@
+	#parse("global/header.vm")
+	<!-- END GLOBAL MANDATORY STYLES -->
+	<!-- BEGIN PAGE LEVEL STYLES --> 
+	<link href="$static_resource/media/css/jquery.fancybox.css" rel="stylesheet" />
+	<link href="$static_resource/media/css/chosen.css" rel="stylesheet" type="text/css"/>
+	<!-- END PAGE LEVEL STYLES -->   
+	<link rel="shortcut icon" href="$static_resource/media/image/favicon.ico" />
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="">
+	<!-- BEGIN HEADER -->
+	##parse("global/top.vm")
+	<!-- END HEADER -->
+	<!-- BEGIN CONTAINER -->
+	<div class="">
+		<!-- BEGIN SIDEBAR -->
+		##parse("home/leftmenus.vm")
+		<!-- END SIDEBAR -->
+		<!-- BEGIN PAGE -->
+		<div class="">
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+		
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<!-- BEGIN PAGE CONTAINER-->
+			<div class="container-fluid">
+				<!-- BEGIN PAGE HEADER-->
+				<div class="row-fluid">
+					<div class="span12">
+						<!-- BEGIN STYLE CUSTOMIZER -->
+
+						<!-- END BEGIN STYLE CUSTOMIZER -->
+						<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+
+						<!-- END PAGE TITLE & BREADCRUMB-->
+					</div>
+				</div>
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN PAGE CONTENT-->
+				<div class="row-fluid">
+					<div class="span12">
+						<!-- BEGIN GALLERY MANAGER PORTLET-->
+						<div class="portlet box purple">
+
+							<div class="portlet-body">
+								<!-- BEGIN GALLERY MANAGER PANEL-->
+							
+								<!-- END GALLERY MANAGER PANEL-->
+								<hr class="clearfix" />																##引入私有宠								#parse("appraise/microList.vm")								
+								<!-- BEGIN GALLERY MANAGER LISTING-->								#set ($app1 = "")								#set ($app2 = "")								#set ($app3 = "")								#set ($app4 = "")																#foreach($appraise in $rows)									#if($velocityCount % 4 == 0)										#set ($app4 = $appraise)										#if($velocityCount / 4 >0)											#displayHeadImg($app1 $app2 $app3 $app4)											<hr/>											#set ($app1 = "")											#set ($app2 = "")											#set ($app3 = "")											#set ($app4 = "")										#end									#elseif($velocityCount % 4 == 1)										#set ($app1 = $appraise)									#elseif($velocityCount % 4 == 2)										#set ($app2 = $appraise)									#elseif($velocityCount % 4 == 3)										#set ($app3 = $appraise)									#end
+									#if($velocityHasNext == false && $velocityCount % 4 != 0)										#displayHeadImg($app1 $app2 $app3 $app4)									#end
+								#end								
+								<!-- END GALLERY MANAGER LISTING-->
+								<!-- BEGIN GALLERY MANAGER PAGINATION-->
+
+								<!-- END GALLERY MANAGER PAGINATION-->
+							</div>
+						</div>
+						<!-- END GALLERY MANAGER PORTLET-->
+					</div>
+				</div>
+				<!-- END PAGE CONTENT-->
+			</div>
+			<!-- END PAGE CONTAINER-->       
+		</div>
+		<!-- END PAGE -->    
+	</div>
+	<!-- END CONTAINER -->
+	<!-- BEGIN FOOTER -->
+	#parse("global/footer.vm")
+	<!-- END FOOTER -->
+	<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+	<!-- BEGIN CORE PLUGINS -->
+	<script src="$static_resource/media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+	<script src="$static_resource/media/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+	<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+	<script src="$static_resource/media/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>      
+	<script src="$static_resource/media/js/bootstrap.min.js" type="text/javascript"></script>
+	<!--[if lt IE 9]>
+	<script src="media/js/excanvas.min.js"></script>
+	<script src="media/js/respond.min.js"></script>  
+	<![endif]-->   
+	<script src="$static_resource/media/js/jquery.slimscroll.min.js" type="text/javascript"></script>
+	<script src="$static_resource/media/js/jquery.blockui.min.js" type="text/javascript"></script>  
+	<script src="$static_resource/media/js/jquery.cookie.min.js" type="text/javascript"></script>
+	<script src="$static_resource/media/js/jquery.uniform.min.js" type="text/javascript" ></script>
+	<!-- END CORE PLUGINS -->
+	<!-- BEGIN PAGE LEVEL PLUGINS -->
+	<script src="$static_resource/media/js/jquery.fancybox.pack.js"></script>   
+	<script type="text/javascript" src="$static_resource/media/js/chosen.jquery.min.js"></script>
+	<!-- END PAGE LEVEL PLUGINS -->
+	<!-- BEGIN PAGE LEVEL SCRIPTS -->
+	<script src="$static_resource/media/js/app.js"></script>   
+	<script src="$static_resource/media/js/gallery.js"></script>  
+	<!-- END PAGE LEVEL SCRIPTS -->
+	<script>
+		jQuery(document).ready(function() {       
+		   // initiate layout and plugins
+		   App.init();
+		   Gallery.init();
+		});
+	</script>
+	<!-- END JAVASCRIPTS -->
+<script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-37564768-1']);  _gaq.push(['_setDomainName', 'keenthemes.com']);  _gaq.push(['_setAllowLinker', true]);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script></body>
+<!-- END BODY -->
+</html>

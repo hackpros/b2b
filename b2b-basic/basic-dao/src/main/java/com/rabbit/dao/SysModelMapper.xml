@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rabbit.dao.SysModelMapper" >
+  <resultMap id="BaseResultMap" type="com.rabbit.model.SysModel" >
+    <id column="ID_" property="id" jdbcType="DECIMAL" />
+    <result column="PARENT_ID" property="parentId" jdbcType="DECIMAL" />
+    <result column="LADDER_" property="ladder" jdbcType="DECIMAL" />
+    <result column="MODEL_CODE" property="modelCode" jdbcType="VARCHAR" />
+    <result column="NAME_" property="name" jdbcType="VARCHAR" />
+    <result column="KEYWORD_" property="keyword" jdbcType="VARCHAR" />
+    <result column="PREFIX_" property="prefix" jdbcType="VARCHAR" />
+    <result column="STATUS_" property="status" jdbcType="DECIMAL" />
+    <result column="APPEND_BY" property="appendBy" jdbcType="TIMESTAMP" />
+    <result column="DESC_" property="desc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID_, PARENT_ID, LADDER_, MODEL_CODE, NAME_, KEYWORD_, PREFIX_, STATUS_, APPEND_BY, 
+    DESC_
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.rabbit.model.SysModelExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from BASE.SYS_MODEL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from BASE.SYS_MODEL
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from BASE.SYS_MODEL
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.rabbit.model.SysModelExample" >
+    delete from BASE.SYS_MODEL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.rabbit.model.SysModel" >
+    insert into BASE.SYS_MODEL (ID_, PARENT_ID, LADDER_, 
+      MODEL_CODE, NAME_, KEYWORD_, 
+      PREFIX_, STATUS_, APPEND_BY, 
+      DESC_)
+    values (#{id,jdbcType=DECIMAL}, #{parentId,jdbcType=DECIMAL}, #{ladder,jdbcType=DECIMAL}, 
+      #{modelCode,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{keyword,jdbcType=VARCHAR}, 
+      #{prefix,jdbcType=VARCHAR}, #{status,jdbcType=DECIMAL}, #{appendBy,jdbcType=TIMESTAMP}, 
+      #{desc,jdbcType=VARCHAR})
+    <selectKey keyProperty="id" order="BEFORE" resultType="long" >
+      SELECT BASE.SYS_MODEL_SEQ.NEXTVAL FROM DUAL
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.rabbit.model.SysModel" >
+    insert into BASE.SYS_MODEL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID_,
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID,
+      </if>
+      <if test="ladder != null" >
+        LADDER_,
+      </if>
+      <if test="modelCode != null" >
+        MODEL_CODE,
+      </if>
+      <if test="name != null" >
+        NAME_,
+      </if>
+      <if test="keyword != null" >
+        KEYWORD_,
+      </if>
+      <if test="prefix != null" >
+        PREFIX_,
+      </if>
+      <if test="status != null" >
+        STATUS_,
+      </if>
+      <if test="appendBy != null" >
+        APPEND_BY,
+      </if>
+      <if test="desc != null" >
+        DESC_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=DECIMAL},
+      </if>
+      <if test="ladder != null" >
+        #{ladder,jdbcType=DECIMAL},
+      </if>
+      <if test="modelCode != null" >
+        #{modelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="keyword != null" >
+        #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="prefix != null" >
+        #{prefix,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="appendBy != null" >
+        #{appendBy,jdbcType=TIMESTAMP},
+      </if>
+      <if test="desc != null" >
+        #{desc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.rabbit.model.SysModelExample" resultType="java.lang.Long" >
+    select count(*) from BASE.SYS_MODEL
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update BASE.SYS_MODEL
+    <set >
+      <if test="record.id != null" >
+        ID_ = #{record.id,jdbcType=DECIMAL},
+      </if>
+      <if test="record.parentId != null" >
+        PARENT_ID = #{record.parentId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ladder != null" >
+        LADDER_ = #{record.ladder,jdbcType=DECIMAL},
+      </if>
+      <if test="record.modelCode != null" >
+        MODEL_CODE = #{record.modelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        NAME_ = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.keyword != null" >
+        KEYWORD_ = #{record.keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prefix != null" >
+        PREFIX_ = #{record.prefix,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS_ = #{record.status,jdbcType=DECIMAL},
+      </if>
+      <if test="record.appendBy != null" >
+        APPEND_BY = #{record.appendBy,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.desc != null" >
+        DESC_ = #{record.desc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update BASE.SYS_MODEL
+    set ID_ = #{record.id,jdbcType=DECIMAL},
+      PARENT_ID = #{record.parentId,jdbcType=DECIMAL},
+      LADDER_ = #{record.ladder,jdbcType=DECIMAL},
+      MODEL_CODE = #{record.modelCode,jdbcType=VARCHAR},
+      NAME_ = #{record.name,jdbcType=VARCHAR},
+      KEYWORD_ = #{record.keyword,jdbcType=VARCHAR},
+      PREFIX_ = #{record.prefix,jdbcType=VARCHAR},
+      STATUS_ = #{record.status,jdbcType=DECIMAL},
+      APPEND_BY = #{record.appendBy,jdbcType=TIMESTAMP},
+      DESC_ = #{record.desc,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rabbit.model.SysModel" >
+    update BASE.SYS_MODEL
+    <set >
+      <if test="parentId != null" >
+        PARENT_ID = #{parentId,jdbcType=DECIMAL},
+      </if>
+      <if test="ladder != null" >
+        LADDER_ = #{ladder,jdbcType=DECIMAL},
+      </if>
+      <if test="modelCode != null" >
+        MODEL_CODE = #{modelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME_ = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="keyword != null" >
+        KEYWORD_ = #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="prefix != null" >
+        PREFIX_ = #{prefix,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS_ = #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="appendBy != null" >
+        APPEND_BY = #{appendBy,jdbcType=TIMESTAMP},
+      </if>
+      <if test="desc != null" >
+        DESC_ = #{desc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rabbit.model.SysModel" >
+    update BASE.SYS_MODEL
+    set PARENT_ID = #{parentId,jdbcType=DECIMAL},
+      LADDER_ = #{ladder,jdbcType=DECIMAL},
+      MODEL_CODE = #{modelCode,jdbcType=VARCHAR},
+      NAME_ = #{name,jdbcType=VARCHAR},
+      KEYWORD_ = #{keyword,jdbcType=VARCHAR},
+      PREFIX_ = #{prefix,jdbcType=VARCHAR},
+      STATUS_ = #{status,jdbcType=DECIMAL},
+      APPEND_BY = #{appendBy,jdbcType=TIMESTAMP},
+      DESC_ = #{desc,jdbcType=VARCHAR}
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </update>
+  
+  <!-- 级联树 -->
+  <resultMap id="SysModelResultMap" type="com.bean.GlobalTree" >
+   		<id column="ID_" property="id" jdbcType="DECIMAL" />
+	    <result column="LADDER_" property="level" jdbcType="DECIMAL" />
+	    <result column="MODEL_CODE" property="code" jdbcType="VARCHAR" />
+	    <result column="NAME_" property="name" jdbcType="VARCHAR" />
+	    <result column="PARENT_ID" property="parentId" jdbcType="DECIMAL" />
+	    <association property="children" column="parentId=ID_,parentLadder=LADDER_" select="selectByParentId"/>
+    </resultMap>
+    
+    <resultMap id="levle2ResultMap" type="com.bean.GlobalTree" >
+	    <id column="ID_" property="id" jdbcType="DECIMAL" />
+	    <result column="LADDER_" property="level" jdbcType="DECIMAL" />
+	    <result column="MODEL_CODE" property="code" jdbcType="VARCHAR" />
+	    <result column="NAME_" property="name" jdbcType="VARCHAR" />
+	    <result column="PARENT_ID" property="parentId" jdbcType="DECIMAL" />
+    </resultMap>
+    
+	  <select id="selectByParentId" resultMap="SysModelResultMap">            
+	   	SELECT * FROM  BASE.SYS_MODEL  WHERE parent_id=#{parentId,jdbcType=DECIMAL} and ladder_=#{parentLadder,jdbcType=DECIMAL}+1 order by model_code
+	  </select>
+</mapper>

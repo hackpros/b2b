@@ -1,0 +1,1304 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jumore.b2b.daren.mapper.CompanyMapper" >
+  <resultMap id="BaseResultMap" type="com.jumore.b2b.daren.model.Company" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="apply_time" property="applyTime" jdbcType="TIMESTAMP" />
+    <result column="audio_time" property="audioTime" jdbcType="TIMESTAMP" />
+    <result column="license_no" property="licenseNo" jdbcType="VARCHAR" />
+    <result column="country" property="country" jdbcType="BIGINT" />
+    <result column="area" property="area" jdbcType="BIGINT" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="link_man" property="linkMan" jdbcType="VARCHAR" />
+    <result column="link_man_job" property="linkManJob" jdbcType="VARCHAR" />
+    <result column="link_phone" property="linkPhone" jdbcType="VARCHAR" />
+    <result column="link_mobile" property="linkMobile" jdbcType="VARCHAR" />
+    <result column="link_fax" property="linkFax" jdbcType="VARCHAR" />
+    <result column="link_email" property="linkEmail" jdbcType="VARCHAR" />
+    <result column="delete_flag" property="deleteFlag" jdbcType="VARCHAR" />
+    <result column="service_level" property="serviceLevel" jdbcType="BIGINT" />
+    <result column="short_name" property="shortName" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="data_source" property="dataSource" jdbcType="VARCHAR" />
+    <result column="org_code" property="orgCode" jdbcType="VARCHAR" />
+    <result column="code_status" property="codeStatus" jdbcType="VARCHAR" />
+    <result column="identity" property="identity" jdbcType="VARCHAR" />
+    <result column="pd_deal_orders" property="pdDealOrders" jdbcType="INTEGER" />
+    <result column="pd_company_type" property="pdCompanyType" jdbcType="VARCHAR" />
+    <result column="logo_url" property="logoUrl" jdbcType="VARCHAR" />
+    <result column="language_code" property="languageCode" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_id" property="createId" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_id" property="updateId" jdbcType="BIGINT" />
+    <result column="check_user_id" property="checkUserId" jdbcType="BIGINT" />
+    <result column="punish_user_id" property="punishUserId" jdbcType="BIGINT" />
+    <result column="punish_time" property="punishTime" jdbcType="TIMESTAMP" />
+    <result column="punish_time_from" property="punishTimeFrom" jdbcType="TIMESTAMP" />
+    <result column="punish_time_to" property="punishTimeTo" jdbcType="TIMESTAMP" />
+    <result column="punish_remark" property="punishRemark" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="false_orders" property="falseOrders" jdbcType="INTEGER" />
+    <result column="end_orders" property="endOrders" jdbcType="INTEGER" />
+    <result column="id_type" property="idType" jdbcType="VARCHAR" />
+    <result column="id_number" property="idNumber" jdbcType="VARCHAR" />
+    <result column="website" property="website" jdbcType="VARCHAR" />
+    <result column="legal_person" property="legalPerson" jdbcType="VARCHAR" />
+    <result column="total_staff" property="totalStaff" jdbcType="BIGINT" />
+    <result column="registered_address" property="registeredAddress" jdbcType="VARCHAR" />
+    <result column="opening_bank" property="openingBank" jdbcType="VARCHAR" />
+    <result column="branch_bank" property="branchBank" jdbcType="VARCHAR" />
+    <result column="account_bank" property="accountBank" jdbcType="VARCHAR" />
+    <result column="tax_types" property="taxTypes" jdbcType="VARCHAR" />
+    <result column="invoice_type" property="invoiceType" jdbcType="VARCHAR" />
+    <result column="vat_rate" property="vatRate" jdbcType="VARCHAR" />
+    <result column="register_date" property="registerDate" jdbcType="DATE" />
+    <result column="expiry_date" property="expiryDate" jdbcType="DATE" />
+    <result column="credit_code" property="creditCode" jdbcType="VARCHAR" />
+    <result column="business_scope" property="businessScope" jdbcType="VARCHAR" />
+    <result column="legal_phone" property="legalPhone" jdbcType="VARCHAR" />
+    <result column="industry" property="industry" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="grade_reason" property="gradeReason" jdbcType="VARCHAR" />
+    <result column="kpi" property="kpi" jdbcType="DOUBLE" />
+    <result column="foreign_id" property="foreignId" jdbcType="VARCHAR" />
+    <result column="enterprise_type" property="enterpriseType" jdbcType="VARCHAR" />
+    <result column="create_user_type" property="createUserType" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.jumore.b2b.daren.model.Company" extends="BaseResultMap" >
+    <result column="company_introduces" property="companyIntroduces" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, company_name, apply_time, audio_time, license_no, country, area, address, link_man, 
+    link_man_job, link_phone, link_mobile, link_fax, link_email, delete_flag, service_level, 
+    short_name, remark, data_source, org_code, code_status, identity, pd_deal_orders, 
+    pd_company_type, logo_url, language_code, create_time, create_id, update_time, update_id, 
+    check_user_id, punish_user_id, punish_time, punish_time_from, punish_time_to, punish_remark, 
+    status, false_orders, end_orders, id_type, id_number, website, legal_person, total_staff, 
+    registered_address, opening_bank, branch_bank, account_bank, tax_types, invoice_type, 
+    vat_rate, register_date, expiry_date, credit_code, business_scope, legal_phone, industry, 
+    score, grade_reason, kpi, foreign_id, enterprise_type, create_user_type
+  </sql>
+  <sql id="Blob_Column_List" >
+    company_introduces
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.jumore.b2b.daren.model.CompanyQueryHelper" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sp_talent_company
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jumore.b2b.daren.model.CompanyQueryHelper" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sp_talent_company
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sp_talent_company
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sp_talent_company
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jumore.b2b.daren.model.CompanyQueryHelper" >
+    delete from sp_talent_company
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jumore.b2b.daren.model.Company" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sp_talent_company (id, company_name, apply_time, 
+      audio_time, license_no, country, 
+      area, address, link_man, 
+      link_man_job, link_phone, link_mobile, 
+      link_fax, link_email, delete_flag, 
+      service_level, short_name, remark, 
+      data_source, org_code, code_status, 
+      identity, pd_deal_orders, pd_company_type, 
+      logo_url, language_code, create_time, 
+      create_id, update_time, update_id, 
+      check_user_id, punish_user_id, punish_time, 
+      punish_time_from, punish_time_to, punish_remark, 
+      status, false_orders, end_orders, 
+      id_type, id_number, website, 
+      legal_person, total_staff, registered_address, 
+      opening_bank, branch_bank, account_bank, 
+      tax_types, invoice_type, vat_rate, 
+      register_date, expiry_date, credit_code, 
+      business_scope, legal_phone, industry, 
+      score, grade_reason, kpi, 
+      foreign_id, enterprise_type, create_user_type, 
+      company_introduces)
+    values (#{id,jdbcType=BIGINT}, #{companyName,jdbcType=VARCHAR}, #{applyTime,jdbcType=TIMESTAMP}, 
+      #{audioTime,jdbcType=TIMESTAMP}, #{licenseNo,jdbcType=VARCHAR}, #{country,jdbcType=BIGINT}, 
+      #{area,jdbcType=BIGINT}, #{address,jdbcType=VARCHAR}, #{linkMan,jdbcType=VARCHAR}, 
+      #{linkManJob,jdbcType=VARCHAR}, #{linkPhone,jdbcType=VARCHAR}, #{linkMobile,jdbcType=VARCHAR}, 
+      #{linkFax,jdbcType=VARCHAR}, #{linkEmail,jdbcType=VARCHAR}, #{deleteFlag,jdbcType=VARCHAR}, 
+      #{serviceLevel,jdbcType=BIGINT}, #{shortName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{dataSource,jdbcType=VARCHAR}, #{orgCode,jdbcType=VARCHAR}, #{codeStatus,jdbcType=VARCHAR}, 
+      #{identity,jdbcType=VARCHAR}, #{pdDealOrders,jdbcType=INTEGER}, #{pdCompanyType,jdbcType=VARCHAR}, 
+      #{logoUrl,jdbcType=VARCHAR}, #{languageCode,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createId,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, #{updateId,jdbcType=BIGINT}, 
+      #{checkUserId,jdbcType=BIGINT}, #{punishUserId,jdbcType=BIGINT}, #{punishTime,jdbcType=TIMESTAMP}, 
+      #{punishTimeFrom,jdbcType=TIMESTAMP}, #{punishTimeTo,jdbcType=TIMESTAMP}, #{punishRemark,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{falseOrders,jdbcType=INTEGER}, #{endOrders,jdbcType=INTEGER}, 
+      #{idType,jdbcType=VARCHAR}, #{idNumber,jdbcType=VARCHAR}, #{website,jdbcType=VARCHAR}, 
+      #{legalPerson,jdbcType=VARCHAR}, #{totalStaff,jdbcType=BIGINT}, #{registeredAddress,jdbcType=VARCHAR}, 
+      #{openingBank,jdbcType=VARCHAR}, #{branchBank,jdbcType=VARCHAR}, #{accountBank,jdbcType=VARCHAR}, 
+      #{taxTypes,jdbcType=VARCHAR}, #{invoiceType,jdbcType=VARCHAR}, #{vatRate,jdbcType=VARCHAR}, 
+      #{registerDate,jdbcType=DATE}, #{expiryDate,jdbcType=DATE}, #{creditCode,jdbcType=VARCHAR}, 
+      #{businessScope,jdbcType=VARCHAR}, #{legalPhone,jdbcType=VARCHAR}, #{industry,jdbcType=VARCHAR}, 
+      #{score,jdbcType=INTEGER}, #{gradeReason,jdbcType=VARCHAR}, #{kpi,jdbcType=DOUBLE}, 
+      #{foreignId,jdbcType=VARCHAR}, #{enterpriseType,jdbcType=VARCHAR}, #{createUserType,jdbcType=VARCHAR}, 
+      #{companyIntroduces,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jumore.b2b.daren.model.Company" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sp_talent_company
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="applyTime != null" >
+        apply_time,
+      </if>
+      <if test="audioTime != null" >
+        audio_time,
+      </if>
+      <if test="licenseNo != null" >
+        license_no,
+      </if>
+      <if test="country != null" >
+        country,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="linkMan != null" >
+        link_man,
+      </if>
+      <if test="linkManJob != null" >
+        link_man_job,
+      </if>
+      <if test="linkPhone != null" >
+        link_phone,
+      </if>
+      <if test="linkMobile != null" >
+        link_mobile,
+      </if>
+      <if test="linkFax != null" >
+        link_fax,
+      </if>
+      <if test="linkEmail != null" >
+        link_email,
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag,
+      </if>
+      <if test="serviceLevel != null" >
+        service_level,
+      </if>
+      <if test="shortName != null" >
+        short_name,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="dataSource != null" >
+        data_source,
+      </if>
+      <if test="orgCode != null" >
+        org_code,
+      </if>
+      <if test="codeStatus != null" >
+        code_status,
+      </if>
+      <if test="identity != null" >
+        identity,
+      </if>
+      <if test="pdDealOrders != null" >
+        pd_deal_orders,
+      </if>
+      <if test="pdCompanyType != null" >
+        pd_company_type,
+      </if>
+      <if test="logoUrl != null" >
+        logo_url,
+      </if>
+      <if test="languageCode != null" >
+        language_code,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createId != null" >
+        create_id,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateId != null" >
+        update_id,
+      </if>
+      <if test="checkUserId != null" >
+        check_user_id,
+      </if>
+      <if test="punishUserId != null" >
+        punish_user_id,
+      </if>
+      <if test="punishTime != null" >
+        punish_time,
+      </if>
+      <if test="punishTimeFrom != null" >
+        punish_time_from,
+      </if>
+      <if test="punishTimeTo != null" >
+        punish_time_to,
+      </if>
+      <if test="punishRemark != null" >
+        punish_remark,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="falseOrders != null" >
+        false_orders,
+      </if>
+      <if test="endOrders != null" >
+        end_orders,
+      </if>
+      <if test="idType != null" >
+        id_type,
+      </if>
+      <if test="idNumber != null" >
+        id_number,
+      </if>
+      <if test="website != null" >
+        website,
+      </if>
+      <if test="legalPerson != null" >
+        legal_person,
+      </if>
+      <if test="totalStaff != null" >
+        total_staff,
+      </if>
+      <if test="registeredAddress != null" >
+        registered_address,
+      </if>
+      <if test="openingBank != null" >
+        opening_bank,
+      </if>
+      <if test="branchBank != null" >
+        branch_bank,
+      </if>
+      <if test="accountBank != null" >
+        account_bank,
+      </if>
+      <if test="taxTypes != null" >
+        tax_types,
+      </if>
+      <if test="invoiceType != null" >
+        invoice_type,
+      </if>
+      <if test="vatRate != null" >
+        vat_rate,
+      </if>
+      <if test="registerDate != null" >
+        register_date,
+      </if>
+      <if test="expiryDate != null" >
+        expiry_date,
+      </if>
+      <if test="creditCode != null" >
+        credit_code,
+      </if>
+      <if test="businessScope != null" >
+        business_scope,
+      </if>
+      <if test="legalPhone != null" >
+        legal_phone,
+      </if>
+      <if test="industry != null" >
+        industry,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="gradeReason != null" >
+        grade_reason,
+      </if>
+      <if test="kpi != null" >
+        kpi,
+      </if>
+      <if test="foreignId != null" >
+        foreign_id,
+      </if>
+      <if test="enterpriseType != null" >
+        enterprise_type,
+      </if>
+      <if test="createUserType != null" >
+        create_user_type,
+      </if>
+      <if test="companyIntroduces != null" >
+        company_introduces,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=BIGINT},
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyTime != null" >
+        #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="audioTime != null" >
+        #{audioTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="licenseNo != null" >
+        #{licenseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=BIGINT},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=BIGINT},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="linkMan != null" >
+        #{linkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="linkManJob != null" >
+        #{linkManJob,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhone != null" >
+        #{linkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="linkMobile != null" >
+        #{linkMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="linkFax != null" >
+        #{linkFax,jdbcType=VARCHAR},
+      </if>
+      <if test="linkEmail != null" >
+        #{linkEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteFlag != null" >
+        #{deleteFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceLevel != null" >
+        #{serviceLevel,jdbcType=BIGINT},
+      </if>
+      <if test="shortName != null" >
+        #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="dataSource != null" >
+        #{dataSource,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null" >
+        #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="codeStatus != null" >
+        #{codeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="pdDealOrders != null" >
+        #{pdDealOrders,jdbcType=INTEGER},
+      </if>
+      <if test="pdCompanyType != null" >
+        #{pdCompanyType,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null" >
+        #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="languageCode != null" >
+        #{languageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null" >
+        #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null" >
+        #{updateId,jdbcType=BIGINT},
+      </if>
+      <if test="checkUserId != null" >
+        #{checkUserId,jdbcType=BIGINT},
+      </if>
+      <if test="punishUserId != null" >
+        #{punishUserId,jdbcType=BIGINT},
+      </if>
+      <if test="punishTime != null" >
+        #{punishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="punishTimeFrom != null" >
+        #{punishTimeFrom,jdbcType=TIMESTAMP},
+      </if>
+      <if test="punishTimeTo != null" >
+        #{punishTimeTo,jdbcType=TIMESTAMP},
+      </if>
+      <if test="punishRemark != null" >
+        #{punishRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="falseOrders != null" >
+        #{falseOrders,jdbcType=INTEGER},
+      </if>
+      <if test="endOrders != null" >
+        #{endOrders,jdbcType=INTEGER},
+      </if>
+      <if test="idType != null" >
+        #{idType,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null" >
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null" >
+        #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPerson != null" >
+        #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="totalStaff != null" >
+        #{totalStaff,jdbcType=BIGINT},
+      </if>
+      <if test="registeredAddress != null" >
+        #{registeredAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="openingBank != null" >
+        #{openingBank,jdbcType=VARCHAR},
+      </if>
+      <if test="branchBank != null" >
+        #{branchBank,jdbcType=VARCHAR},
+      </if>
+      <if test="accountBank != null" >
+        #{accountBank,jdbcType=VARCHAR},
+      </if>
+      <if test="taxTypes != null" >
+        #{taxTypes,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceType != null" >
+        #{invoiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="vatRate != null" >
+        #{vatRate,jdbcType=VARCHAR},
+      </if>
+      <if test="registerDate != null" >
+        #{registerDate,jdbcType=DATE},
+      </if>
+      <if test="expiryDate != null" >
+        #{expiryDate,jdbcType=DATE},
+      </if>
+      <if test="creditCode != null" >
+        #{creditCode,jdbcType=VARCHAR},
+      </if>
+      <if test="businessScope != null" >
+        #{businessScope,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPhone != null" >
+        #{legalPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null" >
+        #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="gradeReason != null" >
+        #{gradeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="kpi != null" >
+        #{kpi,jdbcType=DOUBLE},
+      </if>
+      <if test="foreignId != null" >
+        #{foreignId,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseType != null" >
+        #{enterpriseType,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserType != null" >
+        #{createUserType,jdbcType=VARCHAR},
+      </if>
+      <if test="companyIntroduces != null" >
+        #{companyIntroduces,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jumore.b2b.daren.model.CompanyQueryHelper" resultType="java.lang.Integer" >
+    select count(*) from sp_talent_company
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sp_talent_company
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.companyName != null" >
+        company_name = #{record.companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyTime != null" >
+        apply_time = #{record.applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.audioTime != null" >
+        audio_time = #{record.audioTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.licenseNo != null" >
+        license_no = #{record.licenseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.country != null" >
+        country = #{record.country,jdbcType=BIGINT},
+      </if>
+      <if test="record.area != null" >
+        area = #{record.area,jdbcType=BIGINT},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkMan != null" >
+        link_man = #{record.linkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkManJob != null" >
+        link_man_job = #{record.linkManJob,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkPhone != null" >
+        link_phone = #{record.linkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkMobile != null" >
+        link_mobile = #{record.linkMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkFax != null" >
+        link_fax = #{record.linkFax,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkEmail != null" >
+        link_email = #{record.linkEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deleteFlag != null" >
+        delete_flag = #{record.deleteFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceLevel != null" >
+        service_level = #{record.serviceLevel,jdbcType=BIGINT},
+      </if>
+      <if test="record.shortName != null" >
+        short_name = #{record.shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dataSource != null" >
+        data_source = #{record.dataSource,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgCode != null" >
+        org_code = #{record.orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codeStatus != null" >
+        code_status = #{record.codeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.identity != null" >
+        identity = #{record.identity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pdDealOrders != null" >
+        pd_deal_orders = #{record.pdDealOrders,jdbcType=INTEGER},
+      </if>
+      <if test="record.pdCompanyType != null" >
+        pd_company_type = #{record.pdCompanyType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logoUrl != null" >
+        logo_url = #{record.logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.languageCode != null" >
+        language_code = #{record.languageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createId != null" >
+        create_id = #{record.createId,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateId != null" >
+        update_id = #{record.updateId,jdbcType=BIGINT},
+      </if>
+      <if test="record.checkUserId != null" >
+        check_user_id = #{record.checkUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.punishUserId != null" >
+        punish_user_id = #{record.punishUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.punishTime != null" >
+        punish_time = #{record.punishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.punishTimeFrom != null" >
+        punish_time_from = #{record.punishTimeFrom,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.punishTimeTo != null" >
+        punish_time_to = #{record.punishTimeTo,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.punishRemark != null" >
+        punish_remark = #{record.punishRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.falseOrders != null" >
+        false_orders = #{record.falseOrders,jdbcType=INTEGER},
+      </if>
+      <if test="record.endOrders != null" >
+        end_orders = #{record.endOrders,jdbcType=INTEGER},
+      </if>
+      <if test="record.idType != null" >
+        id_type = #{record.idType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idNumber != null" >
+        id_number = #{record.idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.website != null" >
+        website = #{record.website,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalPerson != null" >
+        legal_person = #{record.legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalStaff != null" >
+        total_staff = #{record.totalStaff,jdbcType=BIGINT},
+      </if>
+      <if test="record.registeredAddress != null" >
+        registered_address = #{record.registeredAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openingBank != null" >
+        opening_bank = #{record.openingBank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.branchBank != null" >
+        branch_bank = #{record.branchBank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountBank != null" >
+        account_bank = #{record.accountBank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taxTypes != null" >
+        tax_types = #{record.taxTypes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoiceType != null" >
+        invoice_type = #{record.invoiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vatRate != null" >
+        vat_rate = #{record.vatRate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registerDate != null" >
+        register_date = #{record.registerDate,jdbcType=DATE},
+      </if>
+      <if test="record.expiryDate != null" >
+        expiry_date = #{record.expiryDate,jdbcType=DATE},
+      </if>
+      <if test="record.creditCode != null" >
+        credit_code = #{record.creditCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessScope != null" >
+        business_scope = #{record.businessScope,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalPhone != null" >
+        legal_phone = #{record.legalPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.industry != null" >
+        industry = #{record.industry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.score != null" >
+        score = #{record.score,jdbcType=INTEGER},
+      </if>
+      <if test="record.gradeReason != null" >
+        grade_reason = #{record.gradeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kpi != null" >
+        kpi = #{record.kpi,jdbcType=DOUBLE},
+      </if>
+      <if test="record.foreignId != null" >
+        foreign_id = #{record.foreignId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enterpriseType != null" >
+        enterprise_type = #{record.enterpriseType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUserType != null" >
+        create_user_type = #{record.createUserType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyIntroduces != null" >
+        company_introduces = #{record.companyIntroduces,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update sp_talent_company
+    set id = #{record.id,jdbcType=BIGINT},
+      company_name = #{record.companyName,jdbcType=VARCHAR},
+      apply_time = #{record.applyTime,jdbcType=TIMESTAMP},
+      audio_time = #{record.audioTime,jdbcType=TIMESTAMP},
+      license_no = #{record.licenseNo,jdbcType=VARCHAR},
+      country = #{record.country,jdbcType=BIGINT},
+      area = #{record.area,jdbcType=BIGINT},
+      address = #{record.address,jdbcType=VARCHAR},
+      link_man = #{record.linkMan,jdbcType=VARCHAR},
+      link_man_job = #{record.linkManJob,jdbcType=VARCHAR},
+      link_phone = #{record.linkPhone,jdbcType=VARCHAR},
+      link_mobile = #{record.linkMobile,jdbcType=VARCHAR},
+      link_fax = #{record.linkFax,jdbcType=VARCHAR},
+      link_email = #{record.linkEmail,jdbcType=VARCHAR},
+      delete_flag = #{record.deleteFlag,jdbcType=VARCHAR},
+      service_level = #{record.serviceLevel,jdbcType=BIGINT},
+      short_name = #{record.shortName,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      data_source = #{record.dataSource,jdbcType=VARCHAR},
+      org_code = #{record.orgCode,jdbcType=VARCHAR},
+      code_status = #{record.codeStatus,jdbcType=VARCHAR},
+      identity = #{record.identity,jdbcType=VARCHAR},
+      pd_deal_orders = #{record.pdDealOrders,jdbcType=INTEGER},
+      pd_company_type = #{record.pdCompanyType,jdbcType=VARCHAR},
+      logo_url = #{record.logoUrl,jdbcType=VARCHAR},
+      language_code = #{record.languageCode,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_id = #{record.createId,jdbcType=BIGINT},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      update_id = #{record.updateId,jdbcType=BIGINT},
+      check_user_id = #{record.checkUserId,jdbcType=BIGINT},
+      punish_user_id = #{record.punishUserId,jdbcType=BIGINT},
+      punish_time = #{record.punishTime,jdbcType=TIMESTAMP},
+      punish_time_from = #{record.punishTimeFrom,jdbcType=TIMESTAMP},
+      punish_time_to = #{record.punishTimeTo,jdbcType=TIMESTAMP},
+      punish_remark = #{record.punishRemark,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      false_orders = #{record.falseOrders,jdbcType=INTEGER},
+      end_orders = #{record.endOrders,jdbcType=INTEGER},
+      id_type = #{record.idType,jdbcType=VARCHAR},
+      id_number = #{record.idNumber,jdbcType=VARCHAR},
+      website = #{record.website,jdbcType=VARCHAR},
+      legal_person = #{record.legalPerson,jdbcType=VARCHAR},
+      total_staff = #{record.totalStaff,jdbcType=BIGINT},
+      registered_address = #{record.registeredAddress,jdbcType=VARCHAR},
+      opening_bank = #{record.openingBank,jdbcType=VARCHAR},
+      branch_bank = #{record.branchBank,jdbcType=VARCHAR},
+      account_bank = #{record.accountBank,jdbcType=VARCHAR},
+      tax_types = #{record.taxTypes,jdbcType=VARCHAR},
+      invoice_type = #{record.invoiceType,jdbcType=VARCHAR},
+      vat_rate = #{record.vatRate,jdbcType=VARCHAR},
+      register_date = #{record.registerDate,jdbcType=DATE},
+      expiry_date = #{record.expiryDate,jdbcType=DATE},
+      credit_code = #{record.creditCode,jdbcType=VARCHAR},
+      business_scope = #{record.businessScope,jdbcType=VARCHAR},
+      legal_phone = #{record.legalPhone,jdbcType=VARCHAR},
+      industry = #{record.industry,jdbcType=VARCHAR},
+      score = #{record.score,jdbcType=INTEGER},
+      grade_reason = #{record.gradeReason,jdbcType=VARCHAR},
+      kpi = #{record.kpi,jdbcType=DOUBLE},
+      foreign_id = #{record.foreignId,jdbcType=VARCHAR},
+      enterprise_type = #{record.enterpriseType,jdbcType=VARCHAR},
+      create_user_type = #{record.createUserType,jdbcType=VARCHAR},
+      company_introduces = #{record.companyIntroduces,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sp_talent_company
+    set id = #{record.id,jdbcType=BIGINT},
+      company_name = #{record.companyName,jdbcType=VARCHAR},
+      apply_time = #{record.applyTime,jdbcType=TIMESTAMP},
+      audio_time = #{record.audioTime,jdbcType=TIMESTAMP},
+      license_no = #{record.licenseNo,jdbcType=VARCHAR},
+      country = #{record.country,jdbcType=BIGINT},
+      area = #{record.area,jdbcType=BIGINT},
+      address = #{record.address,jdbcType=VARCHAR},
+      link_man = #{record.linkMan,jdbcType=VARCHAR},
+      link_man_job = #{record.linkManJob,jdbcType=VARCHAR},
+      link_phone = #{record.linkPhone,jdbcType=VARCHAR},
+      link_mobile = #{record.linkMobile,jdbcType=VARCHAR},
+      link_fax = #{record.linkFax,jdbcType=VARCHAR},
+      link_email = #{record.linkEmail,jdbcType=VARCHAR},
+      delete_flag = #{record.deleteFlag,jdbcType=VARCHAR},
+      service_level = #{record.serviceLevel,jdbcType=BIGINT},
+      short_name = #{record.shortName,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      data_source = #{record.dataSource,jdbcType=VARCHAR},
+      org_code = #{record.orgCode,jdbcType=VARCHAR},
+      code_status = #{record.codeStatus,jdbcType=VARCHAR},
+      identity = #{record.identity,jdbcType=VARCHAR},
+      pd_deal_orders = #{record.pdDealOrders,jdbcType=INTEGER},
+      pd_company_type = #{record.pdCompanyType,jdbcType=VARCHAR},
+      logo_url = #{record.logoUrl,jdbcType=VARCHAR},
+      language_code = #{record.languageCode,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_id = #{record.createId,jdbcType=BIGINT},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      update_id = #{record.updateId,jdbcType=BIGINT},
+      check_user_id = #{record.checkUserId,jdbcType=BIGINT},
+      punish_user_id = #{record.punishUserId,jdbcType=BIGINT},
+      punish_time = #{record.punishTime,jdbcType=TIMESTAMP},
+      punish_time_from = #{record.punishTimeFrom,jdbcType=TIMESTAMP},
+      punish_time_to = #{record.punishTimeTo,jdbcType=TIMESTAMP},
+      punish_remark = #{record.punishRemark,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      false_orders = #{record.falseOrders,jdbcType=INTEGER},
+      end_orders = #{record.endOrders,jdbcType=INTEGER},
+      id_type = #{record.idType,jdbcType=VARCHAR},
+      id_number = #{record.idNumber,jdbcType=VARCHAR},
+      website = #{record.website,jdbcType=VARCHAR},
+      legal_person = #{record.legalPerson,jdbcType=VARCHAR},
+      total_staff = #{record.totalStaff,jdbcType=BIGINT},
+      registered_address = #{record.registeredAddress,jdbcType=VARCHAR},
+      opening_bank = #{record.openingBank,jdbcType=VARCHAR},
+      branch_bank = #{record.branchBank,jdbcType=VARCHAR},
+      account_bank = #{record.accountBank,jdbcType=VARCHAR},
+      tax_types = #{record.taxTypes,jdbcType=VARCHAR},
+      invoice_type = #{record.invoiceType,jdbcType=VARCHAR},
+      vat_rate = #{record.vatRate,jdbcType=VARCHAR},
+      register_date = #{record.registerDate,jdbcType=DATE},
+      expiry_date = #{record.expiryDate,jdbcType=DATE},
+      credit_code = #{record.creditCode,jdbcType=VARCHAR},
+      business_scope = #{record.businessScope,jdbcType=VARCHAR},
+      legal_phone = #{record.legalPhone,jdbcType=VARCHAR},
+      industry = #{record.industry,jdbcType=VARCHAR},
+      score = #{record.score,jdbcType=INTEGER},
+      grade_reason = #{record.gradeReason,jdbcType=VARCHAR},
+      kpi = #{record.kpi,jdbcType=DOUBLE},
+      foreign_id = #{record.foreignId,jdbcType=VARCHAR},
+      enterprise_type = #{record.enterpriseType,jdbcType=VARCHAR},
+      create_user_type = #{record.createUserType,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jumore.b2b.daren.model.Company" >
+    update sp_talent_company
+    <set >
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyTime != null" >
+        apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="audioTime != null" >
+        audio_time = #{audioTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="licenseNo != null" >
+        license_no = #{licenseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        country = #{country,jdbcType=BIGINT},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=BIGINT},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="linkMan != null" >
+        link_man = #{linkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="linkManJob != null" >
+        link_man_job = #{linkManJob,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhone != null" >
+        link_phone = #{linkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="linkMobile != null" >
+        link_mobile = #{linkMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="linkFax != null" >
+        link_fax = #{linkFax,jdbcType=VARCHAR},
+      </if>
+      <if test="linkEmail != null" >
+        link_email = #{linkEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag = #{deleteFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceLevel != null" >
+        service_level = #{serviceLevel,jdbcType=BIGINT},
+      </if>
+      <if test="shortName != null" >
+        short_name = #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="dataSource != null" >
+        data_source = #{dataSource,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null" >
+        org_code = #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="codeStatus != null" >
+        code_status = #{codeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        identity = #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="pdDealOrders != null" >
+        pd_deal_orders = #{pdDealOrders,jdbcType=INTEGER},
+      </if>
+      <if test="pdCompanyType != null" >
+        pd_company_type = #{pdCompanyType,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null" >
+        logo_url = #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="languageCode != null" >
+        language_code = #{languageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null" >
+        create_id = #{createId,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null" >
+        update_id = #{updateId,jdbcType=BIGINT},
+      </if>
+      <if test="checkUserId != null" >
+        check_user_id = #{checkUserId,jdbcType=BIGINT},
+      </if>
+      <if test="punishUserId != null" >
+        punish_user_id = #{punishUserId,jdbcType=BIGINT},
+      </if>
+      <if test="punishTime != null" >
+        punish_time = #{punishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="punishTimeFrom != null" >
+        punish_time_from = #{punishTimeFrom,jdbcType=TIMESTAMP},
+      </if>
+      <if test="punishTimeTo != null" >
+        punish_time_to = #{punishTimeTo,jdbcType=TIMESTAMP},
+      </if>
+      <if test="punishRemark != null" >
+        punish_remark = #{punishRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="falseOrders != null" >
+        false_orders = #{falseOrders,jdbcType=INTEGER},
+      </if>
+      <if test="endOrders != null" >
+        end_orders = #{endOrders,jdbcType=INTEGER},
+      </if>
+      <if test="idType != null" >
+        id_type = #{idType,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null" >
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null" >
+        website = #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPerson != null" >
+        legal_person = #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="totalStaff != null" >
+        total_staff = #{totalStaff,jdbcType=BIGINT},
+      </if>
+      <if test="registeredAddress != null" >
+        registered_address = #{registeredAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="openingBank != null" >
+        opening_bank = #{openingBank,jdbcType=VARCHAR},
+      </if>
+      <if test="branchBank != null" >
+        branch_bank = #{branchBank,jdbcType=VARCHAR},
+      </if>
+      <if test="accountBank != null" >
+        account_bank = #{accountBank,jdbcType=VARCHAR},
+      </if>
+      <if test="taxTypes != null" >
+        tax_types = #{taxTypes,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceType != null" >
+        invoice_type = #{invoiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="vatRate != null" >
+        vat_rate = #{vatRate,jdbcType=VARCHAR},
+      </if>
+      <if test="registerDate != null" >
+        register_date = #{registerDate,jdbcType=DATE},
+      </if>
+      <if test="expiryDate != null" >
+        expiry_date = #{expiryDate,jdbcType=DATE},
+      </if>
+      <if test="creditCode != null" >
+        credit_code = #{creditCode,jdbcType=VARCHAR},
+      </if>
+      <if test="businessScope != null" >
+        business_scope = #{businessScope,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPhone != null" >
+        legal_phone = #{legalPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null" >
+        industry = #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="gradeReason != null" >
+        grade_reason = #{gradeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="kpi != null" >
+        kpi = #{kpi,jdbcType=DOUBLE},
+      </if>
+      <if test="foreignId != null" >
+        foreign_id = #{foreignId,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseType != null" >
+        enterprise_type = #{enterpriseType,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserType != null" >
+        create_user_type = #{createUserType,jdbcType=VARCHAR},
+      </if>
+      <if test="companyIntroduces != null" >
+        company_introduces = #{companyIntroduces,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jumore.b2b.daren.model.Company" >
+    update sp_talent_company
+    set company_name = #{companyName,jdbcType=VARCHAR},
+      apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      audio_time = #{audioTime,jdbcType=TIMESTAMP},
+      license_no = #{licenseNo,jdbcType=VARCHAR},
+      country = #{country,jdbcType=BIGINT},
+      area = #{area,jdbcType=BIGINT},
+      address = #{address,jdbcType=VARCHAR},
+      link_man = #{linkMan,jdbcType=VARCHAR},
+      link_man_job = #{linkManJob,jdbcType=VARCHAR},
+      link_phone = #{linkPhone,jdbcType=VARCHAR},
+      link_mobile = #{linkMobile,jdbcType=VARCHAR},
+      link_fax = #{linkFax,jdbcType=VARCHAR},
+      link_email = #{linkEmail,jdbcType=VARCHAR},
+      delete_flag = #{deleteFlag,jdbcType=VARCHAR},
+      service_level = #{serviceLevel,jdbcType=BIGINT},
+      short_name = #{shortName,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      data_source = #{dataSource,jdbcType=VARCHAR},
+      org_code = #{orgCode,jdbcType=VARCHAR},
+      code_status = #{codeStatus,jdbcType=VARCHAR},
+      identity = #{identity,jdbcType=VARCHAR},
+      pd_deal_orders = #{pdDealOrders,jdbcType=INTEGER},
+      pd_company_type = #{pdCompanyType,jdbcType=VARCHAR},
+      logo_url = #{logoUrl,jdbcType=VARCHAR},
+      language_code = #{languageCode,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_id = #{createId,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_id = #{updateId,jdbcType=BIGINT},
+      check_user_id = #{checkUserId,jdbcType=BIGINT},
+      punish_user_id = #{punishUserId,jdbcType=BIGINT},
+      punish_time = #{punishTime,jdbcType=TIMESTAMP},
+      punish_time_from = #{punishTimeFrom,jdbcType=TIMESTAMP},
+      punish_time_to = #{punishTimeTo,jdbcType=TIMESTAMP},
+      punish_remark = #{punishRemark,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      false_orders = #{falseOrders,jdbcType=INTEGER},
+      end_orders = #{endOrders,jdbcType=INTEGER},
+      id_type = #{idType,jdbcType=VARCHAR},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      website = #{website,jdbcType=VARCHAR},
+      legal_person = #{legalPerson,jdbcType=VARCHAR},
+      total_staff = #{totalStaff,jdbcType=BIGINT},
+      registered_address = #{registeredAddress,jdbcType=VARCHAR},
+      opening_bank = #{openingBank,jdbcType=VARCHAR},
+      branch_bank = #{branchBank,jdbcType=VARCHAR},
+      account_bank = #{accountBank,jdbcType=VARCHAR},
+      tax_types = #{taxTypes,jdbcType=VARCHAR},
+      invoice_type = #{invoiceType,jdbcType=VARCHAR},
+      vat_rate = #{vatRate,jdbcType=VARCHAR},
+      register_date = #{registerDate,jdbcType=DATE},
+      expiry_date = #{expiryDate,jdbcType=DATE},
+      credit_code = #{creditCode,jdbcType=VARCHAR},
+      business_scope = #{businessScope,jdbcType=VARCHAR},
+      legal_phone = #{legalPhone,jdbcType=VARCHAR},
+      industry = #{industry,jdbcType=VARCHAR},
+      score = #{score,jdbcType=INTEGER},
+      grade_reason = #{gradeReason,jdbcType=VARCHAR},
+      kpi = #{kpi,jdbcType=DOUBLE},
+      foreign_id = #{foreignId,jdbcType=VARCHAR},
+      enterprise_type = #{enterpriseType,jdbcType=VARCHAR},
+      create_user_type = #{createUserType,jdbcType=VARCHAR},
+      company_introduces = #{companyIntroduces,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jumore.b2b.daren.model.Company" >
+    update sp_talent_company
+    set company_name = #{companyName,jdbcType=VARCHAR},
+      apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      audio_time = #{audioTime,jdbcType=TIMESTAMP},
+      license_no = #{licenseNo,jdbcType=VARCHAR},
+      country = #{country,jdbcType=BIGINT},
+      area = #{area,jdbcType=BIGINT},
+      address = #{address,jdbcType=VARCHAR},
+      link_man = #{linkMan,jdbcType=VARCHAR},
+      link_man_job = #{linkManJob,jdbcType=VARCHAR},
+      link_phone = #{linkPhone,jdbcType=VARCHAR},
+      link_mobile = #{linkMobile,jdbcType=VARCHAR},
+      link_fax = #{linkFax,jdbcType=VARCHAR},
+      link_email = #{linkEmail,jdbcType=VARCHAR},
+      delete_flag = #{deleteFlag,jdbcType=VARCHAR},
+      service_level = #{serviceLevel,jdbcType=BIGINT},
+      short_name = #{shortName,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      data_source = #{dataSource,jdbcType=VARCHAR},
+      org_code = #{orgCode,jdbcType=VARCHAR},
+      code_status = #{codeStatus,jdbcType=VARCHAR},
+      identity = #{identity,jdbcType=VARCHAR},
+      pd_deal_orders = #{pdDealOrders,jdbcType=INTEGER},
+      pd_company_type = #{pdCompanyType,jdbcType=VARCHAR},
+      logo_url = #{logoUrl,jdbcType=VARCHAR},
+      language_code = #{languageCode,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_id = #{createId,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_id = #{updateId,jdbcType=BIGINT},
+      check_user_id = #{checkUserId,jdbcType=BIGINT},
+      punish_user_id = #{punishUserId,jdbcType=BIGINT},
+      punish_time = #{punishTime,jdbcType=TIMESTAMP},
+      punish_time_from = #{punishTimeFrom,jdbcType=TIMESTAMP},
+      punish_time_to = #{punishTimeTo,jdbcType=TIMESTAMP},
+      punish_remark = #{punishRemark,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      false_orders = #{falseOrders,jdbcType=INTEGER},
+      end_orders = #{endOrders,jdbcType=INTEGER},
+      id_type = #{idType,jdbcType=VARCHAR},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      website = #{website,jdbcType=VARCHAR},
+      legal_person = #{legalPerson,jdbcType=VARCHAR},
+      total_staff = #{totalStaff,jdbcType=BIGINT},
+      registered_address = #{registeredAddress,jdbcType=VARCHAR},
+      opening_bank = #{openingBank,jdbcType=VARCHAR},
+      branch_bank = #{branchBank,jdbcType=VARCHAR},
+      account_bank = #{accountBank,jdbcType=VARCHAR},
+      tax_types = #{taxTypes,jdbcType=VARCHAR},
+      invoice_type = #{invoiceType,jdbcType=VARCHAR},
+      vat_rate = #{vatRate,jdbcType=VARCHAR},
+      register_date = #{registerDate,jdbcType=DATE},
+      expiry_date = #{expiryDate,jdbcType=DATE},
+      credit_code = #{creditCode,jdbcType=VARCHAR},
+      business_scope = #{businessScope,jdbcType=VARCHAR},
+      legal_phone = #{legalPhone,jdbcType=VARCHAR},
+      industry = #{industry,jdbcType=VARCHAR},
+      score = #{score,jdbcType=INTEGER},
+      grade_reason = #{gradeReason,jdbcType=VARCHAR},
+      kpi = #{kpi,jdbcType=DOUBLE},
+      foreign_id = #{foreignId,jdbcType=VARCHAR},
+      enterprise_type = #{enterpriseType,jdbcType=VARCHAR},
+      create_user_type = #{createUserType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

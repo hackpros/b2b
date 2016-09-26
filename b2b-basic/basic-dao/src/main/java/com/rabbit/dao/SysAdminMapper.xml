@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rabbit.dao.SysAdminMapper" >
+  <resultMap id="BaseResultMap" type="com.rabbit.model.SysAdmin" >
+    <id column="ID_" property="id" jdbcType="DECIMAL" />
+    <result column="NAME_" property="name" jdbcType="VARCHAR" />
+    <result column="PWD_" property="pwd" jdbcType="VARCHAR" />
+    <result column="ENABLED_" property="enabled" jdbcType="CHAR" />
+    <result column="LOCKED_" property="locked" jdbcType="CHAR" />
+    <result column="LOCK_TIME" property="lockTime" jdbcType="TIMESTAMP" />
+    <result column="LOGIN_TIME" property="loginTime" jdbcType="TIMESTAMP" />
+    <result column="MOBILE_" property="mobile" jdbcType="VARCHAR" />
+    <result column="EMAIL_" property="email" jdbcType="VARCHAR" />
+    <result column="LOGIN_FAILURE_COUNT" property="loginFailureCount" jdbcType="DECIMAL" />
+    <result column="APPEND_BY" property="appendBy" jdbcType="DECIMAL" />
+    <result column="MODIFY_BY" property="modifyBy" jdbcType="DECIMAL" />
+    <result column="APPEND_TIME" property="appendTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="SALT_" property="salt" jdbcType="VARCHAR" />
+    <result column="STATUS_" property="status" jdbcType="DECIMAL" />
+    <result column="PICTURE_ID" property="pictureId" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID_, NAME_, PWD_, ENABLED_, LOCKED_, LOCK_TIME, LOGIN_TIME, MOBILE_, EMAIL_, LOGIN_FAILURE_COUNT, 
+    APPEND_BY, MODIFY_BY, APPEND_TIME, MODIFY_TIME, SALT_, STATUS_, PICTURE_ID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.rabbit.model.SysAdminExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from BASE.SYS_ADMIN
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from BASE.SYS_ADMIN
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from BASE.SYS_ADMIN
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.rabbit.model.SysAdminExample" >
+    delete from BASE.SYS_ADMIN
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="ID_" parameterType="com.rabbit.model.SysAdmin" >
+    insert into BASE.SYS_ADMIN (NAME_, PWD_, 
+      ENABLED_, LOCKED_, LOCK_TIME, 
+      LOGIN_TIME, MOBILE_, EMAIL_, 
+      LOGIN_FAILURE_COUNT, APPEND_BY, MODIFY_BY, 
+      APPEND_TIME, MODIFY_TIME, SALT_, 
+      STATUS_, PICTURE_ID)
+    values (#{name,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, 
+      #{enabled,jdbcType=CHAR}, #{locked,jdbcType=CHAR}, #{lockTime,jdbcType=TIMESTAMP}, 
+      #{loginTime,jdbcType=TIMESTAMP}, #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{loginFailureCount,jdbcType=DECIMAL}, #{appendBy,jdbcType=DECIMAL}, #{modifyBy,jdbcType=DECIMAL}, 
+      #{appendTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, #{salt,jdbcType=VARCHAR}, 
+      #{status,jdbcType=DECIMAL}, #{pictureId,jdbcType=DECIMAL})
+    
+  </insert>
+  <insert id="insertSelective" parameterType="com.rabbit.model.SysAdmin" >
+    insert into BASE.SYS_ADMIN
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID_,
+      </if>
+      <if test="name != null" >
+        NAME_,
+      </if>
+      <if test="pwd != null" >
+        PWD_,
+      </if>
+      <if test="enabled != null" >
+        ENABLED_,
+      </if>
+      <if test="locked != null" >
+        LOCKED_,
+      </if>
+      <if test="lockTime != null" >
+        LOCK_TIME,
+      </if>
+      <if test="loginTime != null" >
+        LOGIN_TIME,
+      </if>
+      <if test="mobile != null" >
+        MOBILE_,
+      </if>
+      <if test="email != null" >
+        EMAIL_,
+      </if>
+      <if test="loginFailureCount != null" >
+        LOGIN_FAILURE_COUNT,
+      </if>
+      <if test="appendBy != null" >
+        APPEND_BY,
+      </if>
+      <if test="modifyBy != null" >
+        MODIFY_BY,
+      </if>
+      <if test="appendTime != null" >
+        APPEND_TIME,
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME,
+      </if>
+      <if test="salt != null" >
+        SALT_,
+      </if>
+      <if test="status != null" >
+        STATUS_,
+      </if>
+      <if test="pictureId != null" >
+        PICTURE_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null" >
+        #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null" >
+        #{enabled,jdbcType=CHAR},
+      </if>
+      <if test="locked != null" >
+        #{locked,jdbcType=CHAR},
+      </if>
+      <if test="lockTime != null" >
+        #{lockTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginTime != null" >
+        #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="loginFailureCount != null" >
+        #{loginFailureCount,jdbcType=DECIMAL},
+      </if>
+      <if test="appendBy != null" >
+        #{appendBy,jdbcType=DECIMAL},
+      </if>
+      <if test="modifyBy != null" >
+        #{modifyBy,jdbcType=DECIMAL},
+      </if>
+      <if test="appendTime != null" >
+        #{appendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="salt != null" >
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="pictureId != null" >
+        #{pictureId,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.rabbit.model.SysAdminExample" resultType="java.lang.Long" >
+    select count(*) from BASE.SYS_ADMIN
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update BASE.SYS_ADMIN
+    <set >
+      <if test="record.id != null" >
+        ID_ = #{record.id,jdbcType=DECIMAL},
+      </if>
+      <if test="record.name != null" >
+        NAME_ = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pwd != null" >
+        PWD_ = #{record.pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enabled != null" >
+        ENABLED_ = #{record.enabled,jdbcType=CHAR},
+      </if>
+      <if test="record.locked != null" >
+        LOCKED_ = #{record.locked,jdbcType=CHAR},
+      </if>
+      <if test="record.lockTime != null" >
+        LOCK_TIME = #{record.lockTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.loginTime != null" >
+        LOGIN_TIME = #{record.loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mobile != null" >
+        MOBILE_ = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        EMAIL_ = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loginFailureCount != null" >
+        LOGIN_FAILURE_COUNT = #{record.loginFailureCount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.appendBy != null" >
+        APPEND_BY = #{record.appendBy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.modifyBy != null" >
+        MODIFY_BY = #{record.modifyBy,jdbcType=DECIMAL},
+      </if>
+      <if test="record.appendTime != null" >
+        APPEND_TIME = #{record.appendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyTime != null" >
+        MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.salt != null" >
+        SALT_ = #{record.salt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS_ = #{record.status,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pictureId != null" >
+        PICTURE_ID = #{record.pictureId,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update BASE.SYS_ADMIN
+    set ID_ = #{record.id,jdbcType=DECIMAL},
+      NAME_ = #{record.name,jdbcType=VARCHAR},
+      PWD_ = #{record.pwd,jdbcType=VARCHAR},
+      ENABLED_ = #{record.enabled,jdbcType=CHAR},
+      LOCKED_ = #{record.locked,jdbcType=CHAR},
+      LOCK_TIME = #{record.lockTime,jdbcType=TIMESTAMP},
+      LOGIN_TIME = #{record.loginTime,jdbcType=TIMESTAMP},
+      MOBILE_ = #{record.mobile,jdbcType=VARCHAR},
+      EMAIL_ = #{record.email,jdbcType=VARCHAR},
+      LOGIN_FAILURE_COUNT = #{record.loginFailureCount,jdbcType=DECIMAL},
+      APPEND_BY = #{record.appendBy,jdbcType=DECIMAL},
+      MODIFY_BY = #{record.modifyBy,jdbcType=DECIMAL},
+      APPEND_TIME = #{record.appendTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+      SALT_ = #{record.salt,jdbcType=VARCHAR},
+      STATUS_ = #{record.status,jdbcType=DECIMAL},
+      PICTURE_ID = #{record.pictureId,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rabbit.model.SysAdmin" >
+    update BASE.SYS_ADMIN
+    <set >
+      <if test="name != null" >
+        NAME_ = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null" >
+        PWD_ = #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null" >
+        ENABLED_ = #{enabled,jdbcType=CHAR},
+      </if>
+      <if test="locked != null" >
+        LOCKED_ = #{locked,jdbcType=CHAR},
+      </if>
+      <if test="lockTime != null" >
+        LOCK_TIME = #{lockTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginTime != null" >
+        LOGIN_TIME = #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mobile != null" >
+        MOBILE_ = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL_ = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="loginFailureCount != null" >
+        LOGIN_FAILURE_COUNT = #{loginFailureCount,jdbcType=DECIMAL},
+      </if>
+      <if test="appendBy != null" >
+        APPEND_BY = #{appendBy,jdbcType=DECIMAL},
+      </if>
+      <if test="modifyBy != null" >
+        MODIFY_BY = #{modifyBy,jdbcType=DECIMAL},
+      </if>
+      <if test="appendTime != null" >
+        APPEND_TIME = #{appendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="salt != null" >
+        SALT_ = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS_ = #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="pictureId != null" >
+        PICTURE_ID = #{pictureId,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rabbit.model.SysAdmin" >
+    update BASE.SYS_ADMIN
+    set NAME_ = #{name,jdbcType=VARCHAR},
+      PWD_ = #{pwd,jdbcType=VARCHAR},
+      ENABLED_ = #{enabled,jdbcType=CHAR},
+      LOCKED_ = #{locked,jdbcType=CHAR},
+      LOCK_TIME = #{lockTime,jdbcType=TIMESTAMP},
+      LOGIN_TIME = #{loginTime,jdbcType=TIMESTAMP},
+      MOBILE_ = #{mobile,jdbcType=VARCHAR},
+      EMAIL_ = #{email,jdbcType=VARCHAR},
+      LOGIN_FAILURE_COUNT = #{loginFailureCount,jdbcType=DECIMAL},
+      APPEND_BY = #{appendBy,jdbcType=DECIMAL},
+      MODIFY_BY = #{modifyBy,jdbcType=DECIMAL},
+      APPEND_TIME = #{appendTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      SALT_ = #{salt,jdbcType=VARCHAR},
+      STATUS_ = #{status,jdbcType=DECIMAL},
+      PICTURE_ID = #{pictureId,jdbcType=DECIMAL}
+    where ID_ = #{id,jdbcType=DECIMAL}
+  </update>
+  <select id="selectOnPage" resultMap="BaseResultMap" parameterType="com.rabbit.model.SysAdminExample" >
+    <!-- page --> 
+
+   SELECT * FROM (
+
+   SELECT PAGE.*, ROWNUM AS RN FROM (
+    select
+    <if test="example.distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from BASE.SYS_ADMIN
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+    <if test="example.orderByClause != null" >
+      ORDER BY ${orderByClause}
+    </if>
+     )  PAGE WHERE ROWNUM &lt;=  #{maxResults}  
+ )   WHERE RN &gt;#{skipResults}
+  </select>
+</mapper>
