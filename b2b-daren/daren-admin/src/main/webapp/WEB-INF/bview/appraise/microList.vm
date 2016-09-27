@@ -1,4 +1,4 @@
-#macro(displayHeadImg $app1 $app2 $app3 $app4　$app5　$app6)
+#macro(displayHeadImg $app1 $app2 $app3 $app4 $app5 $app6)
 	<div class="row-fluid">
 		
 		<div class="span2">
@@ -71,7 +71,7 @@
 		#if($!app5.name)
 		<div class="span2">
 			<div class="item">
-				<a class="fancybox-button" data-rel="fancybox-button" title="$app5.name" href="modify?id=$!app5.id&code=$!app4.code">
+				<a class="fancybox-button" data-rel="fancybox-button" title="$app5.name" href="modify?id=$!app5.id&code=$!app5.code">
 					<div class="zoom">
 						<img src="$static_resource/$app5.head" alt="$app5.name" />                    
 						<div class="zoom-icon"></div>

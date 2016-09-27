@@ -61,7 +61,7 @@ public class AppraiseCtl {
 	@RequestMapping(value = "/doModify")
 	public String doModify(Model model,AppraiseReq req) {
 		model.addAttribute("count", appraiseBiz.doApppraise(req));
-		return "/appraise/index";
+		return "redirect:/appraise/index";
 	};
 
 	
