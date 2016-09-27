@@ -42,7 +42,7 @@
 
 								<img src="$static_resource/$!appraise.head" alt="">
 								<div class="row-fluid">
-									<div class="span6">
+									<div class="span8">
 										<ul class="unstyled inline blog-tags">
 											<li>
 												<i class="icon-tags"></i> 
