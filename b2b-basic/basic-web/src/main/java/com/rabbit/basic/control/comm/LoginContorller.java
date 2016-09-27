@@ -37,35 +37,43 @@ public class LoginContorller extends BaseController {
 
 	@RequestMapping(value = "/login")
 	public String login(Model model, String message, HttpServletRequest request) {
+		if (request.getSession().getAttribute("userSession") != null) {
+			SysAdminRes sysAdmin = (SysAdminRes) request.getSession()
+					.getAttribute("userSession");
+			model.addAttribute("sysMenus", sysAdmin.getUserMenus());
+			return "redirect:appraise/main";
+		}
+		model.addAttribute("message", message);
 		return "login";
 	}
 
 	@RequestMapping(value = "/doLogin")
 	public String dologin(Model model, SysAdminReq admin,
-			HttpServletRequest request) {
+			HttpServletRequest request,String username,String password) {
 		// 会话已存在,就不用登录了
 		if (request.getSession().getAttribute("userSession") != null) {
 			SysAdminRes sysAdmin = (SysAdminRes) request.getSession()
 					.getAttribute("userSession");
 			model.addAttribute("sysMenus", sysAdmin.getUserMenus());
-			return "index";
+			return "redirect:appraise/main";
 		}
-		admin.setName("admin");
-		admin.setPwd("12345");
-		admin.setId(0L);
+		admin.setName(username);
+		admin.setPwd(password);
 		SysAdminRes sysAdmin = sysAdminFront.login(admin);
 		if (sysAdmin == null) {
 			model.addAttribute("message", "用户名或密码错误");
-			return "login";
+			username=null;
+			password=null;
+			return "redirect:login";
 		}
 		// 加载用户关系
-		sysAdminFront.loadUserRelease(sysAdmin);
+		//sysAdminFront.loadUserRelease(sysAdmin);
 		request.getSession().setAttribute("userSession", sysAdmin);
 		
 		// 存入缓存
-		menuCacheManager.load();
+		//menuCacheManager.load();
 		
-		return "index";
+		return "redirect:appraise/main";
 	}
 
 	@RequestMapping("/logout")

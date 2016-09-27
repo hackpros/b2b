@@ -72,7 +72,26 @@
 
 		<!-- BEGIN SIDEBAR -->
 
-		#parse("home/leftmenus.vm")
+		<div class="page-sidebar nav-collapse collapse">
+			<!-- BEGIN SIDEBAR MENU -->
+			<ul class="page-sidebar-menu">
+				
+				<li class="start active ">
+					<a href="index.html">
+					<i class="icon-home"></i>
+					<span class="title">员工评论管理</span>
+					<span class="selected"></span>
+					</a>
+				</li>
+				
+			</ul>
+			<!-- END SIDEBAR MENU -->
+			
+			
+			
+			
+			
+		</div>
 
 		<!-- END SIDEBAR -->
 

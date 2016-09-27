@@ -48,7 +48,9 @@ var Login = function () {
 	            },
 
 	            submitHandler: function (form) {
-	                window.location.href = "doLogin.do";
+	            	alert(messages.username);
+	            	$(form).submit();
+	                //window.location.href = "doLogin.do";
 	            }
 	        });
 

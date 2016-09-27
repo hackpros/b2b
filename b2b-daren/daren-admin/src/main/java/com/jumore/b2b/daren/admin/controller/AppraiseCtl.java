@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -69,11 +70,11 @@ public class AppraiseCtl {
 	//###############################333
     //	需要登录才可以访问的，管理员操作
 	@RequestMapping(value = "/main")
-	public String main(Model model,AppraiseReq req) {
+	public String main(Model model,AppraiseReq req ,HttpServletRequest request) {
 			// 会话已存在,就不用登录了
-		/*if (request.getSession().getAttribute("userSession") == null) {
+		if (request.getSession().getAttribute("userSession") == null) {
 			return "redirect:/login";
-		}*/
+		}
 		Pages<AppraiseRes> pages = appraiseBiz.browser(req, 0,100);
 		model.addAttribute("total", pages.getTotal());
 		model.addAttribute("rows", pages.getRows());
@@ -81,33 +82,33 @@ public class AppraiseCtl {
 	};
 
 	@RequestMapping(value = "/append")
-	public String append(Model model,AppraiseReq req) {
+	public String append(Model model,AppraiseReq req,HttpServletRequest request) {
 			// 会话已存在,就不用登录了
-		/*if (request.getSession().getAttribute("userSession") == null) {
+		if (request.getSession().getAttribute("userSession") == null) {
 			return "redirect:/login";
-		}*/
+		}
 		Pages<AppraiseRes> pages = appraiseBiz.browser(req, 0,100);
 		model.addAttribute("total", pages.getTotal());
 		model.addAttribute("rows", pages.getRows());
-		return "/appraise/main";
+		return "/appraise/append";
 	};
 	@RequestMapping(value = "/doAppend")
-	public String doAppend(Model model,AppraiseReq req,@RequestParam("file") CommonsMultipartFile file) throws IllegalStateException, IOException {
+	public String doAppend(HttpServletRequest request,Model model,AppraiseReq req,@RequestParam("file") CommonsMultipartFile file) throws IllegalStateException, IOException {
 			// 会话已存在,就不用登录了
-		/*if (request.getSession().getAttribute("userSession") == null) {
+		if (request.getSession().getAttribute("userSession") == null) {
 			return "redirect:/login";
-		}*/
+		}
         
 		appraiseBiz.doAppend(req,file);
-		return "/appraise/main";
+		return "redirect:/appraise/main";
 	};
 	
 	@RequestMapping(value = "/update")
-	public String update(Model model,AppraiseReq req) {
+	public String update(Model model,AppraiseReq req,HttpServletRequest request) {
 			// 会话已存在,就不用登录了
-		/*if (request.getSession().getAttribute("userSession") == null) {
+		if (request.getSession().getAttribute("userSession") == null) {
 			return "redirect:/login";
-		}*/
+		}
 		AppraiseRes res=new AppraiseRes();
 		res = appraiseBiz.selectUnique(req);
 		if (res == null){
@@ -120,15 +121,15 @@ public class AppraiseCtl {
 	};
 	
 	@RequestMapping(value = "/doUpdate")
-	public String doUpdate(Model model,AppraiseReq req) {
+	public String doUpdate(HttpServletRequest request,Model model,AppraiseReq req) {
 			// 会话已存在,就不用登录了
-		/*if (request.getSession().getAttribute("userSession") == null) {
+		if (request.getSession().getAttribute("userSession") == null) {
 			return "redirect:/login";
-		}*/
+		}
 		Pages<AppraiseRes> pages = appraiseBiz.browser(req, 0,100);
 		model.addAttribute("total", pages.getTotal());
 		model.addAttribute("rows", pages.getRows());
-		return "/appraise/main";
+		return "redirect:/appraise/main";
 	};
 	
 	@RequestMapping(value = "/delete")
@@ -138,6 +139,6 @@ public class AppraiseCtl {
 			return "redirect:/login";
 		}*/
 		appraiseBiz.deleteByPrimaryKey(req);
-		return "/appraise/main";
+		return "redirect:/appraise/main";
 	};
 }
