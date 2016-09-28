@@ -57,6 +57,10 @@ public class LoginContorller extends BaseController {
 			model.addAttribute("sysMenus", sysAdmin.getUserMenus());
 			return "redirect:appraise/main";
 		}
+		if(username ==null || password==null){
+			model.addAttribute("message", "用户名或密码不能为空");
+			return "redirect:login";
+		}
 		admin.setName(username);
 		admin.setPwd(password);
 		SysAdminRes sysAdmin = sysAdminFront.login(admin);
