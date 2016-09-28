@@ -9,6 +9,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
@@ -74,10 +75,8 @@ public class AppraiseBizImpl implements IAppraiseBiz {
 		AppraiseQueryHelper e = new AppraiseQueryHelper();
 		//PageHelper.startPage(offset, length);
 		//e.createCriteria().andIdLessThan(6L);
-		int i=	appraiseService.countByExample(e);
-		log.debug(i);
+		e.setOrderByClause("sort_inex desc");
 		List<Appraise> appraises = appraiseService.selectByExample(e);
-		log.info(appraises);
 		/**查询业务逻辑完**/
 		/**_____________________我是分隔线________________________________**/
 		
@@ -166,8 +165,8 @@ public class AppraiseBizImpl implements IAppraiseBiz {
 		RequestAttributes ra = RequestContextHolder.getRequestAttributes();
 		ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) ra;
 		
-		String root=servletRequestAttributes.getRequest().getSession().getServletContext().getRealPath("/resources");
-		String path="/head/"+file.getOriginalFilename();
+		String root=servletRequestAttributes.getRequest().getSession().getServletContext().getRealPath("/resources/");
+		String path="head/"+file.getOriginalFilename();
 		File newFile=new File(root+path);
 
 	     //如果用的是Tomcat服务器，则文件会上传到\\%TOMCAT_HOME%\\webapps\\YourWebProject\\WEB-INF\\upload\\文件夹中  
@@ -180,10 +179,22 @@ public class AppraiseBizImpl implements IAppraiseBiz {
         Appraise e = new Appraise();
 		// 转换规则。demo认为没有规则。直接转
         req.setCreateTime(new Date());
-        req.setBest(0);
-        req.setBetter(0);
-        req.setGood(0);
+        
+        if (req.getBest()==null){
+        	req.setBest(0);
+        }
+        if (req.getBetter()==null){
+        	req.setBetter(0);
+        }
+        if (req.getGood()==null){
+        	req.setGood(0);
+        }
+        
+        if (req.getSortInex()==null){
+        	req.setGood(0);
+        }
         req.setHead(path);
+        req.setCreateTime(new Date());
 		if (req.getCode()==null){
 			req.setCode("S"+RandomStringUtils.randomNumeric(3));
 		}

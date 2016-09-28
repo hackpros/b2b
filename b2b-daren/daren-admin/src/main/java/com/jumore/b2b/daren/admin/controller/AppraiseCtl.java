@@ -126,18 +126,16 @@ public class AppraiseCtl {
 		if (request.getSession().getAttribute("userSession") == null) {
 			return "redirect:/login";
 		}
-		Pages<AppraiseRes> pages = appraiseBiz.browser(req, 0,100);
-		model.addAttribute("total", pages.getTotal());
-		model.addAttribute("rows", pages.getRows());
+		appraiseBiz.updateByPrimaryKeySelective(req);
 		return "redirect:/appraise/main";
 	};
 	
 	@RequestMapping(value = "/delete")
-	public String delete(Model model,AppraiseReq req) {
+	public String delete(HttpServletRequest request,Model model,AppraiseReq req) {
 			// 会话已存在,就不用登录了
-		/*if (request.getSession().getAttribute("userSession") == null) {
+		if (request.getSession().getAttribute("userSession") == null) {
 			return "redirect:/login";
-		}*/
+		}
 		appraiseBiz.deleteByPrimaryKey(req);
 		return "redirect:/appraise/main";
 	};

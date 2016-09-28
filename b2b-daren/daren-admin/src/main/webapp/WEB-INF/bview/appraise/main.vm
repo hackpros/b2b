@@ -87,10 +87,6 @@
 			</ul>
 			<!-- END SIDEBAR MENU -->
 			
-			
-			
-			
-			
 		</div>
 
 		<!-- END SIDEBAR -->
@@ -149,7 +145,7 @@
 
 								<div class="row-fluid search-forms search-default">
 
-									<button type="button" class="btn blue" onclick="javascript:location.href='appraise/append'">新增</button>
+									<button type="button" class="btn blue" onclick="javascript:location.href='/appraise/append'">新增</button>
 								</div>
 
 								<div class="portlet-body">
@@ -161,17 +157,13 @@
 											<tr>
 												<th>id</th>
 												<th class="hidden-phone">头像</th>
-
 												<th class="hidden-phone">姓名</th>
-
 												<th>编码</th>
-
 												<th class="hidden-phone">非常满意</th>
-
 												<th class="hidden-phone">满意</th>
 												<th class="hidden-phone">不满意</th>
-
-												<th>Status</th>
+												<th class="hidden-phone">显示顺序</th>
+												<th>操作</th>
 
 												<th></th>
 
@@ -195,7 +187,7 @@
                                                     </div>
 												</td>
 
-												<td class="hidden-phone">$!appraise.name</td>
+												<td class="hidden-phone"><span class="label label-success">$!appraise.name</span></td>
 
 												<td>$!appraise.code</td>
 
@@ -203,7 +195,8 @@
 
 												<td class="hidden-phone">$!appraise.better</td>
 
-												<td><span class="label label-success">$!appraise.good</span></td>
+												<td>$!appraise.good</td>
+												<td>$!appraise.sortInex</td>
 
 												<td>
 													<button type="button" class="btn blue" onclick="javascript:location.href='update?id=$appraise.id'">修改</button>
