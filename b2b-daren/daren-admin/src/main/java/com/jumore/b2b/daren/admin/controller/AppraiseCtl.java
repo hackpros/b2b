@@ -1,6 +1,5 @@
 package com.jumore.b2b.daren.admin.controller;
 
-import java.io.File;
 import java.io.IOException;
 
 import javax.annotation.Resource;
@@ -67,7 +66,7 @@ public class AppraiseCtl {
 
 	
 	
-	//###############################333
+	//###############################
     //	需要登录才可以访问的，管理员操作
 	@RequestMapping(value = "/main")
 	public String main(Model model,AppraiseReq req ,HttpServletRequest request) {
@@ -102,7 +101,7 @@ public class AppraiseCtl {
 		appraiseBiz.doAppend(req,file);
 		return "redirect:/appraise/main";
 	};
-	
+
 	@RequestMapping(value = "/update")
 	public String update(Model model,AppraiseReq req,HttpServletRequest request) {
 			// 会话已存在,就不用登录了
@@ -121,12 +120,12 @@ public class AppraiseCtl {
 	};
 	
 	@RequestMapping(value = "/doUpdate")
-	public String doUpdate(HttpServletRequest request,Model model,AppraiseReq req) {
+	public String doUpdate(HttpServletRequest request,Model model,AppraiseReq req,@RequestParam("file") CommonsMultipartFile file) throws IllegalStateException, IOException {
 			// 会话已存在,就不用登录了
 		if (request.getSession().getAttribute("userSession") == null) {
 			return "redirect:/login";
 		}
-		appraiseBiz.updateByPrimaryKeySelective(req);
+		appraiseBiz.doUpdate(req,file);
 		return "redirect:/appraise/main";
 	};
 	

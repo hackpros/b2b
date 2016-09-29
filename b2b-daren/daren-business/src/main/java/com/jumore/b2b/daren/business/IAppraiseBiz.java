@@ -31,4 +31,7 @@ public interface IAppraiseBiz {
 	int doApppraise(AppraiseReq req);
 
 	long doAppend(AppraiseReq req, CommonsMultipartFile file) throws IllegalStateException, IOException;
+
+
+	long doUpdate(AppraiseReq req, CommonsMultipartFile file) throws IllegalStateException, IOException ;
 }
