@@ -9,10 +9,10 @@
 						<div class="zoom-icon"></div>
 					</div>
 				</a>
-			</div>
 			<div class="details">
 				<a href="#" class="btn black">$app1.name</a>
 				<a href="#" class="btn black">$app1.code</a>
+			</div>
 			</div>
 		</div>
 		
@@ -25,10 +25,10 @@
 						<div class="zoom-icon"></div>
 					</div>
 				</a>
-			</div>
 			<div class="details">
 				<a href="#" class="btn black">$app2.name</a>
 				<a class="btn black" href="#">$app2.code</a>
+			</div>
 			</div>
 		</div>
 		#end
@@ -42,11 +42,10 @@
 						<div class="zoom-icon"></div>
 					</div>
 				</a>
-			</div>
 			<div class="details">
 				<a class="btn black" href="#">$app3.name</a> 
                 <a class="btn black" href="#">$app3.code</a>
-			    			
+			</div>
 			</div>
 		</div>
 		#end
@@ -60,10 +59,10 @@
 						<div class="zoom-icon"></div>
 					</div>
 				</a>
-			</div>
 			<div class="details">
 					<a href="#" class="btn black">$app4.name</a>
 					<a href="#" class="btn black">$app4.code</a>
+			</div>
 			</div>
 		</div>
 		#end
@@ -77,10 +76,10 @@
 						<div class="zoom-icon"></div>
 					</div>
 				</a>
-			</div>
 			<div class="details">
 					<a href="#" class="btn black">$app5.name</a>
 					<a href="#" class="btn black">$app5.code</a>
+			</div>
 			</div>
 		</div>
 		#end
@@ -94,10 +93,10 @@
 						<div class="zoom-icon"></div>
 					</div>
 				</a>
-			</div>
 			<div class="details">
 					<a href="#" class="btn black">$app6.name</a>
 					<a href="#" class="btn black">$app6.code</a>
+			</div>
 			</div>
 		</div>
 		#end
