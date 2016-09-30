@@ -87,7 +87,12 @@ public class AppraiseBizImpl implements IAppraiseBiz {
 			SpringBeanUtils.copyProperties(bean, res);
 			resultList.add(res);
 		}
-		return new Pages<AppraiseRes>(resultList, 100, offset, length);
+		//return new Pages<AppraiseRes>(resultList, 100, offset, length);
+		
+		 Pages<AppraiseRes> pages=new Pages<AppraiseRes>();
+		 pages.setData(resultList);
+		 pages.setRecordsTotal(100);
+		 return pages;
 
 	}
 

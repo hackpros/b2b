@@ -22,8 +22,14 @@ public class Pages<T> implements java.io.Serializable {
 	private int length;
 
 	private List<T> rows;
-
+	
+	private List<T> data; 
+	private int recordsTotal;
+	private int draw;
+	
 	private long total;
+	
+	
 
 	public String getCurrUrl() {
 		return currUrl;
@@ -53,6 +59,10 @@ public class Pages<T> implements java.io.Serializable {
 
 	}
 
+	
+	public Pages() {
+
+	}
 	public int getOffset() {
 		return offset;
 	}
@@ -92,4 +102,31 @@ public class Pages<T> implements java.io.Serializable {
 	public void setTotalPage(long totalPage) {
 		this.totalPage = totalPage;
 	}
+
+	public List<T> getData() {
+		return data;
+	}
+
+	public void setData(List<T> data) {
+		this.data = data;
+	}
+
+	public int getRecordsTotal() {
+		return recordsTotal;
+	}
+
+	public void setRecordsTotal(int recordsTotal) {
+		this.recordsTotal = recordsTotal;
+	}
+
+	public int getDraw() {
+		return draw;
+	}
+
+	public void setDraw(int draw) {
+		this.draw = draw;
+	}
+	
+	
+	
 }
