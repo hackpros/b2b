@@ -76,8 +76,7 @@
 
 						<div class="row-fluid">
 
-							<div class="span8 blog-tag-data">
-
+							<div class="span8 blog-tag-data" style="text-align:center">
 
 								<img src="$static_resource/$!appraise.head" alt="">
 
@@ -111,19 +110,25 @@
 
 
 								<div class="top-news">
+									
+									<a href="#" id="best" class="btn">
 
-									<a href="#" id="good" class="btn">
+									<span>非常满意</span>
 
-									<span>不满意</span>
 									<em>&nbsp;&nbsp;</em>
 
 									<em>
+
+									<i class="icon-tags"></i>
+
 									&nbsp;&nbsp;
+
 									</em>
 
-									<i class="icon-music top-news-icon"></i>                             
+									<i class="icon-briefcase top-news-icon"></i>
 
 									</a>
+									
 
 									<a id="better" href="#" class="btn">
 
@@ -142,25 +147,19 @@
 									<i class="icon-book top-news-icon"></i>                              
 
 									</a>
+									
+									<a href="#" id="good" class="btn">
 
-									<a href="#" id="best" class="btn">
-
-									<span>非常满意</span>
-
+									<span>不满意</span>
 									<em>&nbsp;&nbsp;</em>
 
 									<em>
-
-									<i class="icon-tags"></i>
-
 									&nbsp;&nbsp;
-
 									</em>
 
-									<i class="icon-briefcase top-news-icon"></i>
+									<i class="icon-music top-news-icon"></i>                             
 
 									</a>
-
 									
 									<a href="#" class="">
 
@@ -176,7 +175,9 @@
 									<a href="#" class="btn blue">
     									<button id="submit" class="btn blue big btn-block">提交<i class="m-icon-big-swapright m-icon-white"></i></button>
 									</a>
-
+									<a href="#" class="btn blue" onclick="location.href='/appraise/browser'">
+    									<button class="btn blue big btn-block"　>返回<i class="m-icon-big-swapleft m-icon-white"></i></button>
+									</a>
 								</div>
 
 

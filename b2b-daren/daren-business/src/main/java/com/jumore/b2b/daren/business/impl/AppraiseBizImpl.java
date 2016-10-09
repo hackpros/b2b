@@ -9,7 +9,6 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
@@ -24,7 +23,9 @@ import com.jumore.b2b.activity.service.business.io.request.AppraiseReq;
 import com.jumore.b2b.activity.service.business.io.response.AppraiseRes;
 import com.jumore.b2b.daren.business.IAppraiseBiz;
 import com.jumore.b2b.daren.model.Appraise;
+import com.jumore.b2b.daren.model.AppraiseDetail;
 import com.jumore.b2b.daren.model.AppraiseQueryHelper;
+import com.jumore.b2b.daren.service.IAppraiseDetailService;
 import com.jumore.b2b.daren.service.IAppraiseService;
 
 @Component
@@ -33,6 +34,8 @@ public class AppraiseBizImpl implements IAppraiseBiz {
 	static final Logger log = LogManager.getLogger(AppraiseBizImpl.class);;
 	@Resource
 	IAppraiseService appraiseService;
+	@Resource
+	IAppraiseDetailService appraiseDetailService;
 
 	@Override
 	public int countByExample(AppraiseReq t) {
@@ -87,12 +90,12 @@ public class AppraiseBizImpl implements IAppraiseBiz {
 			SpringBeanUtils.copyProperties(bean, res);
 			resultList.add(res);
 		}
-		//return new Pages<AppraiseRes>(resultList, 100, offset, length);
+		return new Pages<AppraiseRes>(resultList, 100, offset, length);
 		
-		 Pages<AppraiseRes> pages=new Pages<AppraiseRes>();
-		 pages.setData(resultList);
-		 pages.setRecordsTotal(100);
-		 return pages;
+		// Pages<AppraiseRes> pages=new Pages<AppraiseRes>();
+		 //pages.setData(resultList);
+		 //pages.setRecordsTotal(100);
+		 //return pages;
 
 	}
 
@@ -149,22 +152,44 @@ public class AppraiseBizImpl implements IAppraiseBiz {
 	public int doApppraise(AppraiseReq req) {
 		// update
 		int rows = 0;
+		
 		if (req.getBest() != null && req.getBest() > 0) {
 			rows = appraiseService.doApppraise(0, 0, 1, req.getId(), req.getCode());
+			doAppendAppraiseDetail(rows,req,"best");
 			return rows;
 		}
 
 		if (req.getBetter() != null && req.getBetter() > 0) {
 			rows = appraiseService.doApppraise(0, 1, 0, req.getId(), req.getCode());
+			doAppendAppraiseDetail(rows,req,"better");
 			return rows;
 		}
 		if (req.getGood() != null && req.getGood() > 0) {
 			rows = appraiseService.doApppraise(1, 0, 0, req.getId(), req.getCode());
+			doAppendAppraiseDetail(rows,req,"good");
 		}
 
 		return rows;
 	}
-
+	//记录一下好评时间
+	private void doAppendAppraiseDetail(int rows,AppraiseReq req,String appraiseType){
+		if (rows!=1){
+			return ;
+		}
+		AppraiseQueryHelper e=new AppraiseQueryHelper();
+		e.createCriteria().andIdEqualTo(req.getId());
+		List<Appraise> appraises=appraiseService.selectByExample(e);
+		if (appraises.size()==1){
+			AppraiseDetail t=new AppraiseDetail();
+			t.setCode(appraises.get(0).getCode());
+			t.setName(appraises.get(0).getName());
+			t.setSid("test");
+			t.setCreateTime(new Date());
+			t.setAppraisetype(appraiseType);
+			appraiseDetailService.insertSelective(t);
+		}
+		
+	}
 	@Override
 	public long doAppend(AppraiseReq req, CommonsMultipartFile file) throws IllegalStateException, IOException {
 
