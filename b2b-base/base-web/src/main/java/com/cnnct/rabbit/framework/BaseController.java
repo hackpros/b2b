@@ -1,11 +1,20 @@
-	package com.cnnct.rabbit.framework;
+package com.cnnct.rabbit.framework;
 
+import java.beans.PropertyEditorSupport;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.beans.propertyeditors.CustomNumberEditor;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 
 /**
  * @ClassName: BaseController
@@ -13,42 +22,66 @@ import org.apache.logging.log4j.Logger;
  * @author Administrator
  * @date 2015年6月11日 上午10:12:25
  */
-public class BaseController
-{
-    protected Logger logger = LogManager.getLogger(getClass().getName());
+public class BaseController {
+	protected Logger logger = LogManager.getLogger(getClass().getName());
 
-   
-    @Resource
-    protected HttpServletRequest request;
+	@Resource
+	protected HttpServletRequest request;
 
-   
-    protected static final String USER_SESSION_KEY="user_session_key";
+	/**
+	 * 绑定日期格式
+	 * 
+	 * @param res
+	 *            资源请求
+	 * @param binder
+	 *            资源绑定
+	 */
+	@InitBinder
+	public void initBinder(HttpServletRequest res, WebDataBinder binder) {
 
-    protected String getRemoteIP()
-    {
-        String ip = request.getHeader("x-forwarded-for");
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip))
-        {
-            ip = request.getHeader("Proxy-Client-IP");
-        }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip))
-        {
-            ip = request.getHeader("WL-Proxy-Client-IP");
-        }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip))
-        {
-            ip = request.getRemoteAddr();
-        }
-        if (ip != null && ip.length() > 0)
-        {
-            String[] ipArray = ip.split(",");
-            if (ipArray != null && ipArray.length > 1)
-            {
-                return ipArray[0];
-            }
-            return ip;
-        }
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		sdf.setLenient(false);
+		binder.registerCustomEditor(Date.class, new PropertyEditorSupport() {  
+		        public void setAsText(String value) {  
+		            try {  
+		                setValue(new SimpleDateFormat("yyyy-MM-dd").parse(value));  
+		            } catch(ParseException e) {  
+		                setValue(null);  
+		            }  
+		        }  
+		        public String getAsText() {  
+		            return new SimpleDateFormat("yyyy-MM-dd").format((Date) getValue());  
+		        }          
+		  
+		    });  
+		
+		
+		
+		binder.registerCustomEditor(String.class, new StringTrimmerEditor(false));
+		binder.registerCustomEditor(Integer.class, null, new CustomNumberEditor(Integer.class, null, true));
+	}
 
-        return "未知IP";
-    }
+	protected static final String USER_SESSION_KEY = "user_session_key";
+
+	protected String getRemoteIP() {
+		String ip = request.getHeader("x-forwarded-for");
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("Proxy-Client-IP");
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("WL-Proxy-Client-IP");
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getRemoteAddr();
+		}
+		if (ip != null && ip.length() > 0) {
+			String[] ipArray = ip.split(",");
+			if (ipArray != null && ipArray.length > 1) {
+				return ipArray[0];
+			}
+			return ip;
+		}
+
+		return "未知IP";
+	}
 }

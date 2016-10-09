@@ -91,11 +91,11 @@ public class AppraiseBizImpl implements IAppraiseBiz {
 			resultList.add(res);
 		}
 		return new Pages<AppraiseRes>(resultList, 100, offset, length);
-		
+
 		// Pages<AppraiseRes> pages=new Pages<AppraiseRes>();
-		 //pages.setData(resultList);
-		 //pages.setRecordsTotal(100);
-		 //return pages;
+		// pages.setData(resultList);
+		// pages.setRecordsTotal(100);
+		// return pages;
 
 	}
 
@@ -152,35 +152,41 @@ public class AppraiseBizImpl implements IAppraiseBiz {
 	public int doApppraise(AppraiseReq req) {
 		// update
 		int rows = 0;
-		
-		if (req.getBest() != null && req.getBest() > 0) {
-			rows = appraiseService.doApppraise(0, 0, 1, req.getId(), req.getCode());
-			doAppendAppraiseDetail(rows,req,"best");
-			return rows;
-		}
 
-		if (req.getBetter() != null && req.getBetter() > 0) {
-			rows = appraiseService.doApppraise(0, 1, 0, req.getId(), req.getCode());
-			doAppendAppraiseDetail(rows,req,"better");
-			return rows;
-		}
-		if (req.getGood() != null && req.getGood() > 0) {
-			rows = appraiseService.doApppraise(1, 0, 0, req.getId(), req.getCode());
-			doAppendAppraiseDetail(rows,req,"good");
-		}
+		try {
 
+			if (req.getBest() != null && req.getBest() > 0) {
+				rows = appraiseService.doApppraise(0, 0, 1, req.getId(), req.getCode());
+				doAppendAppraiseDetail(rows, req, "best");
+				return rows;
+			}
+
+			if (req.getBetter() != null && req.getBetter() > 0) {
+				rows = appraiseService.doApppraise(0, 1, 0, req.getId(), req.getCode());
+				doAppendAppraiseDetail(rows, req, "better");
+				return rows;
+			}
+			if (req.getGood() != null && req.getGood() > 0) {
+				rows = appraiseService.doApppraise(1, 0, 0, req.getId(), req.getCode());
+				doAppendAppraiseDetail(rows, req, "good");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 		return rows;
 	}
-	//记录一下好评时间
-	private void doAppendAppraiseDetail(int rows,AppraiseReq req,String appraiseType){
-		if (rows!=1){
-			return ;
+
+	// 记录一下好评时间
+	private void doAppendAppraiseDetail(int rows, AppraiseReq req, String appraiseType) {
+		if (rows != 1) {
+			return;
 		}
-		AppraiseQueryHelper e=new AppraiseQueryHelper();
+		AppraiseQueryHelper e = new AppraiseQueryHelper();
 		e.createCriteria().andIdEqualTo(req.getId());
-		List<Appraise> appraises=appraiseService.selectByExample(e);
-		if (appraises.size()==1){
-			AppraiseDetail t=new AppraiseDetail();
+		List<Appraise> appraises = appraiseService.selectByExample(e);
+		if (appraises.size() == 1) {
+			AppraiseDetail t = new AppraiseDetail();
 			t.setCode(appraises.get(0).getCode());
 			t.setName(appraises.get(0).getName());
 			t.setSid("test");
@@ -188,8 +194,9 @@ public class AppraiseBizImpl implements IAppraiseBiz {
 			t.setAppraisetype(appraiseType);
 			appraiseDetailService.insertSelective(t);
 		}
-		
+
 	}
+
 	@Override
 	public long doAppend(AppraiseReq req, CommonsMultipartFile file) throws IllegalStateException, IOException {
 
@@ -240,7 +247,7 @@ public class AppraiseBizImpl implements IAppraiseBiz {
 		RequestAttributes ra = RequestContextHolder.getRequestAttributes();
 		ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) ra;
 
-		if (file.getSize()!= 0) {
+		if (file.getSize() != 0) {
 			String root = servletRequestAttributes.getRequest().getSession().getServletContext().getRealPath("/resources/");
 			String path = "/head/" + RandomStringUtils.randomAlphanumeric(10);
 			File newFile = new File(root + path);

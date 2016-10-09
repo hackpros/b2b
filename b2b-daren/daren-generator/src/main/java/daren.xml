@@ -39,11 +39,11 @@
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 
-		<sqlMapGenerator targetPackage="com.jumore.b2b.daren.mapper.generated" targetProject="F:\mq\b2b\b2b-daren\daren-dao\src\main\java">
+		<sqlMapGenerator targetPackage="com.jumore.b2b.daren.mapper1.generated" targetProject="F:\mq\b2b\b2b-daren\daren-dao\src\main\java">
 			<property name="enableSubPackages" value="false" />
 		</sqlMapGenerator>
 
-		<javaClientGenerator type="XMLMAPPER" targetPackage="com.jumore.b2b.daren.mapper" targetProject="F:\mq\b2b\b2b-daren\daren-dao\src\main\java">
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.jumore.b2b.daren.mapper1" targetProject="F:\mq\b2b\b2b-daren\daren-dao\src\main\java">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 		

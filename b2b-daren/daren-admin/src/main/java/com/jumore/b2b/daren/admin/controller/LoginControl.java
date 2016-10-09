@@ -44,4 +44,15 @@ public class LoginControl {
 	public String inbox(Model model, UserReq req) {
 		return "/user/login";
 	}; 
+	
+	
+	
+	@RequestMapping(value = "/test")
+	public String test(Model model, UserReq req) {
+		
+		model.addAttribute("test", "ok");
+		model.addAttribute("code", "100");
+		return "/user/login";
+		
+	}; 
 }

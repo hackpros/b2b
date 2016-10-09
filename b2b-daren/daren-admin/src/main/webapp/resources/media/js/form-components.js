@@ -233,7 +233,7 @@ var FormComponents = function () {
     var handleDatetimePicker = function () {        
 
           $(".form_datetime").datetimepicker({
-              format: "dd MM yyyy - hh:ii",
+              format: "yyyy-mm-dd hh:ii:ss",
               pickerPosition: (App.isRTL() ? "bottom-right" : "bottom-left")
           });
 
@@ -247,7 +247,7 @@ var FormComponents = function () {
           });
 
          $(".form_meridian_datetime").datetimepicker({
-            format: "dd MM yyyy - HH:ii P",
+            format: "yyyy-mm-dd hh:ii:ss",
             showMeridian: true,
             autoclose: true,
             pickerPosition: (App.isRTL() ? "bottom-right" : "bottom-left"),

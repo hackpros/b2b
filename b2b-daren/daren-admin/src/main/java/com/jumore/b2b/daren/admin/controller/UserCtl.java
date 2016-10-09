@@ -1,15 +1,20 @@
 package com.jumore.b2b.daren.admin.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jumore.b2b.activity.comm.Pages;
 import com.jumore.b2b.activity.service.business.io.request.UserReq;
 import com.jumore.b2b.activity.service.business.io.response.UserRes;
+import com.jumore.b2b.daren.admin.comm.JsonResult;
 import com.jumore.b2b.daren.business.IUserBiz;
 
 @Controller
@@ -91,4 +96,14 @@ public class UserCtl {
 	}; 
 	
 
+	@RequestMapping(value = "/test")
+	@ResponseBody
+	public JsonResult<?> test(Model model, UserReq req) {
+		JsonResult<?> res=new JsonResult<Object>();
+		res.setCode(0);
+		res.setMsg("ok");
+		return res;
+		
+	}; 
+	
 }

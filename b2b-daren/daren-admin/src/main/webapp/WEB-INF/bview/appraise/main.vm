@@ -77,7 +77,14 @@
 			<ul class="page-sidebar-menu">
 				
 				<li class="start active ">
-					<a href="index.html">
+					<a href="main">
+					<i class="icon-home"></i>
+					<span class="title">员工信息管理</span>
+					<span class="selected"></span>
+					</a>
+				</li>
+				<li class="start">
+					<a href="/appraiseDetail/browser">
 					<i class="icon-home"></i>
 					<span class="title">员工评论管理</span>
 					<span class="selected"></span>
