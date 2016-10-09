@@ -5,7 +5,7 @@
 
 <generatorConfiguration>
 	<!-- classPathEntry:数据库的JDBC驱动的jar包地址 -->
-	<classPathEntry location="e:\lib\mysql-connector-java-5.1.18-bin.jar" />
+	<classPathEntry location="f:\lib\mysql-connector-java-5.1.18-bin.jar" />
 	<context id="DB2Tables" targetRuntime="MyBatis3">
 	
 		<property name="suppressTypeWarnings" value="true" />
@@ -32,29 +32,32 @@
 			<property name="forceBigDecimals" value="false" />
 		</javaTypeResolver>
 		<!-- targetProject:自动生成代码的位置 -->
-		<javaModelGenerator targetPackage="com.jumore.b2b.daren.model" targetProject="D:\job\b2b\b2b-daren\daren-dao\src\main\java">
+		<javaModelGenerator targetPackage="com.jumore.b2b.daren.model" targetProject="F:\mq\b2b\b2b-daren\daren-dao\src\main\java">
 			<!-- enableSubPackages:是否让schema作为包的后缀 -->
 			<property name="enableSubPackages" value="true" />
 			<!-- 从数据库返回的值被清理前后的空格 -->
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 
-		<sqlMapGenerator targetPackage="com.jumore.b2b.daren.mapper.generated" targetProject="D:\job\b2b\b2b-daren\daren-dao\src\main\java">
+		<sqlMapGenerator targetPackage="com.jumore.b2b.daren.mapper.generated" targetProject="F:\mq\b2b\b2b-daren\daren-dao\src\main\java">
 			<property name="enableSubPackages" value="false" />
 		</sqlMapGenerator>
 
-		<javaClientGenerator type="XMLMAPPER" targetPackage="com.jumore.b2b.daren.mapper" targetProject="D:\job\b2b\b2b-daren\daren-dao\src\main\java">
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.jumore.b2b.daren.mapper" targetProject="F:\mq\b2b\b2b-daren\daren-dao\src\main\java">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 		
 		<!-- tableName:用于自动生成代码的数据库表；domainObjectName:对应于数据库表的javaBean类名 -->
 
 
-		<table catalog="" tableName="Appraise" domainObjectName="Appraise">
+		<!-- <table catalog="" tableName="Appraise" domainObjectName="Appraise">
+				<generatedKey column="id" sqlStatement="Mysql"/>
+		</table> -->
+		
+		<table catalog="" tableName="appraise_detail" domainObjectName="AppraiseDetail">
 				<generatedKey column="id" sqlStatement="Mysql"/>
 		</table>
 		
-
 
 		
 		
