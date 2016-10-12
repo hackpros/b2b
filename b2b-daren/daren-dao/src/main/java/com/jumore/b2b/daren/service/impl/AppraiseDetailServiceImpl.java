@@ -1,5 +1,8 @@
 package com.jumore.b2b.daren.service.impl;
 
+import java.util.Date;
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.mybatis.generator.base.service.single.BaseServiceImp;
@@ -21,6 +24,11 @@ public class AppraiseDetailServiceImpl extends BaseServiceImp<AppraiseDetail, Ap
 	public void setAppraiseDetailMapper(AppraiseDetailMapper appraiseDetailMapper) {
 		this.appraiseDetailMapper = appraiseDetailMapper;
 		this.setBaseMapper(appraiseDetailMapper);
+	}
+
+	@Override
+	public List<AppraiseDetail> selectStat(String name, String appraisetype, Date startTime, Date endTime) {
+		return appraiseDetailMapper.selectStat( name,  appraisetype,  startTime,  endTime);
 	}
 
 	
