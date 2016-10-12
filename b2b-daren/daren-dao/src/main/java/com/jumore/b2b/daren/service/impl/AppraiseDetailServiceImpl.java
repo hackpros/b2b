@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jumore.b2b.daren.mapper.AppraiseDetailMapper;
+import com.jumore.b2b.daren.model.Appraise;
 import com.jumore.b2b.daren.model.AppraiseDetail;
 import com.jumore.b2b.daren.model.AppraiseDetailQueryHelper;
 import com.jumore.b2b.daren.service.IAppraiseDetailService;
@@ -29,6 +30,11 @@ public class AppraiseDetailServiceImpl extends BaseServiceImp<AppraiseDetail, Ap
 	@Override
 	public List<AppraiseDetail> selectStat(String name, Date startTime, Date endTime) {
 		return appraiseDetailMapper.selectStat( name,  startTime,  endTime);
+	}
+
+	@Override
+	public List<Appraise> selectStatExcel(String name, Date startTime, Date endTime) {
+		return appraiseDetailMapper.selectStatExcel( name,  startTime,  endTime);
 	}
 
 	

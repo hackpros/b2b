@@ -5,7 +5,6 @@ import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -27,6 +26,7 @@ import com.cnnct.rabbit.framework.BaseController;
 import com.jumore.b2b.activity.comm.Pages;
 import com.jumore.b2b.activity.service.business.io.request.AppraiseDetailReq;
 import com.jumore.b2b.activity.service.business.io.response.AppraiseDetailRes;
+import com.jumore.b2b.activity.service.business.io.response.AppraiseRes;
 import com.jumore.b2b.daren.admin.comm.ExcelUtil;
 import com.jumore.b2b.daren.business.IAppraiseDetailBiz;
 
@@ -78,7 +78,7 @@ public class AppraiseDetailCtl extends BaseController{
 		req.setName(name);
 		
 		
-		Pages<AppraiseDetailRes> pages = appraiseDetailBiz.doStat(req, 0, 100);
+		Pages<AppraiseDetailRes> pages =appraiseDetailBiz.doStat(req, 0, 100);
 		model.addAttribute("total", pages.getTotal());
 		model.addAttribute("rows", pages.getRows());
 		model.addAttribute("req", req);
@@ -94,15 +94,15 @@ public class AppraiseDetailCtl extends BaseController{
 		req.setStartTime(startTime);
 		req.setEndTime(endTime);
 		req.setName(name);
-		Pages<AppraiseDetailRes> pages = appraiseDetailBiz.doStat(req, 0, 100);
+		Pages<AppraiseRes> pages = appraiseDetailBiz.doStatExcel(req, 0, 100);
 		
 		
 		 	String fileName="excel文件";
 	        //填充projects数据
-	        List<AppraiseDetailRes> projects=pages.getRows();
+	        List<AppraiseRes> projects=pages.getRows();
 	        List<Map<String,Object>> list=createExcelRecord(projects);
-	        String columnNames[]={"姓名","评论类型","评论数",};//列名
-	        String keys[]    =     {"name","appraisetype","appraiseCount"};//map中的key
+	        String columnNames[]={"姓名","非常满意","满意","不满间"};//列名
+	        String keys[]    =     {"name","best","better","good"};//map中的key
 	        ByteArrayOutputStream os = new ByteArrayOutputStream();
 	       try {
 	            ExcelUtil.createWorkBook(list,keys,columnNames).write(os);
@@ -139,25 +139,19 @@ public class AppraiseDetailCtl extends BaseController{
 		
 	};
 	
-	 private List<Map<String, Object>> createExcelRecord(List<AppraiseDetailRes> projects) {
+	 private List<Map<String, Object>> createExcelRecord(List<AppraiseRes> projects) {
 	        List<Map<String, Object>> listmap = new ArrayList<Map<String, Object>>();
 	        Map<String, Object> map = new HashMap<String, Object>();
 	        map.put("sheetName", "sheet1");
 	        listmap.add(map);
-	        AppraiseDetailRes res=null;
+	        AppraiseRes res=null;
 	        for (int j = 0; j < projects.size(); j++) {
 	        	res=projects.get(j);
 	            Map<String, Object> mapValue = new HashMap<String, Object>();
 	            mapValue.put("name", res.getName());
-	            if (res.getAppraisetype().equalsIgnoreCase("best")){
-	            	mapValue.put("appraisetype", "非常满意");
-	            }else if(res.getAppraisetype().equalsIgnoreCase("better")){
-	            	mapValue.put("appraisetype", "满意");
-	            }else if(res.getAppraisetype().equalsIgnoreCase("good")){
-	            	mapValue.put("appraisetype", "不满意");
-	            }
-	            
-	            mapValue.put("appraiseCount", res.getAppraiseCount());
+	            mapValue.put("best", res.getBest());
+	            mapValue.put("better",res.getBest());
+	            mapValue.put("good", res.getGood());
 	            listmap.add(mapValue);
 	        }
 	        return listmap;

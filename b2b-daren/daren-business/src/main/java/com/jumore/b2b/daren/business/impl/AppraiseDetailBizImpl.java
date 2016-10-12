@@ -13,7 +13,9 @@ import com.jumore.b2b.activity.comm.Pages;
 import com.jumore.b2b.activity.core.util.SpringBeanUtils;
 import com.jumore.b2b.activity.service.business.io.request.AppraiseDetailReq;
 import com.jumore.b2b.activity.service.business.io.response.AppraiseDetailRes;
+import com.jumore.b2b.activity.service.business.io.response.AppraiseRes;
 import com.jumore.b2b.daren.business.IAppraiseDetailBiz;
+import com.jumore.b2b.daren.model.Appraise;
 import com.jumore.b2b.daren.model.AppraiseDetail;
 import com.jumore.b2b.daren.model.AppraiseDetailQueryHelper;
 import com.jumore.b2b.daren.service.IAppraiseDetailService;
@@ -45,8 +47,6 @@ public class AppraiseDetailBizImpl implements IAppraiseDetailBiz {
 			}
 		}
 		return new Pages<AppraiseDetailRes>(resultList, 100, offset, length);
-		
-
 	}
 
 
@@ -64,15 +64,40 @@ public class AppraiseDetailBizImpl implements IAppraiseDetailBiz {
 		for (AppraiseDetail bean : appraiseDetails) {
 			AppraiseDetailRes res = new AppraiseDetailRes();
 			SpringBeanUtils.copyProperties(bean, res);
+			res.setAppraiseCount(bean.getId().intValue());
+
 			resultList.add(res);
 			if (resultList.size()>100){
 				break;
 			}
-			res.setAppraiseCount(bean.getId().intValue());
 		}
 		return new Pages<AppraiseDetailRes>(resultList, 100, offset, length);
 	}
+	
+	@Override
+	public Pages<AppraiseRes> doStatExcel(AppraiseDetailReq req, int offset, int length) {
+		
+		List<Appraise> appraiseDetails = appraiseDetailService.selectStatExcel(req.getName(),req.getStartTime(),req.getEndTime());
+		
+		/** 查询业务逻辑完 **/
+		/** _____________________我是分隔线________________________________ **/
 
+		// PageInfo<Appraise> pages = new PageInfo<Appraise>(appraises);
+		List<AppraiseRes> resultList = new ArrayList<AppraiseRes>();
+		for (Appraise bean : appraiseDetails) {
+			AppraiseRes res = new AppraiseRes();
+			
+			res.setName(bean.getName());
+			res.setBest(bean.getBest());
+			res.setBetter(bean.getBetter());
+			res.setGood(bean.getGood());
+			resultList.add(res);
+			if (resultList.size()>100){
+				break;
+			}
+		}
+		return new Pages<AppraiseRes>(resultList, 100, offset, length);
+	}
 	
 
 }
