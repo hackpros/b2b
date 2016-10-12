@@ -10,6 +10,6 @@ import com.jumore.b2b.daren.model.AppraiseDetailQueryHelper;
 
 public interface IAppraiseDetailService extends IBaseService<AppraiseDetail, AppraiseDetailQueryHelper> {
 
-	List<AppraiseDetail> selectStat(String name, String appraisetype, Date startTime, Date endTime);
+	List<AppraiseDetail> selectStat(String name, Date startTime, Date endTime);
 
 }

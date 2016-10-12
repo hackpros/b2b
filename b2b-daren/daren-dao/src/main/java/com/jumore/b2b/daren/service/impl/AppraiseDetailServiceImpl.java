@@ -27,8 +27,8 @@ public class AppraiseDetailServiceImpl extends BaseServiceImp<AppraiseDetail, Ap
 	}
 
 	@Override
-	public List<AppraiseDetail> selectStat(String name, String appraisetype, Date startTime, Date endTime) {
-		return appraiseDetailMapper.selectStat( name,  appraisetype,  startTime,  endTime);
+	public List<AppraiseDetail> selectStat(String name, Date startTime, Date endTime) {
+		return appraiseDetailMapper.selectStat( name,  startTime,  endTime);
 	}
 
 	

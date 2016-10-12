@@ -30,20 +30,7 @@ public class AppraiseDetailBizImpl implements IAppraiseDetailBiz {
 	@Override
 	public Pages<AppraiseDetailRes> browser(AppraiseDetailReq req, int offset, int length) {
 		AppraiseDetailQueryHelper e = new AppraiseDetailQueryHelper();
-		AppraiseDetailQueryHelper.Criteria c = e.createCriteria(); 
-		String name=null;
-		if (req.getName()!=null){
-			name="%"+req.getName()+"%";
-		}
-		String appraisetype = null;
-		if (req.getAppraisetype()!=null){
-			appraisetype=req.getAppraisetype();
-		}
-		
-		if (req.getStartTime()!=null && req.getEndTime()!=null){
-			c.andCreateTimeBetween(req.getStartTime(), req.getEndTime());
-		}
-		List<AppraiseDetail> appraiseDetails = appraiseDetailService.selectStat(name,appraisetype,req.getStartTime(),req.getEndTime());
+		List<AppraiseDetail> appraiseDetails = appraiseDetailService.selectByExample(e);
 		/** 查询业务逻辑完 **/
 		/** _____________________我是分隔线________________________________ **/
 
@@ -60,6 +47,30 @@ public class AppraiseDetailBizImpl implements IAppraiseDetailBiz {
 		return new Pages<AppraiseDetailRes>(resultList, 100, offset, length);
 		
 
+	}
+
+
+
+	@Override
+	public Pages<AppraiseDetailRes> doStat(AppraiseDetailReq req, int offset, int length) {
+		
+		List<AppraiseDetail> appraiseDetails = appraiseDetailService.selectStat(req.getName(),req.getStartTime(),req.getEndTime());
+		
+		/** 查询业务逻辑完 **/
+		/** _____________________我是分隔线________________________________ **/
+
+		// PageInfo<Appraise> pages = new PageInfo<Appraise>(appraises);
+		List<AppraiseDetailRes> resultList = new ArrayList<AppraiseDetailRes>();
+		for (AppraiseDetail bean : appraiseDetails) {
+			AppraiseDetailRes res = new AppraiseDetailRes();
+			SpringBeanUtils.copyProperties(bean, res);
+			resultList.add(res);
+			if (resultList.size()>100){
+				break;
+			}
+			res.setAppraiseCount(bean.getId().intValue());
+		}
+		return new Pages<AppraiseDetailRes>(resultList, 100, offset, length);
 	}
 
 	

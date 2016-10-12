@@ -20,7 +20,6 @@ public class AppraiseDetailReq implements IRequest {
     private Date startTime;
     private Date endTime;
     
-
     private static final long serialVersionUID = 1L;
 
     public Long getId() {

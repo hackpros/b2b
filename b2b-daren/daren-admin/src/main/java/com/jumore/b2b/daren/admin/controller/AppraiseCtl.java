@@ -1,7 +1,6 @@
 package com.jumore.b2b.daren.admin.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
-import org.springframework.web.servlet.support.RequestDataValueProcessor;
 
 import com.jumore.b2b.activity.comm.Pages;
 import com.jumore.b2b.activity.core.up.GlobalPropertiesUtil;

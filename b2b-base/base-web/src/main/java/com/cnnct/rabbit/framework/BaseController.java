@@ -39,7 +39,7 @@ public class BaseController {
 	@InitBinder
 	public void initBinder(HttpServletRequest res, WebDataBinder binder) {
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		/*SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		sdf.setLenient(false);
 		binder.registerCustomEditor(Date.class, new PropertyEditorSupport() {  
 		        public void setAsText(String value) {  
@@ -53,8 +53,23 @@ public class BaseController {
 		            return new SimpleDateFormat("yyyy-MM-dd").format((Date) getValue());  
 		        }          
 		  
-		    });  
+		    });  */
 		
+		binder.registerCustomEditor(Date.class, new PropertyEditorSupport() {  
+			     public void setAsText(String value) {  
+			           try {  
+			              setValue(new SimpleDateFormat("yyyy-MM-dd").parse(value));  
+			            } catch(ParseException e) {  
+			                setValue(null);  
+			             }  
+			        }  
+			  
+			        public String getAsText() {  
+			        	return new SimpleDateFormat("yyyy-MM-dd").format((Date) getValue());  
+			       }          
+			  
+			   });  
+
 		
 		
 		binder.registerCustomEditor(String.class, new StringTrimmerEditor(false));

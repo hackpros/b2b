@@ -8,4 +8,6 @@ public interface IAppraiseDetailBiz {
 
 	Pages<AppraiseDetailRes> browser(AppraiseDetailReq t, int page, int rows);
 
+	Pages<AppraiseDetailRes> doStat(AppraiseDetailReq req, int i, int j);
+
 }

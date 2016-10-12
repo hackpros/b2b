@@ -16,6 +16,7 @@ public class AppraiseDetailRes implements IResponse {
     private String appraisetype;
 
     private Date createTime;
+    private int appraiseCount;
 
     private static final long serialVersionUID = 1L;
 
@@ -66,8 +67,18 @@ public class AppraiseDetailRes implements IResponse {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+    
+    
 
-    @Override
+    public int getAppraiseCount() {
+		return appraiseCount;
+	}
+
+	public void setAppraiseCount(int appraiseCount) {
+		this.appraiseCount = appraiseCount;
+	}
+
+	@Override
     public boolean equals(Object that) {
         if (this == that) {
             return true;
