@@ -89,9 +89,9 @@
 					</a>
 				</li>
 				<li class="start active">
-					<a href="/appraiseDetail/browser">
+					<a href="/appraiseDetail/doStat">
 					<i class="icon-home"></i>
-					<span class="title">员工评论管理</span>
+					<span class="title">员工评论统计</span>
 					<span class="selected"></span>
 					</a>
 				</li>
@@ -239,7 +239,7 @@
 												
 											</div>
 
-											<a  class="btn yellow" onclick="$('#frmAppDet').submit()">
+												<a  class="btn yellow" onclick="$('#frmAppDet').submit()">
 													统计
 												</a>  
 												<a  class="btn yellow" href="export" target="_blank">
@@ -277,8 +277,9 @@
 
 											<tr>
 												<th class="hidden-phone">姓名</th>
-												<th class="hidden-phone">评论类型</th>
-												<th class="hidden-phone">评论数</th>
+												<th class="hidden-phone">满意</th>
+												<th class="hidden-phone">基本满意</th>
+												<th class="hidden-phone">不满意</th>
 
 											</tr>
 
@@ -289,16 +290,9 @@
 											#foreach($appraise in $rows)
 											<tr>
 												<td class="hidden-phone"><span class="label label-success">$!appraise.name</span></td>
-												<td>
-													#if($!appraise.appraisetype=="best")
-														非常满意
-													#elseif($!appraise.appraisetype=="better")
-														满意
-													#elseif($!appraise.appraisetype=="good")
-														不满意
-													#end
-												</td>
-												<td class="hidden-phone">$!appraise.appraiseCount</td>
+												<td class="hidden-phone">$!appraise.best</td>
+												<td class="hidden-phone">$!appraise.better</td>
+												<td class="hidden-phone">$!appraise.good</td>
 											</tr>
 											#end
 

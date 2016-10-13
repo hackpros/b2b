@@ -101,7 +101,7 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.jumore.b2b.daren.model.AppraiseDetail" >
-    <selectKey resultType="java.lang.Long" keyProperty="id" order="BEFORE" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into appraise_detail (id, sid, name, 
@@ -112,7 +112,7 @@
       )
   </insert>
   <insert id="insertSelective" parameterType="com.jumore.b2b.daren.model.AppraiseDetail" >
-    <selectKey resultType="java.lang.Long" keyProperty="id" order="BEFORE" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into appraise_detail

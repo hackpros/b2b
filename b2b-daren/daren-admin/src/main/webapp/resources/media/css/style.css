@@ -2316,7 +2316,8 @@ Item block with details shown on hover
 .item {
   overflow: hidden;
   display: block;
-  margin-bottom: 20px;
+  margin-top: 1px;
+  margin-bottom: 1px;
 }
 
 .item .details {

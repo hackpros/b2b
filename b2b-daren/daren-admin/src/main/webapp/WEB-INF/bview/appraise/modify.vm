@@ -113,9 +113,7 @@
 									
 									<a href="#" id="best" class="btn">
 
-									<span>非常满意</span>
-
-									<em>&nbsp;&nbsp;</em>
+									<span><h1><b>满意</b></h1></span>
 
 									<em>
 
@@ -132,9 +130,8 @@
 
 									<a id="better" href="#" class="btn">
 
-									<span>满意</span>
+									<span><h1><b>基本满意</b></h1></span>
 
-									<em>&nbsp;&nbsp;</em>
 
 									<em>
 
@@ -150,12 +147,8 @@
 									
 									<a href="#" id="good" class="btn">
 
-									<span>不满意</span>
-									<em>&nbsp;&nbsp;</em>
+									<span><h1><b>不满意</b></h1></span>
 
-									<em>
-									&nbsp;&nbsp;
-									</em>
 
 									<i class="icon-music top-news-icon"></i>                             
 
@@ -173,10 +166,10 @@
 									
 									
 									<a href="#" class="btn blue">
-    									<button id="submit" class="btn blue big btn-block">提交<i class="m-icon-big-swapright m-icon-white"></i></button>
+    									<button id="submit" class="btn blue big btn-block"><h1><b>提交</b></h1></button>
 									</a>
-									<a href="#" class="btn blue" onclick="location.href='/appraise/browser'">
-    									<button class="btn blue big btn-block"　>返回<i class="m-icon-big-swapleft m-icon-white"></i></button>
+									<a href="#" class="btn blue" onclick="location.href='/appraise/index'">
+    									<button class="btn blue big btn-block"　><h1><b>返回</b></h1></i></button>
 									</a>
 								</div>
 

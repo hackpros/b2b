@@ -84,9 +84,9 @@
 					</a>
 				</li>
 				<li class="start">
-					<a href="/appraiseDetail/browser">
+					<a href="/appraiseDetail/doStat">
 					<i class="icon-home"></i>
-					<span class="title">员工评论管理</span>
+					<span class="title">员工评论统计</span>
 					<span class="selected"></span>
 					</a>
 				</li>
@@ -166,8 +166,8 @@
 												<th class="hidden-phone">头像</th>
 												<th class="hidden-phone">姓名</th>
 												<th>职位</th>
-												<th class="hidden-phone">非常满意</th>
 												<th class="hidden-phone">满意</th>
+												<th class="hidden-phone">基本满意</th>
 												<th class="hidden-phone">不满意</th>
 												<th class="hidden-phone">显示顺序</th>
 												<th>操作</th>

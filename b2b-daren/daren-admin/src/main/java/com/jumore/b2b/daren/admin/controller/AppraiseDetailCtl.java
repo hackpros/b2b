@@ -52,6 +52,7 @@ public class AppraiseDetailCtl extends BaseController{
 		Pages<AppraiseDetailRes> pages = appraiseDetailBiz.browser(req, 0, 100);
 		model.addAttribute("total", pages.getTotal());
 		model.addAttribute("rows", pages.getRows());
+		model.addAttribute("req", req);
 		return "/appraisedetail/browser";
 	};
 
@@ -78,7 +79,8 @@ public class AppraiseDetailCtl extends BaseController{
 		req.setName(name);
 		
 		
-		Pages<AppraiseDetailRes> pages =appraiseDetailBiz.doStat(req, 0, 100);
+		//Pages<AppraiseDetailRes> pages =appraiseDetailBiz.doStat(req, 0, 100);
+		Pages<AppraiseRes> pages = appraiseDetailBiz.doStatExcel(req, 0, 100);
 		model.addAttribute("total", pages.getTotal());
 		model.addAttribute("rows", pages.getRows());
 		model.addAttribute("req", req);
