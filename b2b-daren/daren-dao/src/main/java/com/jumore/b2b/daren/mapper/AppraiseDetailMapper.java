@@ -74,10 +74,10 @@ public interface AppraiseDetailMapper extends BaseMapper<AppraiseDetail, Apprais
 			 */
 
 			SQL sql = new SQL();
-			sql.SELECT("name");
-			sql.SELECT(",(select count(*) from appraise_detail  where name= a.name and appraiseType='best') as best");
-			sql.SELECT(",(select count(*) from appraise_detail  where name= a.name and appraiseType='better') as better");
-			sql.SELECT(",(select count(*) from appraise_detail  where name= a.name and appraiseType='good') as good");
+			sql.SELECT(" distinct name");
+			sql.SELECT("(select count(*) from appraise_detail  where name= a.name and appraiseType='best') as best");
+			sql.SELECT("(select count(*) from appraise_detail  where name= a.name and appraiseType='better') as better");
+			sql.SELECT("(select count(*) from appraise_detail  where name= a.name and appraiseType='good') as good");
 
 			sql.FROM("appraise_detail a ");
 

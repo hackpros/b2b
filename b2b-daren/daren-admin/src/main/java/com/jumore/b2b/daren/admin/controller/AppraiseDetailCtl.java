@@ -97,11 +97,11 @@ public class AppraiseDetailCtl extends BaseController{
 		Pages<AppraiseRes> pages = appraiseDetailBiz.doStatExcel(req, 0, 100);
 		
 		
-		 	String fileName="excel文件";
+		 	String fileName="员工满意度统计表";
 	        //填充projects数据
 	        List<AppraiseRes> projects=pages.getRows();
 	        List<Map<String,Object>> list=createExcelRecord(projects);
-	        String columnNames[]={"姓名","非常满意","满意","不满间"};//列名
+	        String columnNames[]={"姓名","非常满意","满意","不满意"};//列名
 	        String keys[]    =     {"name","best","better","good"};//map中的key
 	        ByteArrayOutputStream os = new ByteArrayOutputStream();
 	       try {
@@ -150,7 +150,7 @@ public class AppraiseDetailCtl extends BaseController{
 	            Map<String, Object> mapValue = new HashMap<String, Object>();
 	            mapValue.put("name", res.getName());
 	            mapValue.put("best", res.getBest());
-	            mapValue.put("better",res.getBest());
+	            mapValue.put("better",res.getBetter());
 	            mapValue.put("good", res.getGood());
 	            listmap.add(mapValue);
 	        }
