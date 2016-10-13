@@ -239,7 +239,7 @@
 												
 											</div>
 
-											<a  class="btn yellow" onclick="$('#frmAppDet').submit()">
+												<a  class="btn yellow" onclick="$('#frmAppDet').submit()">
 													统计
 												</a>  
 												<a  class="btn yellow" href="export" target="_blank">

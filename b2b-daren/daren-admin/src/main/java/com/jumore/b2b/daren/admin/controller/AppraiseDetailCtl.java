@@ -52,6 +52,7 @@ public class AppraiseDetailCtl extends BaseController{
 		Pages<AppraiseDetailRes> pages = appraiseDetailBiz.browser(req, 0, 100);
 		model.addAttribute("total", pages.getTotal());
 		model.addAttribute("rows", pages.getRows());
+		model.addAttribute("req", req);
 		return "/appraisedetail/browser";
 	};
 

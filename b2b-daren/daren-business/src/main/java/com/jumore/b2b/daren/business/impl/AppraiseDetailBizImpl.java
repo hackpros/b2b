@@ -32,7 +32,19 @@ public class AppraiseDetailBizImpl implements IAppraiseDetailBiz {
 	@Override
 	public Pages<AppraiseDetailRes> browser(AppraiseDetailReq req, int offset, int length) {
 		AppraiseDetailQueryHelper e = new AppraiseDetailQueryHelper();
+		AppraiseDetailQueryHelper.Criteria c= e.createCriteria();
+		if (req.getName()!=null){
+			c.andNameLike("%"+req.getName()+"%");
+		}
+		if (req.getAppraisetype()!=null){
+			c.andAppraisetypeEqualTo(req.getAppraisetype());
+		}
+		
+		if (req.getStartTime()!=null && req.getEndTime()!=null){
+			c.andCreateTimeBetween(req.getStartTime(), req.getEndTime());
+		}
 		List<AppraiseDetail> appraiseDetails = appraiseDetailService.selectByExample(e);
+		
 		/** 查询业务逻辑完 **/
 		/** _____________________我是分隔线________________________________ **/
 

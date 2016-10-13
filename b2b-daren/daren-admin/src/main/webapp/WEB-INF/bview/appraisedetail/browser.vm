@@ -182,7 +182,7 @@
 
 								<!-- BEGIN FORM-->
 
-								<form action="doStat" method="get" id="frmAppDet" >
+								<form action="browser" method="get" id="frmAppDet" >
 
 									<div class="control-group">
 
@@ -208,7 +208,7 @@
 
 											<div class="input-append date date-picker" data-date-format="yyyy-mm-dd" data-date-viewmode="years">
 
-												<input size="16" type="text" value="" name="startTime" readonly class="m-wrap"/>
+												<input size="16" type="text" value="$!date.format('yyyy-MM-dd',$!req.startTime)"  name="startTime" readonly class="m-wrap"/>
 
 												<span class="add-on"><i class="icon-remove"></i></span>
 
@@ -229,17 +229,20 @@
 
 											<div class="input-append date date-picker" data-date-format="yyyy-mm-dd" data-date-viewmode="years">
 
-												<input size="16" type="text" value="" name="endTime" readonly class="m-wrap"/>
+												<input size="16" type="text" value="$!date.format('yyyy-MM-dd',$!req.endTime)"  name="endTime" readonly class="m-wrap"/>
 
 												<span class="add-on"><i class="icon-remove"></i></span>
 
 												<span class="add-on"><i class="icon-calendar"></i></span>
-
+												
+											</div>
+											
 												<a  class="btn yellow" onclick="$('#frmAppDet').submit()">
+													搜索
+												</a>  	
+												<a  class="btn yellow" onclick="doStat()">
 													统计
 												</a>  
-											</div>
-
 										</div>
 
 									</div>
@@ -393,6 +396,10 @@
 	
 	
 	<script>
+		function doStat(){
+    		$("#frmAppDet").attr("action","doStat");
+    		$("#frmAppDet").submit();
+		}
 
 		jQuery(document).ready(function() {    
 
