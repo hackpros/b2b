@@ -7,14 +7,9 @@
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
-<<<<<<< HEAD
 <body >		<div class="container">				<div class="row-fluid">			<div class="span6 coming-soon-content">
 				<h1></h1>				<p></p>				<br/>				<br/>				<form class="form-search" action="/appraise/browser">					<div class="input-append" style="margin-top:700px;margin-left:860px;">						<button type="submit"  class="btn blue btn-subscribe big" style="height: 90px;">							<span style="font-size:45px;">进入系统</span>						</button>					</div>				</form>				</div>										</div>
-=======
-<body id="videoElement">	<div class="">			<div class="container-fluid">					<ul class="nav pull-right">					<li class="dropdown user">							<a  class="btn " href="#form_modal1" data-toggle="modal" style="background-color: #ffffff">								<img alt="" src="$static_resource/media/image/avatar-shut.png" />							</a>  					</li>				</ul>			</div>		</div>			
-	<div class="container">				<div class="row-fluid">			<div class="span6 coming-soon-content">
-				<h1></h1>				<p></p>				<br/>				<br/>				<form class="form-search" action="/appraise/browser">					<div class="input-append">						<h1></h1>						<button type="submit"  class="btn blue btn-subscribe big" style="margin-top:500px;margin-left:860px;"><span>进入系统</span> <i class="m-icon-big-swapright m-icon-white"></i></button>					</div>				</form>								<div class="row-fluid">					<div class="span12">						<!-- BEGIN PORTLET-->   						<div class="portlet">								<div id="form_modal1" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">									<div class="modal-body">										<form action="#" class="form-horizontal">											<div class="control-group">        										<label class="control-label">请输入关机密码:</label>                										<div class="controls">                											<input type="password" id="shutdownKey" value="" class="span6 m-wrap" />                										</div>                									</div>										</form>									</div>									<div class="modal-footer">										<button class="btn yellow btn-primary big" data-dismiss="modal">取&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;消</button>										<button class="btn green btn-primary big" onclick="shutdown(1)">确 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;定</button>									</div>								</div>								<!-- END FORM-->  							</div>						</div>						<!-- END PORTLET-->					</div>				</div>										</div>
->>>>>>> branch 'master' of https://github.com/hackpros/b2b.git
+
 		</div>
 		<!--/end row-fluid-->
 		<div class="row-fluid">
