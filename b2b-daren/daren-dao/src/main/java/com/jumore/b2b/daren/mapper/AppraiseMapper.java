@@ -9,6 +9,6 @@ import com.jumore.b2b.daren.model.AppraiseQueryHelper;
 
 public interface AppraiseMapper extends BaseMapper<Appraise, AppraiseQueryHelper> {
 
-	@Update("update appraise set good=good+#{good},better=better+#{better},best=best+#{best} where id=#{id} and code=#{code}")
+	@Update("update appraise set good=good+#{good},better=better+#{better},best=best+#{best} where id=#{id}")
 	int doApppraise(@Param("good") Integer good, @Param("better") Integer better, @Param("best") Integer best,@Param("id")Long id, @Param("code") String code);
 }

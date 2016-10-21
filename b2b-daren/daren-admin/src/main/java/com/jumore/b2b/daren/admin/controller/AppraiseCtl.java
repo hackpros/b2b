@@ -53,6 +53,7 @@ public class AppraiseCtl {
 
 	@RequestMapping(value = "/modify")
 	public String modify(Model model, AppraiseReq req) {
+		req.setCode(null);
 		AppraiseRes res = new AppraiseRes();
 		res = appraiseBiz.selectUnique(req);
 

@@ -242,7 +242,7 @@
 												<a  class="btn yellow" onclick="$('#frmAppDet').submit()">
 													统计
 												</a>  
-												<a  class="btn yellow" href="export" target="_blank">
+												<a  class="btn yellow" onclick="exportExcel()" target="_blank">
 													导出
 												</a>  
 												<a  class="btn yellow" href="browser">
@@ -399,6 +399,12 @@
 		   FormComponents.init();
 
 		});
+		
+		function exportExcel(){
+		    var startTime="$!date.format('yyyy-MM-dd ',$!req.startTime)";
+			var endTime="$!date.format('yyyy-MM-dd ',$!req.endTime)";
+			location.href="export?name="+$("input[name]").val()+"&startTime="+startTime+"&endTime="+endTime;
+		}
 
 	</script>
 

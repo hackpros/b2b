@@ -8,11 +8,11 @@
 						<img src="$static_resource/$app1.head" alt="$app1.name<"/>                    
 						<div class="zoom-icon"></div>
 					</div>
-        			<div class="details" style="font-size:25px;">
-        				<a href="#" class="btn black">$app1.name</a>
-        				<a href="#" class="btn black">$app1.code</a>
-        			</div>
 				</a>
+			</div>
+			<div class="details">
+				<a href="#" class="btn black">$app1.name</a>
+				<a href="#" class="btn black">$app1.code</a>
 			</div>
 		</div>
 		
@@ -24,11 +24,11 @@
 						<img src="$static_resource/$app2.head" alt="$app2.name" />                    
 						<div class="zoom-icon"></div>
 					</div>
-        			<div class="details">
-        				<a href="#" class="btn black">$app2.name</a>
-        				<a class="btn black" href="#">$app2.code</a>
-        			</div>
 				</a>
+			</div>
+			<div class="details">
+				<a href="#" class="btn black">$app2.name</a>
+				<a class="btn black" href="#">$app2.code</a>
 			</div>
 		</div>
 		#end
@@ -41,11 +41,11 @@
 						<img src="$static_resource/$app3.head" alt="$app3.name" />                    
 						<div class="zoom-icon"></div>
 					</div>
-        			<div class="details">
-        				<a class="btn black" href="#">$app3.name</a> 
-                        <a class="btn black" href="#">$app3.code</a>
-        			</div>
 				</a>
+			</div>
+			<div class="details">
+				<a class="btn black" href="#">$app3.name</a> 
+                <a class="btn black" href="#">$app3.code</a>
 			</div>
 		</div>
 		#end
@@ -58,11 +58,11 @@
 						<img src="$static_resource/$app4.head" alt="$app4.name" />                    
 						<div class="zoom-icon"></div>
 					</div>
-        			<div class="details">
-        					<a href="#" class="btn black">$app4.name</a>
-        					<a href="#" class="btn black">$app4.code</a>
-        			</div>
 				</a>
+			</div>
+			<div class="details">
+					<a href="#" class="btn black">$app4.name</a>
+					<a href="#" class="btn black">$app4.code</a>
 			</div>
 		</div>
 		#end
@@ -75,11 +75,11 @@
 						<img src="$static_resource/$app5.head" alt="$app5.name" />                    
 						<div class="zoom-icon"></div>
 					</div>
-        			<div class="details">
-        					<a href="#" class="btn black">$app5.name</a>
-        					<a href="#" class="btn black">$app5.code</a>
-        			</div>
 				</a>
+			</div>
+			<div class="details">
+					<a href="#" class="btn black">$app5.name</a>
+					<a href="#" class="btn black">$app5.code</a>
 			</div>
 		</div>
 		#end
@@ -92,11 +92,11 @@
 						<img src="$static_resource/$app6.head" alt="$app6.name" />                    
 						<div class="zoom-icon"></div>
 					</div>
-        			<div class="details">
-        					<a href="#" class="btn black">$app6.name</a>
-        					<a href="#" class="btn black">$app6.code</a>
-        			</div>
 				</a>
+			</div>
+			<div class="details">
+					<a href="#" class="btn black">$app6.name</a>
+					<a href="#" class="btn black">$app6.code</a>
 			</div>
 		</div>
 		#end
