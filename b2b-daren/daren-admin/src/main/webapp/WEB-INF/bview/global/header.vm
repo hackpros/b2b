@@ -9,6 +9,7 @@
 <!-- BEGIN HEAD -->
 
 #set( $static_resource = "$request.contextPath/resources" )
+
 <head>
 
 	<meta charset="utf-8" />
