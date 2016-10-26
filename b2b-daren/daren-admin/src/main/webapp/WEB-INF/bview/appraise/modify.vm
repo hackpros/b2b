@@ -291,6 +291,21 @@
 		   });
 
 		   
+		   var outId;
+    	function toHeadUrl() {
+    		if(typeof outId != 'undefined') {
+    			clearInterval(outId);
+    		}
+    		outId = setInterval(function(){window.location.href = "index";}, 15000);
+    	}
+	
+		$("body").hover(function(){
+						toHeadUrl()
+					},function(){
+                        toHeadUrl()
+                    });
+
+		   
 		});
 
 	</script>
