@@ -1,6 +1,11 @@
 package com.jumore.b2b.daren.admin.controller;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
 import org.fan.baseBusiness.util.CustomObjectMapper;
 import org.springframework.stereotype.Controller;
@@ -9,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.jumore.b2b.activity.comm.Pages;
 import com.jumore.b2b.activity.service.business.io.request.AppraiseReq;
 import com.jumore.b2b.activity.service.business.io.response.AppraiseRes;
@@ -40,19 +44,38 @@ public class TempleteCtl {
 
 	@RequestMapping(value = "/doBrower")
 	@ResponseBody
-	public Pages<AppraiseRes> gridData(Model model, AppraiseReq req) throws JsonProcessingException {
+	public Map<String, Object> gridData(Model model, AppraiseReq req,HttpServletResponse response) throws IOException {
 
-		Pages<AppraiseRes> pages = appraiseBiz.browser(req, 0, 100);
+		Pages<AppraiseRes> pages = appraiseBiz.browser(req, 0, 2);
 		
 		//model.addAttribute("recordsTotal", pages.getTotal());
 		//model.addAttribute("draw", 1);
 		//model.addAttribute("data", pages.getRows());
 		pages.setDraw(1);
+		
+		
 		CustomObjectMapper mapper = new CustomObjectMapper();
 		
 		
 		//String json = mapper.writeValueAsString(pages);
-		return pages;
+		
+		
+		
+		Map<String, Object> result = new HashMap<String, Object>();  
+		result.put("iTotalRecords", 2);  
+		result.put("iTotalDisplayRecords", 2);  
+		result.put("aaData", pages.getRows());  
+		/*       
+		String json = com.alibaba.fastjson.JSON.toJSONString(result);  
+		          
+		        
+			PrintWriter out = response.getWriter();  
+		       //传到页面  
+		        out.write(json);  
+		     out.flush();    
+		        out.close();  */
+		        
+		return result;
 
 	};
 

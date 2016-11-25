@@ -1,0 +1,26 @@
+
+## test## xxx);
+#parse( 'global/header.vm' )
+<script type="text/javascript" src="$static_path/js/chtcktools/ctdatasource/browser.js?webName=$request.contextPath"></script>
+<script type="text/javascript" src="$static_path/tree/CSST.UIlib.js"></script>
+<script type="text/javascript" src="$static_path/tree/json2.js"></script>
+<link rel="stylesheet" type="text/css" href="$static_path/tree/CSST.UIlib.css" />
+<body>
+<div id="west" region="west" split="true" title="" style="width:180px;">
+</div>
+<div region="center" title=">
+     <table id="grid" width="350"></table>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+ $(function(){
+     tree = new CSST.UI.Tree("west",{children:"children",view:"name"},${rows});
+     tree.children[0].focus();
+     tree.onChanged=function(node){
+         $('#grid').datagrid({
+          url:'doBrowser.json?page=0&rows=10&parentId='+node.data.id+'&ladder='+node.data.ladder
+         });     
+     }
+ });
+</script>

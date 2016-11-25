@@ -4,7 +4,7 @@ var TableEditable = function () {
 
         //main function to initiate the module
         init: function () {
-            
+             debugger
             
             var formatTest0 = function (obj) {
             	return 'bad';
@@ -30,41 +30,10 @@ var TableEditable = function () {
                     }
                 },
 
-                "aaData2": [
-                           /* Reduced data set */
-                           [ "Trident", "Internet Explorer 4.0", "Win 95+", "4", "X","VR","VR" ],
-                           [ "Trident", "Internet Explorer 4.0", "Win 95+", "4", "X","VR","VR" ],
-                           [ "Trident", "Internet Explorer 4.0", "Win 95+", "4", "X","VR","VR" ],
-                           [ "Trident", "Internet Explorer 4.0", "Win 95+", "4", "X","VR","VR" ],
-                           [ "Trident", "Internet Explorer 4.0", "Win 95+", "4", "X","VR","VR" ],
-                           [ "Trident", "Internet Explorer 4.0", "Win 95+", "4", "X","VR","VR" ],
-                           [ "Trident", "Internet Explorer 4.0", "Win 95+", "4", "X","VR","VR" ],
-                           [ "Trident", "Internet Explorer 4.0", "Win 95+", "4", "X","VR","VR" ],
-                           [ "Trident", "Internet Explorer 4.0", "Win 95+", "4", "X","VR","VR" ],
-                           [ "Trident", "Internet Explorer 4.0", "Win 95+", "4", "X","VR","VR" ],
-                           [ "Trident", "Internet Explorer 4.0", "Win 95+", "4", "X","VR","VR" ],
-                           [ "Trident", "Internet Explorer 4.0", "Win 95+", "4", "X","VR","VR" ],
-                           [ "Trident", "Internet Explorer 4.0", "Win 95+", "4", "X","VR","VR" ],
-                           [ "Trident", "Internet Explorer 4.0", "Win 95+", "4", "X","VR","VR" ],
-                           [ "Trident", "Internet Explorer 4.0", "Win 95+", "4", "X","VR","VR" ],
-                           [ "Trident", "Internet Explorer 4.0", "Win 95+", "4", "X","VR","VR" ],
-                           [ "Trident", "Internet Explorer 4.0", "Win 95+", "4", "X","VR","VR" ],
-                           [ "Trident", "Internet Explorer 4.0", "Win 95+", "4", "X","VR","VR" ],
-                           [ "Trident", "Internet Explorer 4.0", "Win 95+", "4", "X","VR","VR" ],
-                           [ "Trident", "Internet Explorer 4.0", "Win 95+", "4", "X","VR","VR" ],
-                           [ "Trident", "Internet Explorer 4.0", "Win 95+", "4", "X","VR","VR" ],
-                           [ "Trident", "Internet Explorer 4.0", "Win 95+", "4", "X","VR","VR" ],
-                           [ "Trident", "Internet Explorer 4.0", "Win 95+", "4", "X","VR","VR" ],
-                           [ "Trident", "Internet Explorer 4.0", "Win 95+", "4", "X","VR","VR" ],
-                           [ "Trident", "Internet Explorer 4.0", "Win 95+", "4", "X","VR","VR" ],
-                           [ "Trident", "Internet Explorer 4.0", "Win 95+", "4", "X","VR","VR" ]
-                          
-                ],
                        
-                       
-               "sAjaxSource": 'templete/doBrower' ,   
+               "sAjaxSource": 'http://localhost:8080/templete/doBrower' ,   
                "aoColumns": [
-                             { "sTitle": "ext" },
+                             { "sTitle": "name" },
                              { "sTitle": "Engine" },
                              { "sTitle": "Browser" },
                              { "sTitle": "Platform" },

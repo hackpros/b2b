@@ -4,7 +4,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
 	default-autowire="byName">
 
-	<import resource="spring-annotation-driven.xml" />
+	<import resource="dubbo-consumer.xml" />
+	
 	<import resource="spring-beans.xml" />
 	<import resource="spring-main.xml" />
 	<import resource="dataSource-basic.xml" />

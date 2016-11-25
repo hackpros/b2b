@@ -1,0 +1,10 @@
+
+## test## xxx);
+#parse( 'global/header.vm' )
+<script type="text/javascript" src='$static_path/js/chtcktools/ctdatasource/browser.js?webName=$request.contextPath&&CTDATASOURCE_STATUS_DATA=${sof.getValRange('CTDATASOURCE','STATUS')}'></script>
+<body>
+    <table id="grid" width="350"></table>
+</body>
+</html>
+<script type="text/javascript">
+</script>

@@ -1,0 +1,106 @@
+
+## append.vm
+
+## @auther:fan
+## @date:
+#parse( 'global/header.vm' )
+<style type="text/css">
+     input,textarea{
+            width:400px;
+            border:1px solid #ccc;
+            padding:2px;
+         }
+ </style>
+ <script type="text/javascript">
+ </script>
+<body >
+#parse('global/gobackbar.vm' )
+div region="center" class="easyui-panel" title="添加" tools="#gobackbar"style="width:500px;margin:0px auto;">
+<form id="appCustomerFrm" method="post">
+<table>
+<tr>
+<td>外部标识:</td>
+<td>
+<input id="outerinner" name="outerinner" value="" class="easyui-validatebox"  required=="true" maxLength=16 />
+</td>
+</tr>
+<tr>
+<td>外部描述:</td>
+<td>
+<input id="outerdesc" name="outerdesc" value="" class="easyui-validatebox"  required=="false" maxLength=32 />
+</td>
+</tr>
+<tr>
+<td>企业名称:</td>
+<td>
+<input id="corpname" name="corpname" value="" class="easyui-validatebox"  required=="false" maxLength=32 />
+</td>
+</tr>
+<tr>
+<td>企业代码:</td>
+<td>
+<input id="corpcode" name="corpcode" value="" class="easyui-validatebox"  required=="false" maxLength=32 />
+</td>
+</tr>
+<tr>
+<td>企业信息:</td>
+<td>
+<textarea id="corpinfo" name="corpinfo" class=comments onpropertychange=this.style.posHeight=this.scrollHeight></textarea>
+</td>
+</tr>
+<tr>
+<td>加入时间:</td>
+<td>
+<input id="appendby" name="appendby" value="" class="easyui-validatebox"  required=="false" maxLength=19 />
+</td>
+</tr>
+</table>
+</form>
+<div style="text-align:center;padding:5px">
+<a href="javascript:void(0)" id="append" class="easyui-linkbutton">添加</a>
+<a href="javascript:void(0)" id="clear" class="easyui-linkbutton"  >重置</a>
+</div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+$(function(){
+/********select 选项表**********/
+/*********select**************/
+//提交
+$('#append').click(function()'{'
+    if (!$("#appCustomerFrm").form("validate"))
+         return; 
+ }
+});
+var aj = $.ajax( {
+    url : "$request.contextPath/appCustomer/doAppend.json",// 跳转到 action 
+    data : $("#appCustomerFrm").serialize(),
+     type : 'post',
+     dataType:'text',
+     success : function(data) {
+         if (data.code!=0){
+             $.messager.alert('提示','添加成功!','info');
+               $("#appCustomer",parent.document.body).attr("src","$request.contextPath/appCustomer/browser");
+         }else{
+             $.messager.alert('提示','添加失败!','info');
+         }
+     },
+     error : function() {
+     }
+ });
+});
+//重置
+$('#clear').click(function(){
+$("#appCustomerFrm")[0].reset();
+});
+// clear
+ $('#clear').click(function(){
+$("#appCustomerFrm")[0].reset();
+});
+// 返回
+$('#goback').click(function(){
+location.href='browser';
+});
+});
+</script>

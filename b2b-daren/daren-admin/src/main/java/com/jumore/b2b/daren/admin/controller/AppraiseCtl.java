@@ -14,11 +14,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.jumore.b2b.activity.comm.Pages;
 import com.jumore.b2b.activity.core.up.GlobalPropertiesUtil;
+import com.jumore.b2b.activity.core.util.SerializationOptimizerImpl;
 import com.jumore.b2b.activity.service.business.io.request.AppraiseReq;
 import com.jumore.b2b.activity.service.business.io.response.AppraiseRes;
 import com.jumore.b2b.daren.admin.comm.JsonResult;
+import com.jumore.b2b.daren.api.IAppCustomerApi;
 import com.jumore.b2b.daren.business.IAppraiseBiz;
 
 /**
@@ -33,6 +36,7 @@ public class AppraiseCtl {
 
 	@Resource
 	IAppraiseBiz appraiseBiz;
+	
 
 	@RequestMapping(value = "/index")
 	public String index() {
@@ -48,6 +52,7 @@ public class AppraiseCtl {
 		Pages<AppraiseRes> pages = appraiseBiz.browser(req, 0, 100);
 		model.addAttribute("total", pages.getTotal());
 		model.addAttribute("rows", pages.getRows());
+		
 		return "/appraise/browser";
 	};
 
