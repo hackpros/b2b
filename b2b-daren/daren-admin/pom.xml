@@ -26,18 +26,45 @@
 		<dependency>
 			<groupId>com.rabbit.basic</groupId>
 			<artifactId>basic-web</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 
+		
 
+		<dependency>
+			<groupId>com.jumore.b2b.daren</groupId>
+			<artifactId>daren-business</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.jumore.b2b.daren</groupId>
+			<artifactId>daren-comm-test</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.jumore.b2b.daren</groupId>
+			<artifactId>daren-core-test</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.jumore.b2b.daren</groupId>
+			<artifactId>daren-io-test</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		
 		<!-- 依赖dubbox aip -->
 		<dependency>
 			<groupId>com.jumore.b2b.daren</groupId>
-			<artifactId>daren-service-basic-api</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<artifactId>daren-service-basic-api-test</artifactId>
+			<version>${project.parent.version}</version>
 		</dependency>
 
-
+		<!-- 依赖基础模块 end -->
+		
+		
 
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -66,22 +93,6 @@
 			<version>3.0.1</version>
 			<type>jar</type>
 			<scope>compile</scope>
-		</dependency>
-
-
-		<!-- 依赖基础模块 end -->
-
-
-		<dependency>
-			<groupId>com.jumore.b2b.daren</groupId>
-			<artifactId>daren-business</artifactId>
-			<version>${project.parent.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.jumore.b2b.daren</groupId>
-			<artifactId>daren-io</artifactId>
-			<version>${project.parent.version}</version>
 		</dependency>
 
 		<!-- spring 开始 -->

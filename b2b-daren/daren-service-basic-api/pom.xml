@@ -9,7 +9,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>daren-service-basic-api</artifactId>
+	<artifactId>daren-service-basic-api-test</artifactId>
 	<url>http://maven.apache.org</url>
 
 	<name>${project.artifactId}</name>
@@ -21,13 +21,13 @@
 		
 		<dependency>
 			<groupId>com.jumore.b2b.daren</groupId>
-			<artifactId>daren-comm</artifactId>
+			<artifactId>daren-comm-test</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.jumore.b2b.daren</groupId>
-			<artifactId>daren-io</artifactId>
+			<artifactId>daren-io-test</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
 
@@ -50,13 +50,5 @@
 		</dependency>
 		<!-- log4j 2 end -->
 
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-tx</artifactId>
-		</dependency>
 	</dependencies>
 </project>

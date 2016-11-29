@@ -9,7 +9,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>daren-core</artifactId>
+	<artifactId>daren-core-test</artifactId>
 	<url>http://maven.apache.org</url>
 
 	<name>${project.artifactId}</name>

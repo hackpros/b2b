@@ -41,7 +41,7 @@
 
 	 	<dependency>
 			<groupId>com.jumore.b2b.daren</groupId>
-			<artifactId>daren-service-basic-api</artifactId>
+			<artifactId>daren-service-basic-api-test</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
 

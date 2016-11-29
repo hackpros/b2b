@@ -9,7 +9,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>daren-comm</artifactId>
+	<artifactId>daren-comm-test</artifactId>
 	<url>http://maven.apache.org</url>
 	<name>${project.artifactId}</name>
 	<description>b2b达人工具类</description>
