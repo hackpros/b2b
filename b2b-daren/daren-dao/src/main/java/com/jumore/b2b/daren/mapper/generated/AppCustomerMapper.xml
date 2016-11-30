@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jumore.b2b.daren.mapper.AppCustomerMapper" >
+  <resultMap id="BaseResultMap" type="com.jumore.b2b.daren.model.AppCustomer" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="OUTER_INNER" property="outerInner" jdbcType="VARCHAR" />
+    <result column="OUTER_DESC" property="outerDesc" jdbcType="VARCHAR" />
+    <result column="CORP_NAME" property="corpName" jdbcType="VARCHAR" />
+    <result column="CORP_CODE" property="corpCode" jdbcType="VARCHAR" />
+    <result column="CORP_INFO" property="corpInfo" jdbcType="VARCHAR" />
+    <result column="APPEND_BY" property="appendBy" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, OUTER_INNER, OUTER_DESC, CORP_NAME, CORP_CODE, CORP_INFO, APPEND_BY
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jumore.b2b.daren.model.AppCustomerQueryHelper" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from app_customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from app_customer
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from app_customer
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jumore.b2b.daren.model.AppCustomerQueryHelper" >
+    delete from app_customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jumore.b2b.daren.model.AppCustomer" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into app_customer (ID, OUTER_INNER, OUTER_DESC, 
+      CORP_NAME, CORP_CODE, CORP_INFO, 
+      APPEND_BY)
+    values (#{id,jdbcType=BIGINT}, #{outerInner,jdbcType=VARCHAR}, #{outerDesc,jdbcType=VARCHAR}, 
+      #{corpName,jdbcType=VARCHAR}, #{corpCode,jdbcType=VARCHAR}, #{corpInfo,jdbcType=VARCHAR}, 
+      #{appendBy,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jumore.b2b.daren.model.AppCustomer" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into app_customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      ID,
+      <if test="outerInner != null" >
+        OUTER_INNER,
+      </if>
+      <if test="outerDesc != null" >
+        OUTER_DESC,
+      </if>
+      <if test="corpName != null" >
+        CORP_NAME,
+      </if>
+      <if test="corpCode != null" >
+        CORP_CODE,
+      </if>
+      <if test="corpInfo != null" >
+        CORP_INFO,
+      </if>
+      <if test="appendBy != null" >
+        APPEND_BY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=BIGINT},
+      <if test="outerInner != null" >
+        #{outerInner,jdbcType=VARCHAR},
+      </if>
+      <if test="outerDesc != null" >
+        #{outerDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="corpName != null" >
+        #{corpName,jdbcType=VARCHAR},
+      </if>
+      <if test="corpCode != null" >
+        #{corpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="corpInfo != null" >
+        #{corpInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="appendBy != null" >
+        #{appendBy,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jumore.b2b.daren.model.AppCustomerQueryHelper" resultType="java.lang.Integer" >
+    select count(*) from app_customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update app_customer
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.outerInner != null" >
+        OUTER_INNER = #{record.outerInner,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outerDesc != null" >
+        OUTER_DESC = #{record.outerDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.corpName != null" >
+        CORP_NAME = #{record.corpName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.corpCode != null" >
+        CORP_CODE = #{record.corpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.corpInfo != null" >
+        CORP_INFO = #{record.corpInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appendBy != null" >
+        APPEND_BY = #{record.appendBy,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update app_customer
+    set ID = #{record.id,jdbcType=BIGINT},
+      OUTER_INNER = #{record.outerInner,jdbcType=VARCHAR},
+      OUTER_DESC = #{record.outerDesc,jdbcType=VARCHAR},
+      CORP_NAME = #{record.corpName,jdbcType=VARCHAR},
+      CORP_CODE = #{record.corpCode,jdbcType=VARCHAR},
+      CORP_INFO = #{record.corpInfo,jdbcType=VARCHAR},
+      APPEND_BY = #{record.appendBy,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jumore.b2b.daren.model.AppCustomer" >
+    update app_customer
+    <set >
+      <if test="outerInner != null" >
+        OUTER_INNER = #{outerInner,jdbcType=VARCHAR},
+      </if>
+      <if test="outerDesc != null" >
+        OUTER_DESC = #{outerDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="corpName != null" >
+        CORP_NAME = #{corpName,jdbcType=VARCHAR},
+      </if>
+      <if test="corpCode != null" >
+        CORP_CODE = #{corpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="corpInfo != null" >
+        CORP_INFO = #{corpInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="appendBy != null" >
+        APPEND_BY = #{appendBy,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jumore.b2b.daren.model.AppCustomer" >
+    update app_customer
+    set OUTER_INNER = #{outerInner,jdbcType=VARCHAR},
+      OUTER_DESC = #{outerDesc,jdbcType=VARCHAR},
+      CORP_NAME = #{corpName,jdbcType=VARCHAR},
+      CORP_CODE = #{corpCode,jdbcType=VARCHAR},
+      CORP_INFO = #{corpInfo,jdbcType=VARCHAR},
+      APPEND_BY = #{appendBy,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

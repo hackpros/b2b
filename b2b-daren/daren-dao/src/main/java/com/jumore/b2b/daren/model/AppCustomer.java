@@ -7,7 +7,7 @@ import java.util.Date;
  * 
  * 
  * @author 菠萝大象
- * @version 1.0 2016-11-22
+ * @version 1.0 2016-11-30
  */
 public class AppCustomer implements Serializable {
     /**

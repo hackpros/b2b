@@ -4,7 +4,7 @@
  * Copyright(C) 2015-2015 xxxxxx公司
  * All rights reserved.
  * -----------------------------------------------
- * 2016-11-22 Created
+ * 2016-11-30 Created
  */
 package com.jumore.b2b.daren.model;
 
@@ -76,7 +76,7 @@ public class AppCustomerQueryHelper {
      * 
      * 
      * @author 菠萝大象
-     * @version 1.0 2016-11-22
+     * @version 1.0 2016-11-30
      */
     protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
@@ -626,7 +626,7 @@ public class AppCustomerQueryHelper {
      * 
      * 
      * @author 菠萝大象
-     * @version 1.0 2016-11-22
+     * @version 1.0 2016-11-30
      */
     public static class Criterion {
         private String condition;

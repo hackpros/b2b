@@ -4,7 +4,7 @@
  * Copyright(C) 2015-2015 xxxxxx公司
  * All rights reserved.
  * -----------------------------------------------
- * 2016-11-22 Created
+ * 2016-11-30 Created
  */
 package com.jumore.b2b.daren.service.impl;
 
@@ -19,13 +19,22 @@ import org.mybatis.generator.base.service.single.BaseServiceImp;
 
 @org.springframework.stereotype.Service
 public class AppCustomerServiceImp extends BaseServiceImp<AppCustomer, AppCustomerQueryHelper> implements IAppCustomerService {
-    static final Logger log = LogManager.getLogger(AppCustomerServiceImp.class);;
+	static final Logger log = LogManager.getLogger(AppCustomerServiceImp.class);;
 
-    AppCustomerMapper appCustomerMapper;
+	AppCustomerMapper appCustomerMapper;
 
-    @Resource
-    public void setAppCustomerMapper(AppCustomerMapper appCustomerMapper) {
-        this.appCustomerMapper=appCustomerMapper;
-        this.setBaseMapper(appCustomerMapper);
-    }
+	@Resource
+	public void setAppCustomerMapper(AppCustomerMapper appCustomerMapper) {
+		this.appCustomerMapper = appCustomerMapper;
+		this.setBaseMapper(appCustomerMapper);
+	}
+
+	@Override
+	public int test() {
+
+		AppCustomerQueryHelper e=new AppCustomerQueryHelper();
+		int a = appCustomerMapper.countByExample(e);
+		return a;
+	}
+
 }

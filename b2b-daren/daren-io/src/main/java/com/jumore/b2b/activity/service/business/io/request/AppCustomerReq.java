@@ -4,7 +4,7 @@
  * Copyright(C) 2015-2015 xxxxxx公司
  * All rights reserved.
  * -----------------------------------------------
- * 2016-11-22 Created
+ * 2016-11-30 Created
  */
 package com.jumore.b2b.activity.service.business.io.request;
 

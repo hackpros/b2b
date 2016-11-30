@@ -18,7 +18,7 @@
 
 	<!--uncomment this if you want to test dubbo's monitor -->
 	<!-- <dubbo:monitor protocol="registry"/> -->
-	<dubbo:annotation package="com.jumore.b2b.activity" />
+	<dubbo:annotation package="com.jumore.b2b" />
 	
 	<!-- 用户服务接口 -->
 	<!-- <dubbo:reference interface="com.jumore.b2b.daren.api.IAppCustomerApi" id="appCustomerApi" check="false" />
