@@ -17,7 +17,7 @@
     
     	<dependency>
 			<groupId>com.jumore.b2b.daren</groupId>
-			<artifactId>daren-io</artifactId>
+			<artifactId>daren-io-test</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
 		

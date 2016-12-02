@@ -7,10 +7,11 @@ var TableEditable = function () {
              debugger
             
             var formatTest0 = function (obj) {
-            	return 'bad';
+            	 debugger
+            	return obj.aData.better+"fnRender";
             }
             var formatTest1 = function (obj) {
-            	return 'ok';
+            	return obj.aData.good+"_fnRender";
             }
 
             var oTable = $('#sample_editable_1').dataTable({
@@ -29,17 +30,16 @@ var TableEditable = function () {
                         "sNext": "Nexte"
                     }
                 },
-
                        
                "sAjaxSource": 'http://localhost:8080/templete/doBrower' ,   
                "aoColumns": [
-                             { "sTitle": "name" },
-                             { "sTitle": "Engine" },
-                             { "sTitle": "Browser" },
-                             { "sTitle": "Platform" },
-                             { "sTitle": "Version", "sClass": "center" },
-                             {  "sTitle": "Grade",   "sClass": "center",  "fnRender": formatTest0 },
-                             {  "sTitle": "ss",   "sClass": "center",  "fnRender": formatTest1 }
+                             { "mData": "id",sTitle:"ID",sClass: "center","bSortable": true},
+                             { "mData": "name",sTitle:"姓名"},
+                             { "mData": "head",sTitle:"头像"},
+                             { "mData": "code",sTitle:"编号"},
+                             { "mData": "best",sTitle:"很满意","sClass": "center" },
+                             { "mData": "better",sTitle:"满意", sClass: "center",  "fnRender": formatTest0 },
+                             { "mData": "good", sTitle:"不满意", sClass: "center",  "fnRender": formatTest1 }
                          ],
                 
                 "aoColumnDefs": [{

@@ -8,22 +8,28 @@
  */
 package com.jumore.b2b.daren.admin.controller;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.cnnct.rabbit.framework.BaseController;
 import com.jumore.b2b.activity.comm.SoaResult;
+import com.jumore.b2b.activity.service.business.io.Validation.AppCustomeConst;
 import com.jumore.b2b.activity.service.business.io.request.AppCustomerReq;
 import com.jumore.b2b.activity.service.business.io.response.AppCustomerRes;
 import com.jumore.b2b.daren.api.IAppCustomerApi;
 
-@Controller
+@RestController
 @RequestMapping(value="/appCustomer")
 public class AppCustomerController extends BaseController {
     static final Logger log = LogManager.getLogger(AppCustomerController.class);;
@@ -43,12 +49,13 @@ public class AppCustomerController extends BaseController {
     MOVE： 请求服务器将指定的页面移至另一个网络地址。       // spring no supper
     COPY： 请求服务器将指定的页面拷贝至另一个网络地址。    // spring no supper
      */
-    
+    @ApiOperation(value="获取XXX", notes="通过主键获取")
     @RequestMapping(value="/{id}",method=RequestMethod.GET)
     public SoaResult<AppCustomerRes> get(@PathVariable("id")long id) {
     	AppCustomerReq req =new AppCustomerReq();
     	req.setId(id);
-    	return appCustomerApi.dbxSelectByPrimaryKey(req);
+    	SoaResult<AppCustomerRes> res= appCustomerApi.dbxSelectByPrimaryKey(req);
+    	return res;
     }
     
     @RequestMapping(value="",method=RequestMethod.HEAD)
@@ -58,13 +65,22 @@ public class AppCustomerController extends BaseController {
     	return res;
     }
     
+    @ApiOperation(value="创建XXX资源")
     @RequestMapping(value="",method=RequestMethod.POST)
-    public SoaResult<AppCustomerRes> post(@Validated AppCustomerReq req) {
-    	return appCustomerApi.dbxAppend(req);
+    @ApiImplicitParam(name = "req", value = "XXX业务对象", required = true, dataType = "AppCustomerReq")
+    public SoaResult<AppCustomerRes> post(@Validated(value=AppCustomeConst.CreateValidation.class) @RequestBody AppCustomerReq req,BindingResult bindingResult ) {
+    	
+
+        if (bindingResult.hasErrors())
+        {
+           throw new RuntimeException(bindingResult.getFieldError().getDefaultMessage());
+        }
+        return appCustomerApi.dbxAppend(req);
+        
     }
     
     @RequestMapping(value="/{id}",method=RequestMethod.PUT)
-    public SoaResult<AppCustomerRes> put(@PathVariable("id")long id,@Validated AppCustomerReq req) {
+    public SoaResult<AppCustomerRes> put(@PathVariable("id")long id,@Validated(value=AppCustomeConst.CreateValidation.class) AppCustomerReq req,BindingResult bindingResult) {
     	req.setId(id);
     	return appCustomerApi.dbxModify(req);
     }

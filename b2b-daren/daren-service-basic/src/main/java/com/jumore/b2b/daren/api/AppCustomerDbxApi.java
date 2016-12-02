@@ -169,13 +169,12 @@ public class AppCustomerDbxApi implements IAppCustomerApi {
         SoaResult<com.jumore.b2b.activity.service.business.io.response.AppCustomerRes> res=new SoaResult<com.jumore.b2b.activity.service.business.io.response.AppCustomerRes>();
         try {
         	
-        	int a=appCustomerService.test();
-        	
             AppCustomer t = new AppCustomer();
             t.setId(appCustomerReq.getId());
             t=appCustomerService.selectByPrimaryKey(t);
             AppCustomerRes target=new AppCustomerRes();
-            SpringBeanUtils.copyProperties(t, target);
+            if(t != null)
+            	SpringBeanUtils.copyProperties(t, target);
             res.setCode(0);
             res.setData(target);
         } catch (Exception e) {

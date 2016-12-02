@@ -100,8 +100,15 @@
 									<div class="btn-group">
 										<button id="sample_editable_1_new" class="btn green">
 										Add New <i class="icon-plus"></i>
-										</button>
+										</button>
+										
+										<a class=" btn green" data-toggle="modal" href="#tempAppend">add</a>
+																				<a class=" btn green" data-toggle="modal" href="#tempModify">modify</a>
+
 									</div>
+									
+									
+								
 									<div class="btn-group pull-right">
 										<button class="btn dropdown-toggle" data-toggle="dropdown">Tools <i class="icon-angle-down"></i>
 										</button>
@@ -123,4 +130,8 @@
 			</div>
 			<!-- END PAGE CONTAINER-->
 		</div>
+		
+		#parse("templete/xxxappend.vm")
+		
+		#parse("templete/xxxmodify.vm")
 	

@@ -1,13 +1,14 @@
 package com.jumore.b2b.daren.admin.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
-import org.fan.baseBusiness.util.CustomObjectMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,27 +55,25 @@ public class TempleteCtl {
 		pages.setDraw(1);
 		
 		
-		CustomObjectMapper mapper = new CustomObjectMapper();
-		
-		
-		//String json = mapper.writeValueAsString(pages);
-		
-		
 		
 		Map<String, Object> result = new HashMap<String, Object>();  
 		result.put("iTotalRecords", 2);  
 		result.put("iTotalDisplayRecords", 2);  
+		
+		List<Object> aaData=new ArrayList<Object>();
+		 
+		for (AppraiseRes res : pages.getRows()) {
+			Object[] data=new Object[6];
+			data[0]=res.getCode();
+			data[1]=res.getContant();
+			data[2]=res.getHead();
+			data[3]=res.getImg1();
+			data[4]=res.getName();
+			data[5]=res.getBest();
+			aaData.add(data);
+		}
+		result.put("aaData", aaData);  
 		result.put("aaData", pages.getRows());  
-		/*       
-		String json = com.alibaba.fastjson.JSON.toJSONString(result);  
-		          
-		        
-			PrintWriter out = response.getWriter();  
-		       //传到页面  
-		        out.write(json);  
-		     out.flush();    
-		        out.close();  */
-		        
 		return result;
 
 	};

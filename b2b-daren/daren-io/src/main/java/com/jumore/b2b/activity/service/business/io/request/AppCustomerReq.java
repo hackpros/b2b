@@ -11,6 +11,11 @@ package com.jumore.b2b.activity.service.business.io.request;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import com.jumore.b2b.activity.service.business.io.Validation.AppCustomeConst;
+
 public class AppCustomerReq implements Serializable {
     /**
      * 主键
@@ -20,6 +25,8 @@ public class AppCustomerReq implements Serializable {
     /**
      * 外部标识
      */
+    @NotNull(message = "外部标识不能为空")
+    @Pattern(regexp = "^(?![0-9]+$)[0-9A-Za-z\u0391-\uFFE5]{4,16}$", message = "用户名格式不正确",groups = AppCustomeConst.CreateValidation.class)
     private String outerInner;
 
     /**
