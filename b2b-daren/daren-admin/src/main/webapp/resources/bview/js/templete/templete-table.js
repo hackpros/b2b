@@ -11,7 +11,7 @@ var TableEditable = function () {
             	return obj.aData.better+"fnRender";
             }
             var formatTest1 = function (obj) {
-            	return obj.aData.good+"_fnRender";
+            	return "<a class='modify\'  href='xxxmodify?id="+obj.aData.id+"'>编缉</a>|<a class='delete' href=\"javascript:;\">Delete</a>";
             }
 
             var oTable = $('#sample_editable_1').dataTable({
@@ -39,7 +39,8 @@ var TableEditable = function () {
                              { "mData": "code",sTitle:"编号"},
                              { "mData": "best",sTitle:"很满意","sClass": "center" },
                              { "mData": "better",sTitle:"满意", sClass: "center",  "fnRender": formatTest0 },
-                             { "mData": "good", sTitle:"不满意", sClass: "center",  "fnRender": formatTest1 }
+                             { "mData": "good", sTitle:"不满意", sClass: "center",  "fnRender": formatTest1 },
+                             { "mData": "sortInex", sTitle:"操作", sClass: "center",  "fnRender": formatTest1 },
                          ],
                 
                 "aoColumnDefs": [{

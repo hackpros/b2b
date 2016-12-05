@@ -60,7 +60,7 @@ public class TempleteCtl {
 		result.put("iTotalRecords", 2);  
 		result.put("iTotalDisplayRecords", 2);  
 		
-		List<Object> aaData=new ArrayList<Object>();
+		/*List<Object> aaData=new ArrayList<Object>();
 		 
 		for (AppraiseRes res : pages.getRows()) {
 			Object[] data=new Object[6];
@@ -72,7 +72,8 @@ public class TempleteCtl {
 			data[5]=res.getBest();
 			aaData.add(data);
 		}
-		result.put("aaData", aaData);  
+		result.put("aaData", aaData); */ 
+		
 		result.put("aaData", pages.getRows());  
 		return result;
 
@@ -97,9 +98,9 @@ public class TempleteCtl {
 	@RequestMapping(value = "/xxxappend")
 	public ModelAndView append(AppraiseReq req) {
 		ModelAndView mav = new ModelAndView();
-		AppraiseRes res = new AppraiseRes();
+		/*AppraiseRes res = new AppraiseRes();
 		res = appraiseBiz.selectUnique(req);
-		mav.addObject("appraise", res);
+		mav.addObject("appraise", res);*/
 		return mav;
 	};
 

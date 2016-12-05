@@ -17,7 +17,7 @@
 		#parse("home/leftmenus.vm")
 		<!-- END SIDEBAR -->
 		<!-- BEGIN PAGE -->
-		#parse("templete/xxxcontent.vm")
+		#parse("templete/page/content.vm")
 		<!-- END PAGE -->
 	</div>
 	<!-- END CONTAINER -->
